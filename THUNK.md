@@ -13,3 +13,6 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 ---
 
 *Append new rows to the current era table. Start new era headers for major milestones.*
+| 2 | 1.1 | P0 | Content audit completed - documented all content requirements from PROJECT_BRIEF | 2026-01-22 |
+| 3 | 2.1 | P0 | Initialized Astro project with Tailwind CSS - all pages building successfully | 2026-01-22 |
+| 4 | 2.2-2.4 | P0 | Configured Tailwind, created BaseLayout, Header and Footer components with responsive navigation | 2026-01-22 |

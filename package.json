@@ -1,0 +1,21 @@
+{
+  "name": "jacqui-website",
+  "version": "1.0.0",
+  "description": "Professional website for Jacqui Howles - Counselling Psychologist",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": ["psychology", "counselling", "therapy", "astro"],
+  "author": "Jacqui Howles",
+  "license": "ISC",
+  "devDependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.16.13",
+    "tailwindcss": "^3.4.19"
+  }
+}

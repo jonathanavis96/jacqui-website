@@ -13,7 +13,7 @@
 
 ## Phase 1: Discovery & Content Audit
 
-- [ ] **1.1** Audit existing site content
+- [x] **1.1** Audit existing site content
   - **Goal:** Capture all text, images, and structure from jacquichowles.com
   - **AC:** `docs/CONTENT_AUDIT.md` exists with all page content documented
   - **Skill:** `discovery/requirements-distiller.md`
@@ -32,21 +32,21 @@
 
 ## Phase 2: Project Scaffolding
 
-- [ ] **2.1** Initialize Astro project
+- [x] **2.1** Initialize Astro project
   - **Goal:** Create Astro project with Tailwind CSS
   - **AC:** `npm run build` passes, `src/pages/index.astro` exists
   - **Commands:** `npm create astro@latest`, `npx astro add tailwind`
 
-- [ ] **2.2** Configure Tailwind with design tokens
+- [x] **2.2** Configure Tailwind with design tokens
   - **Goal:** Set up color palette, typography, spacing in tailwind.config.mjs
   - **AC:** Custom colors defined, responsive breakpoints configured
   - **Skill:** `design/color-system.md`, `design/typography-system.md`
 
-- [ ] **2.3** Create BaseLayout component
+- [x] **2.3** Create BaseLayout component
   - **Goal:** Shared layout with header, footer, meta tags
   - **AC:** `src/layouts/BaseLayout.astro` exists, includes SEO meta
 
-- [ ] **2.4** Create Header and Footer components
+- [x] **2.4** Create Header and Footer components
   - **Goal:** Navigation header and footer with contact info
   - **AC:** Components exist, nav links work, mobile hamburger menu
 

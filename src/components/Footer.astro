@@ -1,0 +1,59 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gray-50 border-t border-gray-200 mt-auto">
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Brand -->
+      <div>
+        <h3 class="text-xl font-heading font-bold text-gray-900 mb-4">
+          Jacqui Howles
+        </h3>
+        <p class="text-gray-600 text-sm">
+          Counselling Psychologist
+        </p>
+        <p class="text-gray-600 text-sm">
+          HPCSA Registered
+        </p>
+      </div>
+      
+      <!-- Contact Info -->
+      <div>
+        <h4 class="font-heading font-bold text-gray-900 mb-4">Contact</h4>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li>
+            <a href="mailto:hello@jacquichowles.com" class="hover:text-gray-900 transition-colors">
+              hello@jacquichowles.com
+            </a>
+          </li>
+          <li>
+            <a href="https://wa.me/27XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 transition-colors">
+              WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-heading font-bold text-gray-900 mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li>
+            <a href="/about" class="hover:text-gray-900 transition-colors">About</a>
+          </li>
+          <li>
+            <a href="/services" class="hover:text-gray-900 transition-colors">Services</a>
+          </li>
+          <li>
+            <a href="/contact" class="hover:text-gray-900 transition-colors">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
+      <p>&copy; {currentYear} Jacqui Howles. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
