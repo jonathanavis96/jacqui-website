@@ -25,9 +25,10 @@ jacqui-website/
 │   ├── components/            # Reusable UI components
 │   │   ├── Header.astro       # Site header/nav
 │   │   ├── Footer.astro       # Site footer
-│   │   ├── Hero.astro         # Hero section
-│   │   ├── ServiceCard.astro  # Service preview card
-│   │   ├── TrustBadges.astro  # HPCSA + Psychology Today
+│   │   ├── Hero.astro         # Hero section ✅
+│   │   ├── ServiceCard.astro  # Service preview card ✅
+│   │   ├── TrustBadges.astro  # HPCSA + Psychology Today ✅
+│   │   ├── CTASection.astro   # Call-to-action section ✅
 │   │   └── ContactForm.astro  # Contact form
 │   │
 │   ├── layouts/               # Page layouts
@@ -73,7 +74,7 @@ jacqui-website/
 
 | Page | Key Components |
 |------|----------------|
-| Homepage | Hero, ServiceCard (×3), TrustBadges, CTA |
+| Homepage ✅ | Hero, ServiceCard (×3), TrustBadges, "What I work with", CTASection |
 | About | Bio section, Approach, Credentials, "What I work with" |
 | Services | ServiceCard (online), ServiceCard (in-person), Consultancy list |
 | Contact | ContactForm, WhatsApp link, Email link |
