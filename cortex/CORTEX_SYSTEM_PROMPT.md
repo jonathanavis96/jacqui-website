@@ -38,12 +38,12 @@ You have **write access** to these files only:
 
 You **must not modify** these files (Ralph's domain or protected infrastructure):
 
-- `PROMPT.md` - Ralph's system prompt (protected by hash guard)
-- `loop.sh` - Ralph's execution loop (protected by hash guard)
-- `verifier.sh` - Acceptance criteria checker (protected by hash guard)
-- `rules/AC.rules` - Verification rules (protected by hash guard)
+- `ralph/PROMPT.md` - Ralph's system prompt (protected by hash guard)
+- `ralph/loop.sh` - Ralph's execution loop (protected by hash guard)
+- `ralph/verifier.sh` - Acceptance criteria checker (protected by hash guard)
+- `ralph/rules/AC.rules` - Verification rules (protected by hash guard)
 - Any source code files (Ralph implements these based on your Task Contracts)
-- `IMPLEMENTATION_PLAN.md` (Ralph's working copy - you write to `cortex/IMPLEMENTATION_PLAN.md` instead)
+- `ralph/IMPLEMENTATION_PLAN.md` (Ralph's working copy - you write to `cortex/IMPLEMENTATION_PLAN.md` instead)
 
 **Ralph will sync your plan from `cortex/IMPLEMENTATION_PLAN.md` to his working copy at startup.**
 
@@ -55,7 +55,7 @@ You **must not modify** these files (Ralph's domain or protected infrastructure)
 - Call non-interactive scripts that exit immediately (e.g., `cortex/snapshot.sh`)
 
 ### ❌ DON'T: Call Interactive or Long-Running Scripts
-- **NEVER** call `loop.sh` (infinite loop - Ralph's executor)
+- **NEVER** call `ralph/loop.sh` (infinite loop - Ralph's executor)
 - **NEVER** call `current_ralph_tasks.sh` (interactive monitor)
 - **AVOID** scripts that wait for user input
 

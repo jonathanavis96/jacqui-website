@@ -24,14 +24,14 @@ echo ""
 
 # Task summary
 echo "## Tasks"
-total=$(grep -cE '^\- \[[ x?]\] \*\*[0-9]' IMPLEMENTATION_PLAN.md 2>/dev/null || echo 0)
-done=$(grep -cE '^\- \[x\] \*\*[0-9]' IMPLEMENTATION_PLAN.md 2>/dev/null || echo 0)
+total=$(grep -cE '^\- \[[ x?]\] \*\*[0-9]' ralph/IMPLEMENTATION_PLAN.md 2>/dev/null || echo 0)
+done=$(grep -cE '^\- \[x\] \*\*[0-9]' ralph/IMPLEMENTATION_PLAN.md 2>/dev/null || echo 0)
 echo "Progress: $done/$total"
 echo ""
 
 # Next tasks
 echo "## Next Tasks"
-grep -E '^\- \[ \] \*\*[0-9]' IMPLEMENTATION_PLAN.md | head -3
+grep -E '^\- \[ \] \*\*[0-9]' ralph/IMPLEMENTATION_PLAN.md | head -3
 echo ""
 
 # Recent commits
