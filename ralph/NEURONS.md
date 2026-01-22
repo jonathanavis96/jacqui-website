@@ -75,9 +75,9 @@ jacqui-website/
 | Page | Key Components |
 |------|----------------|
 | Homepage ✅ | Hero, ServiceCard (×3), TrustBadges, "What I work with", CTASection |
-| About | Bio section, Approach, Credentials, "What I work with" |
-| Services | ServiceCard (online), ServiceCard (in-person), Consultancy list |
-| Contact | ContactForm, WhatsApp link, Email link |
+| About ✅ | Bio section, Approach, Credentials, "What I work with", TrustBadges |
+| Services ✅ | Online therapy, In-person therapy, Consultancy grid (×6 services) |
+| Contact ✅ | ContactForm (Netlify), WhatsApp link, Email link, FAQ section |
 
 ## Data Flow
 
