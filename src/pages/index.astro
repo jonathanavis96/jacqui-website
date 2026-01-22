@@ -2,22 +2,142 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import TrustBadges from '../components/TrustBadges.astro';
+import CTASection from '../components/CTASection.astro';
 ---
 
 <BaseLayout title="Jacqui Howles - Counselling Psychologist">
   <Header />
-  <main class="flex-grow bg-white">
-    <div class="container mx-auto px-4 py-16">
-      <h1 class="text-4xl font-bold text-center mb-8">
-        Jacqui Howles
-      </h1>
-      <p class="text-xl text-center text-gray-600">
-        Counselling Psychologist
-      </p>
-      <p class="text-center mt-4 text-gray-500">
-        Website under construction
-      </p>
-    </div>
+  
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <Hero />
+    
+    <!-- Services Overview Section -->
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+              How I can help
+            </h2>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+              Whether you're working through trauma, navigating life transitions, or seeking support for anxiety or depression—I'm here to help.
+            </p>
+          </div>
+          
+          <!-- Service Cards Grid -->
+          <div class="grid md:grid-cols-3 gap-8">
+            <ServiceCard 
+              title="Online Therapy"
+              description="Individual therapy sessions via secure video call. Work with me from anywhere in South Africa or internationally."
+              href="/services#online"
+              icon="💻"
+            />
+            
+            <ServiceCard 
+              title="In-Person Therapy"
+              description="Face-to-face counselling sessions in a safe, comfortable space. Available for local clients."
+              href="/services#in-person"
+              icon="🏠"
+            />
+            
+            <ServiceCard 
+              title="Training & Consultancy"
+              description="Workshops, mentorship, and organizational support for mental health professionals and teams."
+              href="/services#consultancy"
+              icon="📚"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Trust Markers -->
+    <TrustBadges />
+    
+    <!-- What I Work With Section -->
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8 text-center">
+            What I work with
+          </h2>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="flex items-start">
+              <span class="text-blue-600 mr-3 text-2xl">✓</span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Trauma & PTSD</h3>
+                <p class="text-gray-600">Complex trauma, PTSD, and developmental trauma</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <span class="text-blue-600 mr-3 text-2xl">✓</span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Depression</h3>
+                <p class="text-gray-600">Including postpartum depression and persistent low mood</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <span class="text-blue-600 mr-3 text-2xl">✓</span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Anxiety</h3>
+                <p class="text-gray-600">Generalized anxiety, panic, and stress management</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <span class="text-blue-600 mr-3 text-2xl">✓</span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Grief & Loss</h3>
+                <p class="text-gray-600">Processing loss and navigating bereavement</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <span class="text-blue-600 mr-3 text-2xl">✓</span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Life Transitions</h3>
+                <p class="text-gray-600">Career changes, relocation, relationship shifts</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <span class="text-blue-600 mr-3 text-2xl">✓</span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Identity & Self</h3>
+                <p class="text-gray-600">Self-esteem, identity exploration, personal growth</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <span class="text-blue-600 mr-3 text-2xl">✓</span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Burnout</h3>
+                <p class="text-gray-600">Work-related stress and compassion fatigue</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <span class="text-blue-600 mr-3 text-2xl">✓</span>
+              <div>
+                <h3 class="font-bold text-gray-900 mb-1">Couples Therapy</h3>
+                <p class="text-gray-600">Relationship support and communication skills</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <CTASection />
   </main>
+  
   <Footer />
 </BaseLayout>

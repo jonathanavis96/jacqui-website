@@ -62,20 +62,20 @@
 
 ## Phase 3: Homepage Build
 
-- [ ] **3.1** Build Hero section
+- [x] **3.1** Build Hero section
   - **Goal:** Value prop, tagline, primary CTA
   - **AC:** Hero displays, CTA links to contact, responsive
   - **Skill:** `copywriting/value-proposition.md`
 
-- [ ] **3.2** Build Services overview section
+- [x] **3.2** Build Services overview section
   - **Goal:** 3 service cards linking to Services page
   - **AC:** Cards display, links work, responsive grid
 
-- [ ] **3.3** Build Trust markers section
+- [x] **3.3** Build Trust markers section
   - **Goal:** HPCSA credentials + Psychology Today badge placeholder
   - **AC:** Trust section displays, badge placeholder present
 
-- [ ] **3.4** Build homepage CTA section
+- [x] **3.4** Build homepage CTA section
   - **Goal:** Final call-to-action before footer
   - **AC:** CTA displays, links to contact
   - **Skill:** `copywriting/cta-optimizer.md`
@@ -172,14 +172,14 @@
 | Phase | Total | Done | Remaining |
 |-------|-------|------|-----------|
 | 0: Setup | 1 | 1 | 0 |
-| 1: Discovery | 3 | 0 | 3 |
-| 2: Scaffolding | 6 | 0 | 6 |
-| 3: Homepage | 4 | 0 | 4 |
+| 1: Discovery | 3 | 1 | 2 |
+| 2: Scaffolding | 6 | 6 | 0 |
+| 3: Homepage | 4 | 4 | 0 |
 | 4: Inner Pages | 7 | 0 | 7 |
 | 5: QA | 5 | 0 | 5 |
 | 6: Launch | 4 | 0 | 4 |
-| **Total** | **30** | **1** | **29** |
+| **Total** | **30** | **12** | **18** |
 
 ---
 
-*Last Updated: 2026-01-22 15:55:00*
+*Last Updated: 2026-01-23 01:51:00*
