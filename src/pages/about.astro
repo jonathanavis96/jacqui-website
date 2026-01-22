@@ -2,15 +2,290 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import TrustBadges from '../components/TrustBadges.astro';
 ---
 
-<BaseLayout title="About - Jacqui Howles" description="Learn about Jacqui Howles' background, approach, and areas of expertise in counselling psychology.">
+<BaseLayout 
+  title="About - Jacqui Howles" 
+  description="Learn about Jacqui Howles' background, approach, and areas of expertise in counselling psychology."
+>
   <Header />
   <main class="flex-grow bg-white">
-    <div class="container mx-auto px-4 py-16">
-      <h1 class="text-4xl font-bold mb-8">About</h1>
-      <p class="text-gray-600">Coming soon...</p>
-    </div>
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-b from-blue-50 to-white py-16 md:py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
+            About Me
+          </h1>
+          <p class="text-xl text-gray-600 leading-relaxed">
+            Over a decade of experience providing compassionate, trauma-informed therapy across Africa and internationally
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section class="py-16 md:py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <!-- Photo placeholder -->
+          <div class="mb-12 flex justify-center">
+            <div class="w-64 h-64 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">
+              Photo placeholder
+            </div>
+          </div>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-gray-700 leading-relaxed mb-6">
+              I am a registered Counselling Psychologist with over a decade of experience working with individuals, couples, and communities across diverse contexts. My journey in psychology began at the University of the Witwatersrand, where I developed a deep commitment to understanding and addressing the impact of trauma on mental health.
+            </p>
+
+            <p class="text-gray-700 leading-relaxed mb-6">
+              My career has taken me across Africa, where I worked with the Centre for the Study of Violence and Reconciliation (CSVR), supporting survivors of violence and working on community-based healing initiatives. I've had the privilege of working in The Gambia, collaborating with the United Nations Development Programme (UNDP) on post-conflict mental health programs, and engaging with communities navigating complex transitions.
+            </p>
+
+            <p class="text-gray-700 leading-relaxed mb-6">
+              These experiences have shaped my understanding of resilience, healing, and the importance of culturally sensitive, trauma-informed care. Today, my practice is primarily online-based, allowing me to work with clients wherever they are—whether locally or internationally.
+            </p>
+
+            <!-- Pull Quote -->
+            <blockquote class="border-l-4 border-blue-600 pl-6 py-4 my-12 italic text-xl text-gray-700">
+              "Therapy is about creating a safe space where you can explore your experiences, understand your patterns, and find your way forward—at your own pace."
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How I Work Section -->
+    <section class="py-16 md:py-20 bg-blue-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8">
+            How I Work
+          </h2>
+
+          <div class="prose prose-lg max-w-none">
+            <p class="text-gray-700 leading-relaxed mb-6">
+              My therapeutic approach is grounded in <strong>psychodynamic therapy</strong>, which focuses on understanding the deeper patterns and relationships that shape how we experience ourselves and the world. I believe that meaningful change comes from exploring not just what we think and do, but also what we feel and why.
+            </p>
+
+            <p class="text-gray-700 leading-relaxed mb-6">
+              I also draw on other modalities as needed, including trauma-focused approaches, attachment theory, and relational therapy. My work is informed by a deep respect for each person's unique story and the contexts that have shaped their lives.
+            </p>
+
+            <div class="bg-white rounded-lg p-8 my-8">
+              <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
+                What to expect
+              </h3>
+              <ul class="space-y-4">
+                <li class="flex items-start">
+                  <span class="text-blue-600 mr-3 text-xl">•</span>
+                  <span class="text-gray-700"><strong>A safe, non-judgmental space</strong> where you can speak openly about your experiences</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-blue-600 mr-3 text-xl">•</span>
+                  <span class="text-gray-700"><strong>A collaborative relationship</strong> where we work together to understand your concerns and goals</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-blue-600 mr-3 text-xl">•</span>
+                  <span class="text-gray-700"><strong>Trauma-informed care</strong> that respects your pace and honors your experiences</span>
+                </li>
+                <li class="flex items-start">
+                  <span class="text-blue-600 mr-3 text-xl">•</span>
+                  <span class="text-gray-700"><strong>A focus on relationships</strong>—both the relationship between us and your relationships with others</span>
+                </li>
+              </ul>
+            </div>
+
+            <p class="text-gray-700 leading-relaxed">
+              I work with individuals, adolescents, and couples, tailoring my approach to what feels right for you.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What I Work With Section -->
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8">
+            What I Work With
+          </h2>
+
+          <p class="text-gray-700 leading-relaxed mb-10">
+            I work with people experiencing a wide range of concerns. Some common areas include:
+          </p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Trauma -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Trauma, PTSD & Complex PTSD
+              </h3>
+              <p class="text-gray-700">
+                Working through the lasting effects of traumatic experiences, including childhood trauma, violence, and loss.
+              </p>
+            </div>
+
+            <!-- Depression -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Depression
+              </h3>
+              <p class="text-gray-700">
+                Including postpartum depression, persistent low mood, and feelings of hopelessness.
+              </p>
+            </div>
+
+            <!-- Anxiety -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Anxiety
+              </h3>
+              <p class="text-gray-700">
+                Generalized anxiety, panic, social anxiety, and worry that impacts your daily life.
+              </p>
+            </div>
+
+            <!-- Grief -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Grief & Loss
+              </h3>
+              <p class="text-gray-700">
+                Navigating bereavement, loss, and the complex emotions that come with endings.
+              </p>
+            </div>
+
+            <!-- Burnout -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Burnout
+              </h3>
+              <p class="text-gray-700">
+                Work-related stress, compassion fatigue, and emotional exhaustion.
+              </p>
+            </div>
+
+            <!-- Transitions -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Life Transitions
+              </h3>
+              <p class="text-gray-700">
+                Major changes like relocation, career shifts, relationship changes, and identity exploration.
+              </p>
+            </div>
+
+            <!-- Identity -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Identity Issues
+              </h3>
+              <p class="text-gray-700">
+                Questions about who you are, belonging, cultural identity, and self-understanding.
+              </p>
+            </div>
+
+            <!-- Couples -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Couples Therapy
+              </h3>
+              <p class="text-gray-700">
+                Relationship difficulties, communication patterns, and building deeper connection.
+              </p>
+            </div>
+          </div>
+
+          <p class="text-gray-600 mt-10 italic">
+            This is not an exhaustive list. If you're unsure whether I can help with what you're going through, please reach out—we can discuss it together.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Credentials Section -->
+    <section class="py-16 md:py-20 bg-gradient-to-b from-white to-blue-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8 text-center">
+            Professional Credentials
+          </h2>
+
+          <div class="bg-white rounded-lg shadow-md p-8 mb-12">
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
+                  Registration
+                </h3>
+                <p class="text-gray-700">
+                  Registered Counselling Psychologist with the Health Professions Council of South Africa (HPCSA)
+                </p>
+              </div>
+
+              <div>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
+                  Education
+                </h3>
+                <p class="text-gray-700">
+                  Master's Degree in Counselling Psychology, University of the Witwatersrand
+                </p>
+              </div>
+
+              <div>
+                <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
+                  Experience
+                </h3>
+                <ul class="text-gray-700 space-y-2">
+                  <li>• Over 10 years of clinical experience</li>
+                  <li>• Work across Africa including South Africa, The Gambia, and other countries</li>
+                  <li>• Collaboration with international organizations including UNDP</li>
+                  <li>• Community-based mental health programs and post-conflict support</li>
+                  <li>• Private practice specializing in trauma, depression, and anxiety</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust Badges Component -->
+          <TrustBadges />
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 md:py-20 bg-blue-600 text-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6">
+            Ready to take the next step?
+          </h2>
+          <p class="text-xl mb-8 text-blue-100">
+            Book a free consultation to see if we're a good fit, or learn more about how I work.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/contact" 
+              class="inline-block bg-white hover:bg-gray-100 text-blue-600 font-bold py-4 px-8 rounded-lg transition-colors text-lg"
+            >
+              Get in touch
+            </a>
+            <a 
+              href="/services" 
+              class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-8 rounded-lg border-2 border-white transition-colors text-lg"
+            >
+              View services
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
   <Footer />
 </BaseLayout>

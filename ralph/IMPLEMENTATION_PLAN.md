@@ -84,31 +84,31 @@
 
 ## Phase 4: Inner Pages Build
 
-- [ ] **4.1** Build About page - Bio section
+- [x] **4.1** Build About page - Bio section
   - **Goal:** Full bio narrative with photo
   - **AC:** Bio displays, photo placeholder, responsive
 
-- [ ] **4.2** Build About page - Approach section
+- [x] **4.2** Build About page - Approach section
   - **Goal:** "How I work" with modalities
   - **AC:** Approach section displays, readable on mobile
 
-- [ ] **4.3** Build About page - "What I work with" section
+- [x] **4.3** Build About page - "What I work with" section
   - **Goal:** List of areas (trauma, depression, anxiety, etc.)
   - **AC:** List displays, scannable format
 
-- [ ] **4.4** Build Services page - Online therapy section
+- [x] **4.4** Build Services page - Online therapy section
   - **Goal:** Online therapy details, pricing, getting started
   - **AC:** Section displays, clear structure
 
-- [ ] **4.5** Build Services page - In-person therapy section
+- [x] **4.5** Build Services page - In-person therapy section
   - **Goal:** In-person therapy details (NEW content)
   - **AC:** Section displays, location/availability info
 
-- [ ] **4.6** Build Services page - Consultancy section
+- [x] **4.6** Build Services page - Consultancy section
   - **Goal:** Training, workshops, mentorship list
   - **AC:** Section displays, all items listed
 
-- [ ] **4.7** Build Contact page
+- [x] **4.7** Build Contact page
   - **Goal:** Contact form, email, WhatsApp
   - **AC:** Form works (Netlify Forms), contact info displays
   - **Skill:** `build/forms-integration.md`
@@ -175,10 +175,10 @@
 | 1: Discovery | 3 | 1 | 2 |
 | 2: Scaffolding | 6 | 6 | 0 |
 | 3: Homepage | 4 | 4 | 0 |
-| 4: Inner Pages | 7 | 0 | 7 |
+| 4: Inner Pages | 7 | 7 | 0 |
 | 5: QA | 5 | 0 | 5 |
 | 6: Launch | 4 | 0 | 4 |
-| **Total** | **30** | **12** | **18** |
+| **Total** | **30** | **19** | **11** |
 
 ---
 

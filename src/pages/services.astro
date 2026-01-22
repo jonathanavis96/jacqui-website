@@ -4,13 +4,374 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 ---
 
-<BaseLayout title="Services - Jacqui Howles" description="Online therapy, in-person counselling, and consultancy services offered by Jacqui Howles.">
+<BaseLayout 
+  title="Services - Jacqui Howles" 
+  description="Online therapy, in-person counselling, and consultancy services offered by Jacqui Howles."
+>
   <Header />
   <main class="flex-grow bg-white">
-    <div class="container mx-auto px-4 py-16">
-      <h1 class="text-4xl font-bold mb-8">Services</h1>
-      <p class="text-gray-600">Coming soon...</p>
-    </div>
+    
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-b from-blue-50 to-white py-16 md:py-20">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
+            Services
+          </h1>
+          <p class="text-xl text-gray-600 leading-relaxed">
+            Flexible therapy and consultancy services to meet you where you are
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Online Therapy Section -->
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-8">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+              Online Therapy & Coaching
+            </h2>
+            <p class="text-xl text-gray-600">
+              Accessible, professional therapy from wherever you are
+            </p>
+          </div>
+
+          <div class="prose prose-lg max-w-none mb-10">
+            <p class="text-gray-700 leading-relaxed">
+              Online therapy offers a flexible, accessible way to receive professional psychological support. Whether you're at home, traveling, or living abroad, we can work together through secure video sessions.
+            </p>
+          </div>
+
+          <!-- What's Included -->
+          <div class="bg-blue-50 rounded-lg p-8 mb-8">
+            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6">
+              What's included
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 text-xl">✓</span>
+                <div>
+                  <strong class="text-gray-900">Individual therapy</strong>
+                  <p class="text-gray-700">One-on-one sessions focused on your unique needs and goals</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 text-xl">✓</span>
+                <div>
+                  <strong class="text-gray-900">Couples therapy</strong>
+                  <p class="text-gray-700">Support for relationship difficulties and communication patterns</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 text-xl">✓</span>
+                <div>
+                  <strong class="text-gray-900">Adolescent therapy</strong>
+                  <p class="text-gray-700">Age-appropriate support for teenagers navigating challenges</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Getting Started -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6">
+              Getting started
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="text-center p-6">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                  1
+                </div>
+                <h4 class="font-heading font-bold text-gray-900 mb-2">Get in touch</h4>
+                <p class="text-gray-600">Send me an email or WhatsApp message to schedule a free consultation</p>
+              </div>
+              <div class="text-center p-6">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                  2
+                </div>
+                <h4 class="font-heading font-bold text-gray-900 mb-2">Free consultation</h4>
+                <p class="text-gray-600">We'll talk about what you're looking for and see if we're a good fit</p>
+              </div>
+              <div class="text-center p-6">
+                <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                  3
+                </div>
+                <h4 class="font-heading font-bold text-gray-900 mb-2">Begin therapy</h4>
+                <p class="text-gray-600">Schedule regular sessions and start your therapeutic journey</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Session Structure -->
+          <div class="bg-gray-50 rounded-lg p-8 mb-8">
+            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
+              Session structure
+            </h3>
+            <ul class="space-y-3 text-gray-700">
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3">•</span>
+                <span>Sessions are typically 50 minutes long</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3">•</span>
+                <span>Conducted via secure video platform (details provided when booking)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3">•</span>
+                <span>Weekly or fortnightly sessions, depending on your needs</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3">•</span>
+                <span>Flexible scheduling to accommodate different time zones</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Payment & Fees -->
+          <div class="border-l-4 border-blue-600 pl-6 py-4">
+            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+              Payment & fees
+            </h3>
+            <p class="text-gray-700 mb-3">
+              Session fees are discussed during the initial consultation. Payment is accepted via bank transfer or other agreed methods.
+            </p>
+            <p class="text-gray-700">
+              <strong>Medical aid:</strong> While I do not bill medical aid directly, I can provide invoices for you to submit for reimbursement if your plan covers out-of-network providers.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- In-Person Therapy Section -->
+    <section class="py-16 md:py-20 bg-blue-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-8">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+              In-Person Therapy & Coaching
+            </h2>
+            <p class="text-xl text-gray-600">
+              Face-to-face sessions for those who prefer in-person connection
+            </p>
+          </div>
+
+          <div class="prose prose-lg max-w-none mb-10">
+            <p class="text-gray-700 leading-relaxed">
+              For clients who prefer face-to-face sessions, I offer in-person therapy at a private practice location. In-person therapy provides the same compassionate, trauma-informed care in a comfortable, confidential setting.
+            </p>
+          </div>
+
+          <!-- What to Expect -->
+          <div class="bg-white rounded-lg p-8 mb-8 shadow-sm">
+            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6">
+              What to expect
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 text-xl">✓</span>
+                <div>
+                  <strong class="text-gray-900">Private, comfortable space</strong>
+                  <p class="text-gray-700">A safe, confidential environment for your sessions</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 text-xl">✓</span>
+                <div>
+                  <strong class="text-gray-900">Same therapeutic approach</strong>
+                  <p class="text-gray-700">The same compassionate, psychodynamic care as online sessions</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-blue-600 mr-3 text-xl">✓</span>
+                <div>
+                  <strong class="text-gray-900">Flexible scheduling</strong>
+                  <p class="text-gray-700">Sessions scheduled to suit your availability</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Location & Availability -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
+              Location & availability
+            </h3>
+            <p class="text-gray-700 mb-4">
+              <strong>Location details:</strong> Provided when booking your initial consultation
+            </p>
+            <p class="text-gray-700 mb-4">
+              <strong>Availability:</strong> Limited in-person slots available—contact me to discuss current openings
+            </p>
+            <p class="text-gray-600 italic">
+              Note: In-person sessions are subject to availability. If in-person sessions are not available, online therapy remains a flexible and effective alternative.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultancy Services Section -->
+    <section class="py-16 md:py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-8">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+              Consultancy Services
+            </h2>
+            <p class="text-xl text-gray-600">
+              Training, workshops, and specialized support for organizations and practitioners
+            </p>
+          </div>
+
+          <div class="prose prose-lg max-w-none mb-10">
+            <p class="text-gray-700 leading-relaxed">
+              Drawing on over a decade of experience in community mental health, trauma work, and international development, I offer consultancy services for organizations, NGOs, and mental health practitioners.
+            </p>
+          </div>
+
+          <!-- Services Offered -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Training -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Training & Workshops
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Professional development and skills training for mental health practitioners, community workers, and organizations.
+              </p>
+              <ul class="text-gray-700 space-y-2 text-sm">
+                <li>• Trauma-informed care</li>
+                <li>• Vicarious trauma & self-care</li>
+                <li>• Community mental health approaches</li>
+              </ul>
+            </div>
+
+            <!-- Community Programs -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Community Programs
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Design and implementation of community-based mental health initiatives and support programs.
+              </p>
+              <ul class="text-gray-700 space-y-2 text-sm">
+                <li>• Program design & evaluation</li>
+                <li>• Community-based interventions</li>
+                <li>• Participatory approaches</li>
+              </ul>
+            </div>
+
+            <!-- Workplace Workshops -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Workplace Wellness
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Mental health workshops and wellness programs for workplace settings.
+              </p>
+              <ul class="text-gray-700 space-y-2 text-sm">
+                <li>• Burnout prevention</li>
+                <li>• Stress management</li>
+                <li>• Building resilient teams</li>
+              </ul>
+            </div>
+
+            <!-- Mentorship -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Professional Mentorship
+              </h3>
+              <p class="text-gray-700 mb-4">
+                One-on-one mentorship for early-career psychologists and mental health practitioners.
+              </p>
+              <ul class="text-gray-700 space-y-2 text-sm">
+                <li>• Clinical supervision</li>
+                <li>• Career guidance</li>
+                <li>• Professional development</li>
+              </ul>
+            </div>
+
+            <!-- Body Mapping -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Body Mapping
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Facilitation of body mapping workshops for therapeutic and community research purposes.
+              </p>
+              <ul class="text-gray-700 space-y-2 text-sm">
+                <li>• Workshop facilitation</li>
+                <li>• Participatory research methods</li>
+                <li>• Community storytelling</li>
+              </ul>
+            </div>
+
+            <!-- Content Development -->
+            <div class="bg-blue-50 rounded-lg p-6">
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+                Content Development
+              </h3>
+              <p class="text-gray-700 mb-4">
+                Development of mental health educational materials, resources, and program content.
+              </p>
+              <ul class="text-gray-700 space-y-2 text-sm">
+                <li>• Training materials</li>
+                <li>• Educational resources</li>
+                <li>• Program curricula</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Contact for Consultancy -->
+          <div class="mt-10 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg p-8 text-center">
+            <h3 class="text-2xl font-heading font-bold mb-4">
+              Interested in consultancy services?
+            </h3>
+            <p class="text-blue-100 mb-6">
+              Get in touch to discuss your organization's needs and how I can support your work.
+            </p>
+            <a 
+              href="/contact" 
+              class="inline-block bg-white hover:bg-gray-100 text-blue-600 font-bold py-3 px-8 rounded-lg transition-colors"
+            >
+              Contact me
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA Section -->
+    <section class="py-16 md:py-20 bg-gradient-to-b from-white to-blue-50">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
+            Ready to get started?
+          </h2>
+          <p class="text-xl text-gray-600 mb-8">
+            Book a free consultation to discuss your needs and see how I can help.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="/contact" 
+              class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg"
+            >
+              Get in touch
+            </a>
+            <a 
+              href="/about" 
+              class="inline-block bg-white hover:bg-gray-50 text-blue-600 font-bold py-4 px-8 rounded-lg border-2 border-blue-600 transition-colors text-lg"
+            >
+              Learn more about me
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
   <Footer />
 </BaseLayout>
