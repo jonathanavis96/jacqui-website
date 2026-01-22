@@ -16,3 +16,5 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 2 | 1.1 | P0 | Content audit completed - documented all content requirements from PROJECT_BRIEF | 2026-01-22 |
 | 3 | 2.1 | P0 | Initialized Astro project with Tailwind CSS - all pages building successfully | 2026-01-22 |
 | 4 | 2.2-2.4 | P0 | Configured Tailwind, created BaseLayout, Header and Footer components with responsive navigation | 2026-01-22 |
+| 5 | 2.5 | P0 | Configured Netlify deployment - netlify.toml ready for automatic deploys | 2026-01-22 |
+| 6 | 2.6 | P0 | Initialized verifier baselines - hash guards created for protected files | 2026-01-22 |

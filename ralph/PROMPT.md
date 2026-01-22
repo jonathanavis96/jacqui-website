@@ -18,55 +18,70 @@ Read `~/code/brain/workers/ralph/PROMPT.md` for full Ralph loop mechanics (PLANN
 ## Brain Knowledge Base
 
 For website patterns and best practices, use progressive disclosure:
+
 1. `~/code/brain/skills/domains/websites/README.md` - Website skills overview
 2. `~/code/brain/skills/domains/websites/<phase>/<skill>.md` - Specific skills
 3. `~/code/brain/skills/SUMMARY.md` - Full knowledge base overview
 
 **Key website skills for this project:**
-- `discovery/requirements-distiller.md` - Understand scope
-- `architecture/section-composer.md` - Plan page sections
-- `design/design-direction.md` - Visual constraints
-- `copywriting/value-proposition.md` - Hero and CTA copy
-- `qa/acceptance-criteria.md` - Verify deliverables
-- `launch/deployment.md` - Go live
 
-❌ Never scan all skills by default
-✅ Use the hierarchy above
+- `discovery/requirements-distiller.md` - Extract requirements from briefs
+- `architecture/section-composer.md` - Structure page sections
+- `copywriting/value-proposition.md` - Craft compelling copy
+- `design/color-system.md` - Color palette decisions
+- `launch/deployment.md` - Netlify deployment
 
-## Task Completion Flow
+## Token Efficiency Rules (CRITICAL)
 
-When marking a task `[x]` complete:
+### PLANNING Mode Output
 
-1. **Validate** using commands below
-2. **Log to THUNK.md** - Append to current era table (DO NOT overwrite file):
-   ```markdown
-   | <next_thunk_num> | <task_id> | <priority> | <description> | YYYY-MM-DD |
-   ```
-3. **Commit** all changes (local only)
-4. **Update** IMPLEMENTATION_PLAN.md: mark `[x]`, add discovered subtasks
+In PLANNING mode, you MUST end with:
 
-⚠️ **THUNK.md is append-only** - Never rewrite or restructure it. Only append new rows to the existing table.
-
-## Validation (before marking task complete)
-
-```bash
-# Astro validation commands
-npm run build          # Build passes
-npm run preview        # Preview works (manual check)
-
-# Linting
-npm run lint           # If configured
-
-# General checks
-ls -la src/pages/      # Pages exist
-ls -la src/components/ # Components exist
+```text
+:::BUILD_READY:::
 ```
+
+This signals loop.sh to proceed to BUILD mode. Without this marker, the iteration is wasted.
+
+### Batch Similar Fixes
+
+When you encounter multiple instances of the same issue type (e.g., SC2155, SC2086):
+
+1. **FIX ALL instances in one iteration** - don't create separate tasks for each
+2. **Group by error type**, not by file
+3. **One commit per error type**: `fix(ralph): resolve SC2155 in all shell scripts`
+
+### Formatting Discipline
+
+- **DO NOT** run shfmt on individual files repeatedly
+- If shellcheck fixes require reformatting, run `shfmt -w -i 2 <file>` ONCE after all fixes
+- **NEVER** include "applied shfmt formatting" as the main work - it's incidental to the real fix
+
+### Context You Already Have
+
+**NEVER repeat these (you already know):**
+
+- `pwd`, `git branch` - known from header
+- `.verify/latest.txt` - read ONCE at start
+- `tail THUNK.md` - get next number ONCE
+- Same file content - read ONCE, remember it
+
+**ALWAYS batch:** `grep pattern file1 file2 file3` not 3 separate calls.
+
+### Task ID Uniqueness
+
+**CRITICAL:** Before creating any task ID, search IMPLEMENTATION_PLAN.md to verify it doesn't exist.
+
+- Use format: `<phase>.<sequence>` (e.g., `9.1`, `9.2`)
+- If `9.1` exists, use `9.2`, not `9.1` again
+- Duplicate IDs cause confusion and wasted iterations
 
 ## Self-Improvement Protocol
 
 **End of each BUILD iteration**:
 
 If you used undocumented knowledge/procedure/tooling:
+
 1. Search `~/code/brain/skills/` for existing matching skill
 2. Search `~/code/brain/skills/self-improvement/GAP_BACKLOG.md` for existing gap entry
 3. If not found: append new entry to `GAP_BACKLOG.md`
@@ -77,6 +92,7 @@ See `~/code/brain/skills/self-improvement/GAP_CAPTURE_RULES.md` for details.
 ## Project-Specific Notes
 
 ### Client Requirements
+
 - **Deadline:** 14th February 2026 (hard deadline)
 - **Content:** Keep ALL existing content, restructure for clarity
 - **Design:** Calm, inviting, not overly feminine
@@ -84,12 +100,14 @@ See `~/code/brain/skills/self-improvement/GAP_CAPTURE_RULES.md` for details.
 - **Services:** Add in-person alongside online
 
 ### Tech Stack
+
 - **Framework:** Astro
 - **Styling:** Tailwind CSS
 - **Deployment:** Netlify
 - **Forms:** Netlify Forms
 
 ### Page Structure
+
 | Page | Key Sections |
 |------|--------------|
 | Home | Hero, services overview, trust markers, CTA |

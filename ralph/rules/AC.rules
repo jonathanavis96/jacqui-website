@@ -5,8 +5,8 @@
 # =============================================================================
 # Build & Lint
 # =============================================================================
-BUILD-01|cmd|Astro build passes|cd src && npm run build 2>&1 | tail -5
-LINT-01|cmd|No lint errors (if configured)|cd src && npm run lint 2>&1 || echo "Lint not configured"
+BUILD-01|cmd|Astro build passes|npm run build 2>&1 | tail -5
+LINT-01|cmd|No lint errors (if configured)|npm run lint 2>&1 || echo "Lint not configured"
 
 # =============================================================================
 # Pages Exist

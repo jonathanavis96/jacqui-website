@@ -50,11 +50,11 @@
   - **Goal:** Navigation header and footer with contact info
   - **AC:** Components exist, nav links work, mobile hamburger menu
 
-- [ ] **2.5** Set up Netlify deployment
+- [x] **2.5** Set up Netlify deployment
   - **Goal:** Configure for automatic deploys
   - **AC:** `netlify.toml` exists, site deploys on push
 
-- [ ] **2.6** Initialize verifier baselines
+- [x] **2.6** Initialize verifier baselines
   - **Goal:** Create hash guards for protected files
   - **AC:** `.verify/*.sha256` files exist, `bash verifier.sh` passes
 
