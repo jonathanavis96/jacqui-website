@@ -27,3 +27,7 @@ Thumbs.db
 
 # Netlify
 .netlify/
+
+# Verifier runtime outputs (do not track)
+.verify/latest.txt
+.verify/run_id.txt
