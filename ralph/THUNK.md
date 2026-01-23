@@ -27,3 +27,4 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 13 | Assessment | P1 | Comprehensive codebase assessment completed - verified all builds passing, identified 3 P0 blockers (WhatsApp, email inconsistency, profile photo) | 2026-01-23 |
 | 14 | Validation | P1 | Final validation completed - all acceptance criteria verified, build passing (108KB, 4 pages), ready for client input on P0 blockers | 2026-01-23 |
 | 15 | 0.0 | P0 | Fixed client name from "Howles" to "Chowles" throughout entire codebase (src/, docs/, ralph/) and corrected email typo (jacquihowles→jacquichowles) | 2026-01-23 |
+| 16 | 5.1 | P1 | Psychology Today badge updated - now links to Jacqui's verified profile instead of generic homepage | 2026-01-23 |
