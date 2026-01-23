@@ -23,10 +23,12 @@
   - **AC:** Open questions in THOUGHTS.md marked resolved
   - **Blocked by:** Human (Jono asks Jacqui)
 
-- [ ] **1.3** Create section blueprints for each page
+- [x] **1.3** Create section blueprints for each page
   - **Goal:** Document section-by-section plan for Home, About, Services, Contact
   - **AC:** `docs/SECTION_BLUEPRINTS.md` exists with all 4 pages detailed
   - **Skill:** `architecture/section-composer.md`
+  - **Completed:** 2026-01-23
+  - **Notes:** Documented all 4 pages with section breakdowns, design system, and content principles
 
 ---
 
@@ -176,16 +178,16 @@
 ## Task Status Summary
 
 | Phase | Total | Done | Remaining |
-|-------|-------|------|-----------|
+|-------|-------|------|-----------
 | 0: Setup | 1 | 1 | 0 |
-| 1: Discovery | 3 | 1 | 2 |
+| 1: Discovery | 3 | 2 | 1 |
 | 2: Scaffolding | 6 | 6 | 0 |
 | 3: Homepage | 4 | 4 | 0 |
 | 4: Inner Pages | 7 | 7 | 0 |
 | 5: QA | 5 | 3 | 2 |
 | 6: Launch | 4 | 0 | 4 |
-| **Total** | **30** | **22** | **8** |
+| **Total** | **30** | **23** | **7** |
 
 ---
 
-*Last Updated: 2026-01-23 02:04:30*
+*Last Updated: 2026-01-23 02:09:45*
