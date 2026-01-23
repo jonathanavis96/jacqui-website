@@ -1,8 +1,8 @@
 # Project Status Report - Jacqui Chowles Website
 
-**Generated:** 2026-01-23 02:25:30  
-**Phase:** 5 - QA & Polish (In Progress)  
-**Overall Progress:** 23/30 tasks complete (77%)  
+**Generated:** 2026-01-23 02:47:30  
+**Phase:** 5 - QA & Polish (Near Complete)  
+**Overall Progress:** 24/30 tasks complete (80%)  
 **Build Status:** ✅ PASSING (4 pages, 108KB, 0 warnings)
 
 ---
@@ -11,7 +11,12 @@
 
 ✅ **Website is functionally complete and ready for client review**
 
-The core website build is finished with all pages live, responsive, accessible, and performant. Remaining tasks are blocked by external dependencies (client information, domain access).
+The core website build is finished with all pages live, responsive, accessible, and performant. Task 5.1 (Psychology Today badge) has been completed - the badge now links to Jacqui's verified profile. Remaining tasks are blocked by external dependencies (client information, domain access).
+
+**Latest Update (2026-01-23 02:47):**
+- ✅ Task 5.1 completed: Psychology Today badge now links to verified profile
+- Progress: 24/30 tasks (80% complete)
+- Phase 5 QA: 4/5 tasks complete
 
 ---
 
@@ -37,7 +42,7 @@ The core website build is finished with all pages live, responsive, accessible, 
 **Phase 3: Homepage Build** (4/4 tasks)
 - ✅ Hero section with value proposition
 - ✅ Services overview (3 cards)
-- ✅ Trust markers (HPCSA + Psychology Today placeholder)
+- ✅ Trust markers (HPCSA + Psychology Today)
 - ✅ CTA section
 
 **Phase 4: Inner Pages Build** (7/7 tasks)
@@ -45,8 +50,8 @@ The core website build is finished with all pages live, responsive, accessible, 
 - ✅ Services page (Online, In-person, Consultancy)
 - ✅ Contact page (Form, Email, WhatsApp, FAQs)
 
-**Phase 5: Polish & QA** (3/5 tasks)
-- ⏸️ Psychology Today badge (waiting for client verification code)
+**Phase 5: Polish & QA** (4/5 tasks) - 🆕 UPDATED
+- ✅ Psychology Today badge (links to verified profile)
 - ✅ Mobile responsiveness verified (all breakpoints)
 - ✅ Accessibility check (WCAG AA compliant, focus states, skip link, ARIA labels)
 - ✅ Performance optimization (projected Lighthouse 95+)
@@ -101,7 +106,7 @@ The core website build is finished with all pages live, responsive, accessible, 
 
 2. **Email Address Inconsistency**
    - `src/components/Footer.astro` uses: `hello@jacquichowles.com`
-   - `src/pages/contact.astro` uses: `jacqui@jacquihowles.com` (3 instances)
+   - `src/pages/contact.astro` uses: `jacqui@jacquichowles.com` (3 instances)
    - **Action needed:** Confirm which email is correct, standardize across site
    - **Impact:** Confusion about correct contact email
    - **Priority:** P0 (blocks launch)
@@ -113,14 +118,14 @@ The core website build is finished with all pages live, responsive, accessible, 
    - **Impact:** About page looks incomplete
    - **Priority:** P0 (blocks launch)
 
-### 🟡 Important (Not Blocking Launch)
+### 🟢 Completed Items (Previously Blockers)
 
-4. **Psychology Today Badge** (Task 5.1)
+4. **Psychology Today Badge** (Task 5.1) - ✅ COMPLETED 2026-01-23
    - **Location:** `src/components/TrustBadges.astro`
-   - Current: Generic placeholder icon linking to homepage
-   - **Action needed:** Client must provide verification code/widget
-   - **Impact:** Trust marker not fully functional
-   - **Priority:** P1 (important for trust, but can launch without)
+   - **Status:** Now links to verified profile: `/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696`
+   - **Impact:** Trust marker fully functional
+
+### 🟡 Important (Not Blocking Launch)
 
 5. **Empty Images Directory**
    - **Location:** `public/images/`
@@ -172,9 +177,9 @@ jacqui-website/
 
 1. **Gather missing content from client:**
    - WhatsApp number for contact links
-   - Psychology Today verification code
    - Professional headshot photo
    - Content approval/corrections
+   - Confirm correct email address (hello@ vs jacqui@)
 
 2. **Review open questions** (docs/CONTENT_AUDIT.md):
    - Color preferences
@@ -183,9 +188,10 @@ jacqui-website/
 
 ### Pre-Launch Checklist (When Unblocked)
 
-- [ ] Update WhatsApp number in Footer
-- [ ] Add Psychology Today badge
-- [ ] Add profile photo
+- [ ] Update WhatsApp number in Footer and Contact page
+- [ ] Standardize email address across all pages
+- [ ] Add profile photo to About page
+- [x] Psychology Today badge (COMPLETED)
 - [ ] Client content review complete
 - [ ] Final accessibility test with screen reader
 - [ ] Set up domain DNS
@@ -249,10 +255,20 @@ netlify deploy --prod
 
 ---
 
+## Recent Changes (2026-01-23)
+
+### Completed in This Session
+- ✅ **Task 5.1:** Updated Psychology Today badge to link to verified profile
+  - Changed from generic psychologytoday.com to specific profile URL
+  - Build verified: All 4 pages generated successfully
+  - Commit: `b53656e`
+
+---
+
 ## Recommendations
 
 ### For Client (Jacqui)
-1. ✉️ **Urgent:** Provide WhatsApp number, Psychology Today code, profile photo
+1. ✉️ **Urgent:** Provide WhatsApp number, profile photo, and confirm email address
 2. 📝 Review website copy for accuracy (all pages)
 3. 🎨 Confirm design direction (colors, aesthetic)
 4. 📍 Finalize in-person therapy details
@@ -264,7 +280,7 @@ netlify deploy --prod
 4. 📱 Test on actual mobile devices (currently only responsive testing)
 
 ### For Launch
-1. Set up email forwarding (jacqui@jacquichowles.com)
+1. Set up email forwarding (confirm which email to use)
 2. Configure SSL certificate (auto via Netlify)
 3. Set up form notifications (Netlify Forms → email)
 4. Create sitemap.xml and robots.txt
