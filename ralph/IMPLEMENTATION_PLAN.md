@@ -45,9 +45,9 @@
 ### 9.3 About page: Remove DecorativeImage components + fix stray tag
 - **Goal:** Clean up About page by removing random decorative banners
 - **AC:**
-  - [ ] Both DecorativeImage components removed from about.astro
-  - [ ] Stray `</section>` tag (around line 236) fixed
-  - [ ] Page renders without errors
+  - [x] Both DecorativeImage components removed from about.astro
+  - [x] Stray `</section>` tag (around line 236) fixed
+  - [x] Page renders without errors
 
 ---
 
