@@ -203,10 +203,12 @@
   - **AC:** Domain resolves to new site
   - **Blocked by:** Domain access
 
-- [ ] **6.2** Final pre-launch checklist
+- [x] **6.2** Final pre-launch checklist
   - **Goal:** Verify all pages, forms, links work
   - **AC:** `bash verifier.sh` passes all checks
   - **Skill:** `launch/finishing-pass.md`
+  - **Completed:** 2026-01-23
+  - **Notes:** Verified all pages build correctly, all internal links work, contact form properly configured with Netlify, all images load, accessibility basics in place (alt text, labels, focus states), responsive design tested
 
 - [ ] **6.3** Go live
   - **Goal:** Remove any "coming soon" flags, announce
