@@ -1,0 +1,6 @@
+# robots.txt for jacquichowles.com
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.jacquichowles.com/sitemap-index.xml

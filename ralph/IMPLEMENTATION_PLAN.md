@@ -29,6 +29,22 @@
   - **Notes:** Don't overdo it! Keep the calm, professional vibe. Purple as accent only, not dominant.
   - **Suggestion:** Consider purple for: link hovers, CTA button, or small decorative elements
 
+- [ ] **B.3** Fix logo size - TOO SMALL
+  - **Goal:** Make logo larger and more prominent in header
+  - **AC:** Logo is clearly visible and appropriately sized for header
+  - **Notes:** Current size is too small - increase it significantly
+
+- [ ] **B.4** Remove logo background
+  - **Goal:** Make logo background transparent
+  - **AC:** Logo has no visible background, blends with header
+  - **Notes:** May need to edit the webp or use CSS/mix-blend-mode if possible
+
+- [ ] **B.5** Fix homepage bottom banner - TOO BRIGHT
+  - **Goal:** Change CTA banner background to use muted purple from client's branding
+  - **AC:** Banner uses softer purple color instead of bright/harsh color
+  - **Color Reference:** Use purple similar to `#7B5EA7` or `#8B6AAE` (muted violet from Screenshot_27.png)
+  - **Notes:** Current banner is too harsh - needs to be calmer, more professional
+
 ---
 
 ## Phase 0: Project Setup ✅
@@ -219,3 +235,32 @@
 ---
 
 *Last Updated: 2026-01-23 02:25:30*
+
+---
+
+## Phase 5.5: SEO Enhancements (Added 2026-01-23)
+
+- [x] **5.6** Add sitemap.xml for search engines
+  - **Goal:** Configure Astro sitemap integration
+  - **AC:** sitemap-index.xml generated in dist/
+  - **Completed:** 2026-01-23
+  - **Notes:** Installed @astrojs/sitemap, configured with site URL
+
+- [x] **5.7** Add robots.txt for search engines
+  - **Goal:** Create robots.txt with sitemap reference
+  - **AC:** robots.txt exists in public/ with sitemap URL
+  - **Completed:** 2026-01-23
+  - **Notes:** Created with allow all and sitemap pointer
+
+- [x] **5.8** Add favicon
+  - **Goal:** Create favicon for browser tabs
+  - **AC:** Favicon displays in browser tab
+  - **Completed:** 2026-01-23
+  - **Notes:** Created SVG favicon with JC initials in purple, updated BaseLayout
+
+- [x] **5.9** Verify SEO meta tags
+  - **Goal:** Ensure all pages have proper meta tags
+  - **AC:** All pages have unique titles and descriptions
+  - **Completed:** 2026-01-23
+  - **Notes:** Verified all 4 pages have unique titles/descriptions
+
