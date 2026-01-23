@@ -217,7 +217,7 @@
   - **Completed:** 2026-01-23
   - **Notes:** Already implemented - Hero.astro has bg-purple-brand (#85349A), hover:bg-purple-brand-hover (#6E2A7F), text-white
 
-- [ ] **8.1.2** Fix About page bottom CTA section
+- [x] **8.1.2** Fix About page bottom CTA section
   - **Issue:** Entire section invisible (purple text on purple background)
   - **Section text:** "Ready to take the next step? Book a free consultation..."
   - **Fix:** 
@@ -225,6 +225,8 @@
     - "Get in touch" button → `#85349A` background, white text
     - "View services" button → can stay white/outline style
   - **Files:** `src/pages/about.astro` (lines ~267-293)
+  - **Completed:** 2026-01-23
+  - **Notes:** Swapped button styles - "Get in touch" now has purple bg with white text, "View services" has white bg with purple text for better contrast
 
 - [ ] **8.1.3** Fix Services page consultancy CTA
   - **Issue:** "Interested in consultancy services?" section invisible

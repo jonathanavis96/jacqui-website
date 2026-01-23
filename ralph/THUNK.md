@@ -42,3 +42,4 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 28 | 7.4.2 | P1 | Decorative images added to About page - created DecorativeImage component, added 2 calming banner images (Lavender field between Bio and How I Work, Sky between What I Work With and Quote) to create visual breathing room | 2026-01-23 |
 | 29 | 8.2.6 | P1 | Services QuoteBanner repositioned - moved from inside Consultancy section to correct location between consultancy CTA and bottom CTA section | 2026-01-23 |
 | 30 | 8.4.1-8.4.3 | P1 | Wave border refinement completed - unified SVG path for clip-path and stroke, smooth bezier curves throughout, border width increased from 4px to 12px | 2026-01-23 |
+| 31 | 8.1.2 | P1 | About page CTA button contrast fixed - swapped button styles so 'Get in touch' has purple bg (#85349A) with white text, 'View services' has white bg with purple text for better visibility | 2026-01-23 |
