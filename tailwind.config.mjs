@@ -4,6 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Primary purple brand color
+        'purple-brand': '#85349A',
+        'purple-brand-hover': '#6E2A7F',
+        'purple-banner': '#8F65AB',
         // Design tokens - to be customized based on client feedback
         primary: {
           50: '#f0f9ff',

@@ -6,7 +6,7 @@ set -euo pipefail
 # =============================================================================
 #
 # WORKSPACE BOUNDARIES:
-#   Ralph operates from: $ROOT/workers/ralph/ (derived from this script location)
+#   Ralph operates from: $ROOT/ralph/ (derived from this script location)
 #   Full access to:      $ROOT/** (entire brain repository)
 #   PROTECTED (no modify): rules/AC.rules, .verify/*.sha256, verifier.sh, loop.sh, PROMPT.md
 #   FORBIDDEN (no access): .verify/waivers/*.approved (OTP-protected)
@@ -16,10 +16,10 @@ set -euo pipefail
 # ROOT can be overridden via env var for project delegation
 if [[ -n "${RALPH_PROJECT_ROOT:-}" ]]; then
   ROOT="$RALPH_PROJECT_ROOT"
-  RALPH="$ROOT/workers/ralph"
+  RALPH="$ROOT/ralph"
 else
   ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
-  RALPH="$ROOT/workers/ralph"
+  RALPH="$ROOT/ralph"
 fi
 LOGDIR="$RALPH/logs"
 VERIFY_REPORT="$RALPH/.verify/latest.txt"
