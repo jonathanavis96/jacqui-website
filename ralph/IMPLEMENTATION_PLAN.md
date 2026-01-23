@@ -306,12 +306,13 @@
   - **Goal:** Add `backgroundImage="/images/Sky_Services_Banner.webp"` to Services QuoteBanner
   - **Files:** `src/pages/services.astro`
 
-- [ ] **8.2.6** Move Services QuoteBanner to correct location (REDO)
+- [x] **8.2.6** Move Services QuoteBanner to correct location (REDO)
   - **Issue:** Currently inside Consultancy section (wrong placement)
   - **Goal:** Move to BETWEEN "Interested in consultancy services?" CTA AND "Ready to get started?" section
   - **Files:** `src/pages/services.astro`
   - **Current location:** ~line 221 (inside Consultancy section)
   - **New location:** After the purple "Interested in consultancy services?" box, before "Ready to get started?"
+  - **Completed:** 2026-01-23 (already done in previous iteration)
 
 - [ ] **8.2.7** Make QuoteBanner fill full width
   - **Issue:** Quote banner doesn't span full site width

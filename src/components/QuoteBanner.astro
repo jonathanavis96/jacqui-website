@@ -12,7 +12,7 @@ const { quote, author, backgroundImage = '' } = Astro.props;
 const waveId = `wave-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
-<section class="relative py-20 md:py-24 overflow-hidden">
+<section class="relative py-20 md:py-24 overflow-hidden w-full">
   <!-- Hidden SVG for clip-path definition -->
   <svg class="absolute w-0 h-0" xmlns="http://www.w3.org/2000/svg">
     <defs>
