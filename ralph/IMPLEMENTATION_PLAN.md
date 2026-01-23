@@ -393,13 +393,15 @@
   - **Files:** Move `cortex/jacqui_headshot.png` → `public/images/`, update `about.astro`
   - **Notes:** Ensure image is optimized for web
 
-- [ ] **7.4.2** Break up About page with themed images
+- [x] **7.4.2** Break up About page with themed images
   - **Goal:** Add calming stock/decorative images between text sections
   - **AC:** 2-3 images added to About page to create visual breathing room
   - **Notes:** 
     - Test both stock photos (nature, calm scenes) and abstract/decorative elements
     - Images should match purple/calm theme
     - Place between major sections (Bio, How I Work, Credentials)
+  - **Completed:** 2026-01-23
+  - **Implementation:** Created DecorativeImage component, added Lavender banner (250px) between Bio and How I Work, added Sky banner (200px) between What I Work With and Quote sections
 
 ### 7.5 - Scroll Animations
 
