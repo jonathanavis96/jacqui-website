@@ -1,8 +1,9 @@
 # Project Status Report - Jacqui Howles Website
 
-**Generated:** 2026-01-23 02:21:00  
+**Generated:** 2026-01-23 02:25:30  
 **Phase:** 5 - QA & Polish (In Progress)  
-**Overall Progress:** 23/30 tasks complete (77%)
+**Overall Progress:** 23/30 tasks complete (77%)  
+**Build Status:** ✅ PASSING (4 pages, 108KB, 0 warnings)
 
 ---
 
@@ -89,31 +90,53 @@ The core website build is finished with all pages live, responsive, accessible, 
 
 ## Known Issues & Blockers
 
-### 🔴 Blockers (External Dependencies)
+### 🔴 CRITICAL Blockers (External Dependencies)
 
-1. **WhatsApp Number Placeholder** (Footer.astro)
-   - Current: `https://wa.me/27XXXXXXXXX`
+1. **WhatsApp Number Placeholder** (2 instances)
+   - **Location 1:** `src/components/Footer.astro:31` → `https://wa.me/27XXXXXXXXX`
+   - **Location 2:** `src/pages/contact.astro` → `https://wa.me/27123456789`
    - **Action needed:** Client must provide actual WhatsApp number
    - **Impact:** Contact functionality incomplete
-   - **Files affected:** `src/components/Footer.astro`
+   - **Priority:** P0 (blocks launch)
 
-2. **Psychology Today Badge** (Task 5.1)
-   - Current: Generic placeholder icon
-   - **Action needed:** Client must provide verification code/widget
-   - **Impact:** Trust marker not fully implemented
-   - **Files affected:** `src/components/TrustBadges.astro`
+2. **Email Address Inconsistency**
+   - `src/components/Footer.astro` uses: `hello@jacquichowles.com`
+   - `src/pages/contact.astro` uses: `jacqui@jacquihowles.com` (3 instances)
+   - **Action needed:** Confirm which email is correct, standardize across site
+   - **Impact:** Confusion about correct contact email
+   - **Priority:** P0 (blocks launch)
 
 3. **Profile Photo** (About page)
-   - Current: Placeholder div with text
+   - **Location:** `src/pages/about.astro:33-36`
+   - Current: Placeholder div with "Photo placeholder" text
    - **Action needed:** Client must provide professional headshot
-   - **Impact:** Visual design incomplete
-   - **Files affected:** `src/pages/about.astro`, `public/images/`
+   - **Impact:** About page looks incomplete
+   - **Priority:** P0 (blocks launch)
 
-4. **Content Review** (Task 5.5)
+### 🟡 Important (Not Blocking Launch)
+
+4. **Psychology Today Badge** (Task 5.1)
+   - **Location:** `src/components/TrustBadges.astro`
+   - Current: Generic placeholder icon linking to homepage
+   - **Action needed:** Client must provide verification code/widget
+   - **Impact:** Trust marker not fully functional
+   - **Priority:** P1 (important for trust, but can launch without)
+
+5. **Empty Images Directory**
+   - **Location:** `public/images/`
+   - Current: Empty directory
+   - **Action needed:** Add visual assets (photos, logos, etc.)
+   - **Impact:** Site functional without, but improves UX
+   - **Priority:** P1
+
+6. **Content Review** (Task 5.5)
    - **Action needed:** Client must review and approve all copy
    - **Impact:** Content accuracy not verified
+   - **Priority:** P1
 
-5. **Domain & Deployment** (Phase 6)
+### 📋 Launch Preparation
+
+7. **Domain & Deployment** (Phase 6)
    - Current: Not deployed
    - **Action needed:** Domain access to point jacquichowles.com to Netlify
    - **Impact:** Cannot go live
