@@ -55,8 +55,8 @@
 - **Goal:** Tighten spacing between headshot and "Over a decade..." text
 - **Context:** Currently hero has pb-8, bio section has pt-8 - too much gap
 - **AC:**
-  - [ ] Spacing between hero and bio section reduced
-  - [ ] Visual flow feels natural (not cramped, not sparse)
+  - [x] Spacing between hero and bio section reduced
+  - [x] Visual flow feels natural (not cramped, not sparse)
 - **Skill:** `design/spacing-layout.md`
 
 ---
