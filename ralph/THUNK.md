@@ -29,3 +29,4 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 15 | 0.0 | P0 | Fixed client name from "Howles" to "Chowles" throughout entire codebase (src/, docs/, ralph/) and corrected email typo (jacquihowles→jacquichowles) | 2026-01-23 |
 | 16 | 5.1 | P1 | Psychology Today badge updated - now links to Jacqui's verified profile instead of generic homepage | 2026-01-23 |
 | 17 | B.1 | P1 | Client logo added to header - JacquiChowlesLogo.webp now displays in Header component, properly sized (h-12), links to homepage | 2026-01-23 |
+| 18 | B.2 | P1 | Purple accent color added - updated Tailwind config with purple palette, applied to nav hovers (purple-700), active border (purple-600), and CTA section (purple-600/700) | 2026-01-23 |

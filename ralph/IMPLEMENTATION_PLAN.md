@@ -23,7 +23,7 @@
   - **AC:** Logo displays in header, properly sized, links to homepage
   - **Notes:** Replace text "Jacqui Chowles" with logo image in Header component
 
-- [ ] **B.2** Add subtle purple accent to color palette
+- [x] **B.2** Add subtle purple accent to color palette
   - **Goal:** Update Tailwind config with purple accent color (client likes purple)
   - **AC:** Purple used sparingly - maybe hover states, subtle accents, or CTA buttons
   - **Notes:** Don't overdo it! Keep the calm, professional vibe. Purple as accent only, not dominant.

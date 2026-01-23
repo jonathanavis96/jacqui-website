@@ -7,10 +7,27 @@
 
 ## 🚨 URGENT: Name Correction
 
-- [ ] **0.0** Fix client name throughout codebase
+- [x] **0.0** Fix client name throughout codebase
   - **Goal:** Change "Howles" to "Chowles" everywhere
   - **AC:** `grep -ri "howles" src/` returns no results, all references say "Jacqui Chowles"
   - **Priority:** CRITICAL - do this first!
+  - **Completed:** 2026-01-23
+  - **Notes:** Fixed all instances in src/, docs/, and ralph/ directories. Also corrected email typo (jacquihowles→jacquichowles)
+
+---
+
+## 🎨 Branding Updates
+
+- [x] **B.1** Add client logo to header
+  - **Goal:** Move `cortex/JacquiChowlesLogo.webp` to `public/images/` and display in Header
+  - **AC:** Logo displays in header, properly sized, links to homepage
+  - **Notes:** Replace text "Jacqui Chowles" with logo image in Header component
+
+- [x] **B.2** Add subtle purple accent to color palette
+  - **Goal:** Update Tailwind config with purple accent color (client likes purple)
+  - **AC:** Purple used sparingly - maybe hover states, subtle accents, or CTA buttons
+  - **Notes:** Don't overdo it! Keep the calm, professional vibe. Purple as accent only, not dominant.
+  - **Suggestion:** Consider purple for: link hovers, CTA button, or small decorative elements
 
 ---
 
@@ -128,10 +145,12 @@
 
 ## Phase 5: Polish & QA
 
-- [ ] **5.1** Add Psychology Today verification badge
+- [x] **5.1** Add Psychology Today verification badge
   - **Goal:** Integrate "Verified by Psychology Today" badge
   - **AC:** Badge displays, links to https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696
   - **Link:** https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696
+  - **Completed:** 2026-01-23
+  - **Notes:** Updated TrustBadges component to link to verified profile
 
 - [x] **5.2** Mobile responsiveness pass
   - **Goal:** Test and fix all breakpoints
@@ -187,16 +206,16 @@
 ## Task Status Summary
 
 | Phase | Total | Done | Remaining |
-|-------|-------|------|-----------|
+|-------|-------|------|-----------
 | 0: Setup | 1 | 1 | 0 |
 | 1: Discovery | 3 | 2 | 1 |
 | 2: Scaffolding | 6 | 6 | 0 |
 | 3: Homepage | 4 | 4 | 0 |
 | 4: Inner Pages | 7 | 7 | 0 |
-| 5: QA | 5 | 3 | 2 |
+| 5: QA | 5 | 4 | 1 |
 | 6: Launch | 4 | 0 | 4 |
-| **Total** | **30** | **23** | **7** |
+| **Total** | **30** | **24** | **6** |
 
 ---
 
-*Last Updated: 2026-01-23 02:20:00*
+*Last Updated: 2026-01-23 02:25:30*

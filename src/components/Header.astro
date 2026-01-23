@@ -27,9 +27,9 @@ const currentPath = Astro.url.pathname;
           <li>
             <a 
               href={item.href}
-              class={`text-gray-700 hover:text-gray-900 transition-colors ${
+              class={`text-gray-700 hover:text-purple-700 transition-colors ${
                 currentPath === item.href || (currentPath.startsWith(item.href) && item.href !== '/')
-                  ? 'font-bold border-b-2 border-gray-900'
+                  ? 'font-bold border-b-2 border-purple-600'
                   : ''
               }`}
             >
