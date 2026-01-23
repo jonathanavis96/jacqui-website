@@ -306,12 +306,46 @@
   - **Goal:** Add `backgroundImage="/images/Sky_Services_Banner.webp"` to Services QuoteBanner
   - **Files:** `src/pages/services.astro`
 
-- [x] **8.2.6** Move Services QuoteBanner to correct location
+- [ ] **8.2.6** Move Services QuoteBanner to correct location (REDO)
   - **Issue:** Currently inside Consultancy section (wrong placement)
-  - **Goal:** Move to directly ABOVE the "Ready to get started?" CTA section
+  - **Goal:** Move to BETWEEN "Interested in consultancy services?" CTA AND "Ready to get started?" section
   - **Files:** `src/pages/services.astro`
   - **Current location:** ~line 221 (inside Consultancy section)
-  - **New location:** Before line 354 (above Bottom CTA Section)
+  - **New location:** After the purple "Interested in consultancy services?" box, before "Ready to get started?"
+
+- [ ] **8.2.7** Make QuoteBanner fill full width
+  - **Issue:** Quote banner doesn't span full site width
+  - **Goal:** Ensure QuoteBanner fills 100% viewport width
+  - **Files:** `src/components/QuoteBanner.astro`
+
+### 8.3 - Spacing & Layout Fixes
+
+- [ ] **8.3.1** Reduce spacing between About hero and headshot
+  - **Issue:** Too much vertical space between "About Me / Over a decade..." section and the headshot image below
+  - **Goal:** Reduce padding/margin to bring content closer together
+  - **Files:** `src/pages/about.astro`
+  - **Notes:** Reduce `py-16 md:py-20` on Bio section or hero section
+
+### 8.4 - Wave Border Refinement
+
+- [ ] **8.4.1** Fix top wave border to follow image clip-path exactly
+  - **Issue:** Current 4px purple outline doesn't align with the wave-clipped image edge
+  - **Goal:** Make the purple border line follow the EXACT same bezier curve as the image clip-path
+  - **Approach:** 
+    1. Define wave curve as SVG path (smooth bezier, no sharp edges)
+    2. Use same path for both: SVG clip-path on image AND stroke border
+    3. This ensures border perfectly outlines the clipped image edge
+  - **Files:** `src/components/QuoteBanner.astro`
+
+- [ ] **8.4.2** Smooth the wave curve (no sharp edges)
+  - **Issue:** Current wave may have angular/sharp points
+  - **Goal:** Use smooth bezier curves throughout the wave path
+  - **Files:** `src/components/QuoteBanner.astro`
+
+- [ ] **8.4.3** Increase wave border width to 12px
+  - **Issue:** Current border is 4px, too thin
+  - **Goal:** Change stroke-width from 4 to 12
+  - **Files:** `src/components/QuoteBanner.astro`
 
 ---
 
