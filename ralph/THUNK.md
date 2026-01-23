@@ -31,3 +31,4 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 17 | B.1 | P1 | Client logo added to header - JacquiChowlesLogo.webp now displays in Header component, properly sized (h-12), links to homepage | 2026-01-23 |
 | 18 | B.2 | P1 | Purple accent color added - updated Tailwind config with purple palette, applied to nav hovers (purple-700), active border (purple-600), and CTA section (purple-600/700) | 2026-01-23 |
 | 19 | 5.6-5.9 | P1 | SEO enhancements completed - added sitemap.xml (@astrojs/sitemap), robots.txt, favicon (SVG with JC initials), verified all meta tags | 2026-01-23 |
+| 20 | B.3-B.5 | P1 | Branding updates completed - logo size increased to h-16, background removed with mix-blend-multiply, CTA banner changed to muted purple (#8B6AAE, #7B5EA7) | 2026-01-23 |

@@ -29,17 +29,17 @@
   - **Notes:** Don't overdo it! Keep the calm, professional vibe. Purple as accent only, not dominant.
   - **Suggestion:** Consider purple for: link hovers, CTA button, or small decorative elements
 
-- [ ] **B.3** Fix logo size - TOO SMALL
+- [x] **B.3** Fix logo size - TOO SMALL
   - **Goal:** Make logo larger and more prominent in header
   - **AC:** Logo is clearly visible and appropriately sized for header
   - **Notes:** Current size is too small - increase it significantly
 
-- [ ] **B.4** Remove logo background
+- [x] **B.4** Remove logo background
   - **Goal:** Make logo background transparent
   - **AC:** Logo has no visible background, blends with header
   - **Notes:** May need to edit the webp or use CSS/mix-blend-mode if possible
 
-- [ ] **B.5** Fix homepage bottom banner - TOO BRIGHT
+- [x] **B.5** Fix homepage bottom banner - TOO BRIGHT
   - **Goal:** Change CTA banner background to use muted purple from client's branding
   - **AC:** Banner uses softer purple color instead of bright/harsh color
   - **Color Reference:** Use purple similar to `#7B5EA7` or `#8B6AAE` (muted violet from Screenshot_27.png)
