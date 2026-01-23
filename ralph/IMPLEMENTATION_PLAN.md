@@ -323,11 +323,12 @@
 
 ### 8.3 - Spacing & Layout Fixes
 
-- [ ] **8.3.1** Reduce spacing between About hero and headshot
+- [x] **8.3.1** Reduce spacing between About hero and headshot
   - **Issue:** Too much vertical space between "About Me / Over a decade..." section and the headshot image below
   - **Goal:** Reduce padding/margin to bring content closer together
   - **Files:** `src/pages/about.astro`
   - **Notes:** Reduce `py-16 md:py-20` on Bio section or hero section
+  - **Completed:** 2026-01-23
 
 ### 8.4 - Wave Border Refinement
 
@@ -463,10 +464,11 @@
 
 ### 7.6 - Cleanup
 
-- [ ] **7.6.1** Remove reference files from cortex/
+- [x] **7.6.1** Remove reference files from cortex/
   - **Goal:** Clean up temporary reference images and files
   - **AC:** `cortex/*.png`, `cortex/quotes.txt` removed after implementation
   - **Files to remove:** `home_quote.png`, `about_quote.png`, `services_quote.png`, `jacqui_headshot.png`, `quotes.txt`
+  - **Completed:** 2026-01-23
 
 ---
 
