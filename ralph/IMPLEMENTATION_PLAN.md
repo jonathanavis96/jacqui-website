@@ -1,7 +1,16 @@
-# Implementation Plan - Jacqui Howles Website
+# Implementation Plan - Jacqui Chowles Website
 
 **Deadline:** 14th February 2026
 **Status:** Phase 5 - QA & Polish (In Progress)
+
+---
+
+## 🚨 URGENT: Name Correction
+
+- [ ] **0.0** Fix client name throughout codebase
+  - **Goal:** Change "Howles" to "Chowles" everywhere
+  - **AC:** `grep -ri "howles" src/` returns no results, all references say "Jacqui Chowles"
+  - **Priority:** CRITICAL - do this first!
 
 ---
 
