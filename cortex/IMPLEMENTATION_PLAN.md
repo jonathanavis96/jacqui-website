@@ -203,6 +203,116 @@
 
 ---
 
+## Phase 7: Design Refresh 🎨
+
+**Goal:** Complete visual overhaul to match purple brand theme, add inspirational quotes, improve typography, and enhance user experience with scroll animations.
+
+### 7.1 - Color System Overhaul
+
+- [ ] **7.1.1** Update button colors from blue to purple
+  - **Goal:** Replace all `blue-600`/`blue-700` button colors with `#85349A`
+  - **AC:** All buttons use purple (`#85349A`), hover states use darker shade
+  - **Files:** All `.astro` files, `tailwind.config.mjs`
+  - **Notes:** Add `purple-brand: '#85349A'` to Tailwind config for consistency
+
+- [ ] **7.1.2** Update banner backgrounds to `#8F65AB`
+  - **Goal:** All CTA/section banners use consistent purple (`#8F65AB`)
+  - **AC:** CTASection and all page banners use `#8F65AB` background
+  - **Files:** `CTASection.astro`, `about.astro`, `services.astro`, `contact.astro`
+
+- [ ] **7.1.3** Convert blue accents to purple throughout
+  - **Goal:** Replace `blue-50`, `blue-100`, `blue-600` backgrounds/accents with purple equivalents
+  - **AC:** No blue color classes remain in codebase (except where intentional)
+  - **Files:** All page and component files
+  - **Notes:** 
+    - `bg-blue-50` → light purple tint
+    - `text-blue-600` (checkmarks, bullets) → `#85349A`
+    - `border-blue-600` → `#85349A`
+    - Gradients: `from-blue-50` → purple equivalent
+
+### 7.2 - Typography Update
+
+- [ ] **7.2.1** Change heading font to rounded/soft style
+  - **Goal:** Replace current heading font with a softer, rounded font (e.g., Nunito, Quicksand, Poppins)
+  - **AC:** All headings use new rounded font, `font-heading` updated in Tailwind config
+  - **Files:** `tailwind.config.mjs`, `BaseLayout.astro` (Google Fonts import)
+  - **Notes:** Test options: Nunito, Quicksand, Poppins, Varela Round - pick one that feels calm/friendly
+
+### 7.3 - Quote Banner Sections
+
+- [ ] **7.3.1** Create QuoteBanner component
+  - **Goal:** Reusable full-width quote banner with curved purple top border
+  - **AC:** Component accepts: quote text, author, background image URL
+  - **Files:** `src/components/QuoteBanner.astro`
+  - **Design specs:**
+    - Full-width banner
+    - Curved/wave purple border at top (`#8F65AB`)
+    - Background image with dark overlay for text readability
+    - White italic quote text, centered
+    - Author name below in smaller white text
+    - Responsive (text scales on mobile)
+
+- [ ] **7.3.2** Add quote banner to Homepage
+  - **Goal:** Add Anaïs Nin quote after services section
+  - **Quote:** *"And the time came when the risk to remain tight in a bud was more painful than the risk it took to blossom."*
+  - **Author:** Anaïs Nin
+  - **Background:** Source lavender/purple flower field image (stock photo)
+  - **AC:** Quote banner displays on homepage, responsive
+
+- [ ] **7.3.3** Add quote banner to About page
+  - **Goal:** Add Irvin D. Yalom quote between sections
+  - **Quote:** *"It's the relationship that heals, the relationship heals by providing a space where the patient feels safe to explore the depths of their mind and spirit, knowing that someone will be there to witness, understand, and support their journey."*
+  - **Author:** Irvin D. Yalom
+  - **Background:** Source mountain road with sunlight image (stock photo)
+  - **AC:** Quote banner displays on about page, responsive
+
+- [ ] **7.3.4** Add quote banner to Services page
+  - **Goal:** Add Rupi Kaur quote between sections
+  - **Quote:** *"Healing is everyday work. Some days you will feel like you are on top of the world, and some days you will feel like you cannot get up. And that is okay. It is a journey, not a destination."*
+  - **Author:** Rupi Kaur
+  - **Background:** Source dramatic clouds/sky image (stock photo)
+  - **AC:** Quote banner displays on services page, responsive
+
+### 7.4 - Image & Visual Updates
+
+- [ ] **7.4.1** Add Jacqui headshot to About page
+  - **Goal:** Replace photo placeholder with actual headshot
+  - **AC:** `jacqui_headshot.png` displays in About page bio section, properly sized
+  - **Files:** Move `cortex/jacqui_headshot.png` → `public/images/`, update `about.astro`
+  - **Notes:** Ensure image is optimized for web
+
+- [ ] **7.4.2** Break up About page with themed images
+  - **Goal:** Add calming stock/decorative images between text sections
+  - **AC:** 2-3 images added to About page to create visual breathing room
+  - **Notes:** 
+    - Test both stock photos (nature, calm scenes) and abstract/decorative elements
+    - Images should match purple/calm theme
+    - Place between major sections (Bio, How I Work, Credentials)
+
+### 7.5 - Scroll Animations
+
+- [ ] **7.5.1** Add subtle fade-in scroll animations
+  - **Goal:** Elements fade in as user scrolls down the page
+  - **AC:** Sections/cards animate in smoothly on scroll
+  - **Implementation options:**
+    - CSS-only with Intersection Observer
+    - Or lightweight library (e.g., AOS - Animate On Scroll)
+  - **Notes:** Keep animations subtle and calm - no flashy effects. Fade-in with slight upward movement (10-20px).
+
+- [ ] **7.5.2** Test and refine animation timing
+  - **Goal:** Ensure animations feel smooth, not jarring
+  - **AC:** Animations work on all pages, don't cause layout shift, respect `prefers-reduced-motion`
+  - **Notes:** Consider staggered animations for card grids
+
+### 7.6 - Cleanup
+
+- [ ] **7.6.1** Remove reference files from cortex/
+  - **Goal:** Clean up temporary reference images and files
+  - **AC:** `cortex/*.png`, `cortex/quotes.txt` removed after implementation
+  - **Files to remove:** `home_quote.png`, `about_quote.png`, `services_quote.png`, `jacqui_headshot.png`, `quotes.txt`
+
+---
+
 ## Task Status Summary
 
 | Phase | Total | Done | Remaining |
@@ -214,8 +324,9 @@
 | 4: Inner Pages | 7 | 7 | 0 |
 | 5: QA | 5 | 4 | 1 |
 | 6: Launch | 4 | 0 | 4 |
-| **Total** | **30** | **24** | **6** |
+| 7: Design Refresh | 13 | 0 | 13 |
+| **Total** | **43** | **24** | **19** |
 
 ---
 
-*Last Updated: 2026-01-23 02:25:30*
+*Last Updated: 2026-01-23 11:45:00*
