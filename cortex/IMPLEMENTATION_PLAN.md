@@ -25,7 +25,7 @@
 
 ---
 
-### 9.2 Rewrite QuoteBanner component
+### 9.2 Rewrite QuoteBanner component ✅
 - **Goal:** Redesign QuoteBanner as fixed-height full-width banner with bottom wave only
 - **Context:** Images already have purple border + top wave applied by human - component just needs to display them properly
 - **Design:**
@@ -34,12 +34,13 @@
   - Bottom wave decoration only (top of image cropped naturally)
   - Quote text overlay with dark gradient for readability
 - **AC:**
-  - [ ] QuoteBanner displays at fixed height (300-400px)
-  - [ ] Background image fills container with object-cover
-  - [ ] Only bottom wave SVG decoration (no top wave in component)
-  - [ ] Quote text readable with gradient overlay
-  - [ ] Responsive on mobile
+  - [x] QuoteBanner displays at fixed height (250px mobile, 350px desktop)
+  - [x] Background image fills container with object-cover
+  - [x] Only bottom wave SVG decoration (no top wave in component)
+  - [x] Quote text readable with gradient overlay
+  - [x] Responsive on mobile
 - **Skill:** `build/component-development.md`
+- **Completed:** 2026-01-23 (commit TBD)
 
 ---
 
