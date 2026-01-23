@@ -253,13 +253,13 @@
 
 ### 8.1 - Text & Button Visibility Fixes
 
-- [ ] **8.1.1** Fix Homepage "Book a free consultation" button
+- [x] **8.1.1** Fix Homepage "Book a free consultation" button
   - **Issue:** Button and text appears white/invisible on light background
   - **Fix:** Button background → `#85349A`, text → white
   - **Hover:** Slightly darker purple
   - **Files:** `src/components/Hero.astro` or `src/pages/index.astro`
 
-- [ ] **8.1.2** Fix About page bottom CTA section
+- [x] **8.1.2** Fix About page bottom CTA section
   - **Issue:** Entire section invisible (purple text on purple background)
   - **Section text:** "Ready to take the next step? Book a free consultation..."
   - **Fix:** 
@@ -268,45 +268,45 @@
     - "View services" button → can stay white/outline style
   - **Files:** `src/pages/about.astro` (lines ~267-293)
 
-- [ ] **8.1.3** Fix Services page consultancy CTA
+- [x] **8.1.3** Fix Services page consultancy CTA
   - **Issue:** "Interested in consultancy services?" section invisible
   - **Fix:** Text → white, "Contact me" button → `#85349A` background, white text
   - **Files:** `src/pages/services.astro` (lines ~335-348)
 
-- [ ] **8.1.4** Fix Contact page buttons
+- [x] **8.1.4** Fix Contact page buttons
   - **Issue:** "Send an email" / "View services" buttons invisible
   - **Fix:** Buttons → `#85349A` background, white text
   - **Files:** `src/pages/contact.astro`
 
 ### 8.2 - Banner Image & Wave Fixes
 
-- [ ] **8.2.1** Move banner images to public folder
+- [x] **8.2.1** Move banner images to public folder
   - **Goal:** Move images from `cortex/` to `public/images/`
   - **Files to move:**
     - `cortex/Lavender_Home_Banner.webp` → `public/images/Lavender_Home_Banner.webp`
     - `cortex/Road_About_Banner.webp` → `public/images/Road_About_Banner.webp`
     - `cortex/Sky_Services_Banner.webp` → `public/images/Sky_Services_Banner.webp`
 
-- [ ] **8.2.2** Update QuoteBanner to mask/clip image with wave shape
+- [x] **8.2.2** Update QuoteBanner to mask/clip image with wave shape
   - **Issue:** Current wave just overlays on top, doesn't clip the background image
   - **Goal:** Background image should have wavy edges (masked/clipped by wave shape)
   - **Reference:** See `cortex/home_quote.png`, `cortex/about_quote.png`, `cortex/services_quote.png` for desired effect
   - **Files:** `src/components/QuoteBanner.astro`
   - **Notes:** Use CSS clip-path or SVG mask to cut the image, not just overlay
 
-- [ ] **8.2.3** Wire up Homepage QuoteBanner with Lavender image
+- [x] **8.2.3** Wire up Homepage QuoteBanner with Lavender image
   - **Goal:** Add `backgroundImage="/images/Lavender_Home_Banner.webp"` to Homepage QuoteBanner
   - **Files:** `src/pages/index.astro`
 
-- [ ] **8.2.4** Wire up About QuoteBanner with Road image
+- [x] **8.2.4** Wire up About QuoteBanner with Road image
   - **Goal:** Add `backgroundImage="/images/Road_About_Banner.webp"` to About QuoteBanner
   - **Files:** `src/pages/about.astro`
 
-- [ ] **8.2.5** Wire up Services QuoteBanner with Sky image
+- [x] **8.2.5** Wire up Services QuoteBanner with Sky image
   - **Goal:** Add `backgroundImage="/images/Sky_Services_Banner.webp"` to Services QuoteBanner
   - **Files:** `src/pages/services.astro`
 
-- [ ] **8.2.6** Move Services QuoteBanner to correct location
+- [x] **8.2.6** Move Services QuoteBanner to correct location
   - **Issue:** Currently inside Consultancy section (wrong placement)
   - **Goal:** Move to directly ABOVE the "Ready to get started?" CTA section
   - **Files:** `src/pages/services.astro`
@@ -387,7 +387,7 @@
 
 ### 7.4 - Image & Visual Updates
 
-- [ ] **7.4.1** Add Jacqui headshot to About page
+- [x] **7.4.1** Add Jacqui headshot to About page
   - **Goal:** Replace photo placeholder with actual headshot
   - **AC:** `jacqui_headshot.png` displays in About page bio section, properly sized
   - **Files:** Move `cortex/jacqui_headshot.png` → `public/images/`, update `about.astro`
@@ -403,7 +403,7 @@
 
 ### 7.5 - Scroll Animations
 
-- [ ] **7.5.1** Add subtle fade-in scroll animations
+- [x] **7.5.1** Add subtle fade-in scroll animations
   - **Goal:** Elements fade in as user scrolls down the page
   - **AC:** Sections/cards animate in smoothly on scroll
   - **Implementation options:**
@@ -411,7 +411,7 @@
     - Or lightweight library (e.g., AOS - Animate On Scroll)
   - **Notes:** Keep animations subtle and calm - no flashy effects. Fade-in with slight upward movement (10-20px).
 
-- [ ] **7.5.2** Test and refine animation timing
+- [x] **7.5.2** Test and refine animation timing
   - **Goal:** Ensure animations feel smooth, not jarring
   - **AC:** Animations work on all pages, don't cause layout shift, respect `prefers-reduced-motion`
   - **Notes:** Consider staggered animations for card grids
