@@ -282,7 +282,7 @@
 
 ### 8.3 - Spacing & Layout Fixes
 
-- [ ] **8.3.1** Reduce spacing between About hero and headshot
+- [x] **8.3.1** Reduce spacing between About hero and headshot
   - **Issue:** Too much vertical space between "About Me / Over a decade..." section and the headshot image below
   - **Goal:** Reduce padding/margin to bring content closer together
   - **Files:** `src/pages/about.astro`

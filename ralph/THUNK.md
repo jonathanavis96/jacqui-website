@@ -44,3 +44,4 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 30 | 8.4.1-8.4.3 | P1 | Wave border refinement completed - unified SVG path for clip-path and stroke, smooth bezier curves throughout, border width increased from 4px to 12px | 2026-01-23 |
 | 31 | 8.1.2 | P1 | About page CTA button contrast fixed - swapped button styles so 'Get in touch' has purple bg (#85349A) with white text, 'View services' has white bg with purple text for better visibility | 2026-01-23 |
 | 32 | 8.2.7 | P1 | QuoteBanner full width fix - added w-full class to section element to ensure banner spans entire viewport width | 2026-01-23 |
+| 33 | 8.3.1 | P1 | About page spacing fix - reduced vertical gap between hero section and headshot by adjusting hero pb-8/pb-10 and bio pt-8/pt-10 | 2026-01-23 |
