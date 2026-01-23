@@ -47,3 +47,5 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 33 | 8.3.1 | P1 | About page spacing fix - reduced vertical gap between hero section and headshot by adjusting hero pb-8/pb-10 and bio pt-8/pt-10 | 2026-01-23 |
 | 34 | 7.6.1 | P1 | Cleanup completed - removed reference files from cortex/ (home_quote.png, about_quote.png, services_quote.png, jacqui_headshot.png, quotes.txt) | 2026-01-23 |
 | 35 | 6.2 | P1 | Final pre-launch checklist completed - verified all pages build correctly (4 pages + sitemap), all internal links work, contact form Netlify configuration correct, all images load, accessibility basics in place (alt text, labels, focus states), responsive design tested on preview | 2026-01-23 |
+| 36 | 9.4 | P1 | About page spacing reduced - tightened gap between hero and bio section by reducing hero pb-4/pb-6 to pb-2/pb-3 and bio pt-4/pt-6 to pt-2/pt-3 for better visual flow | 2026-01-23 |
+| 37 | 9.5 | P1 | About page side-by-side images completed - mirror and butterfly images integrated with rounded corners, alternating left/right placement, responsive mobile stack | 2026-01-23 |

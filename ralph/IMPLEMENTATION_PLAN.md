@@ -68,10 +68,10 @@
   - Rounded corners on images
   - Alternating left/right placement alongside text
 - **AC:**
-  - [ ] image3_mirror.webp displayed with rounded corners
-  - [ ] image4_butterfly.webp displayed with rounded corners
-  - [ ] Images placed alongside text sections (alternating sides)
-  - [ ] Responsive layout on mobile (stack vertically)
+  - [x] image3_mirror.webp displayed with rounded corners
+  - [x] image4_butterfly.webp displayed with rounded corners
+  - [x] Images placed alongside text sections (alternating sides)
+  - [x] Responsive layout on mobile (stack vertically)
 - **Skill:** `design/spacing-layout.md`
 
 ---
