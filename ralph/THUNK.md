@@ -28,3 +28,4 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 14 | Validation | P1 | Final validation completed - all acceptance criteria verified, build passing (108KB, 4 pages), ready for client input on P0 blockers | 2026-01-23 |
 | 15 | 0.0 | P0 | Fixed client name from "Howles" to "Chowles" throughout entire codebase (src/, docs/, ralph/) and corrected email typo (jacquihowles→jacquichowles) | 2026-01-23 |
 | 16 | 5.1 | P1 | Psychology Today badge updated - now links to Jacqui's verified profile instead of generic homepage | 2026-01-23 |
+| 17 | B.1 | P1 | Client logo added to header - JacquiChowlesLogo.webp now displays in Header component, properly sized (h-12), links to homepage | 2026-01-23 |

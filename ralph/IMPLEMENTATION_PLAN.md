@@ -18,7 +18,7 @@
 
 ## 🎨 Branding Updates
 
-- [ ] **B.1** Add client logo to header
+- [x] **B.1** Add client logo to header
   - **Goal:** Move `cortex/JacquiChowlesLogo.webp` to `public/images/` and display in Header
   - **AC:** Logo displays in header, properly sized, links to homepage
   - **Notes:** Replace text "Jacqui Chowles" with logo image in Header component
