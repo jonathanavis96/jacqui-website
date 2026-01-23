@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import QuoteBanner from '../components/QuoteBanner.astro';
 import TrustBadges from '../components/TrustBadges.astro';
+import DecorativeImage from '../components/DecorativeImage.astro';
 ---
 
 <BaseLayout 
@@ -36,7 +37,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             <img 
               src="/images/jacqui_headshot.png" 
               alt="Jacqui Chowles - Counselling Psychologist" 
-              class="w-64 h-64 rounded-lg object-cover shadow-lg"
+              class="w-80 h-auto rounded-lg object-cover shadow-lg"
             />
           </div>
 
@@ -61,6 +62,13 @@ import TrustBadges from '../components/TrustBadges.astro';
         </div>
       </div>
     </section>
+
+    <!-- Decorative Image Divider -->
+    <DecorativeImage 
+      src="/images/Lavender_Home_Banner.webp"
+      alt="Calming lavender field"
+      height="250px"
+    />
 
     <!-- How I Work Section -->
     <section class="py-16 md:py-20 bg-purple-50">
@@ -210,6 +218,15 @@ import TrustBadges from '../components/TrustBadges.astro';
           </p>
         </div>
       </div>
+    </section>
+
+    <!-- Decorative Image Divider -->
+    <DecorativeImage 
+      src="/images/Sky_Services_Banner.webp"
+      alt="Peaceful sky"
+      height="200px"
+    />
+
     <!-- Inspirational Quote -->
     <QuoteBanner
       quote="It's the relationship that heals, the relationship heals by providing a space where the patient feels safe to explore the depths of their mind and spirit, knowing that someone will be there to witness, understand, and support their journey."

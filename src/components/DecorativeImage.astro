@@ -1,0 +1,29 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  height?: string;
+}
+
+const { src, alt = "Decorative image", height = "300px" } = Astro.props;
+---
+
+<div class="decorative-image-container my-12 md:my-16">
+  <div 
+    class="w-full rounded-lg overflow-hidden shadow-sm"
+    style={`height: ${height};`}
+  >
+    <img 
+      src={src}
+      alt={alt}
+      class="w-full h-full object-cover"
+      loading="lazy"
+    />
+  </div>
+</div>
+
+<style>
+  .decorative-image-container {
+    max-width: 100%;
+  }
+</style>
