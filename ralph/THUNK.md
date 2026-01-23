@@ -40,3 +40,4 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 26 | 7.4.1 | P1 | Jacqui headshot added to About page - moved jacqui_headshot.png to public/images/, replaced placeholder with actual photo (w-64 h-64 rounded-lg object-cover shadow-lg) | 2026-01-23 |
 | 27 | 7.5.1-7.5.2 | P1 | Scroll animations implemented - added fade-in CSS class with opacity and translateY transition, implemented Intersection Observer in BaseLayout, applied fade-in class to key sections on homepage | 2026-01-23 |
 | 28 | 7.4.2 | P1 | Decorative images added to About page - created DecorativeImage component, added 2 calming banner images (Lavender field between Bio and How I Work, Sky between What I Work With and Quote) to create visual breathing room | 2026-01-23 |
+| 29 | 8.2.6 | P1 | Services QuoteBanner repositioned - moved from inside Consultancy section to correct location between consultancy CTA and bottom CTA section | 2026-01-23 |
