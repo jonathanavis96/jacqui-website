@@ -18,41 +18,41 @@
 
 ## Tasks
 
-### 9.6 Fix homepage banner filename mismatch
+### 9.6 Fix homepage banner filename mismatch ✅
 - **Problem:** Homepage banner shows grey/broken because filename doesn't match
 - **Root cause:** File is `public/images/Lavender_Home_Banner_.webp` (trailing underscore) but code references `/images/Lavender_Home_Banner.webp` (no underscore)
 - **Fix:** Rename file to remove trailing underscore
 - **Command:** `mv public/images/Lavender_Home_Banner_.webp public/images/Lavender_Home_Banner.webp`
 - **AC:**
-  - [ ] File renamed to `Lavender_Home_Banner.webp` (no trailing underscore)
-  - [ ] Homepage QuoteBanner displays the lavender image (not grey)
+  - [x] File renamed to `Lavender_Home_Banner.webp` (no trailing underscore)
+  - [x] Homepage QuoteBanner displays the lavender image (not grey)
 
 ---
 
-### 9.7 Fix QuoteBanner component - remove overlay + anchor to TOP
+### 9.7 Fix QuoteBanner component - remove overlay + anchor to TOP ✅
 - **Problem:** QuoteBanner has dark gradient overlay hiding the image, and crops from center instead of showing the top
 - **File:** `src/components/QuoteBanner.astro`
 - **Current code issues (around lines 16-21):**
   ```astro
   class="absolute inset-0 bg-cover bg-center bg-no-repeat"  <!-- bg-center is WRONG -->
   ...
-  <div class="absolute inset-0 bg-gradient-to-b from-gray-900/40 via-gray-900/50 to-gray-900/60"></div>  <!-- DELETE THIS -->
+  <div class="absolute inset-0 bg-gradient-to-b from-gray-900/40 via-gray-900/50 to-gray-900/60\"></div>  <!-- DELETE THIS -->
   ```
 - **Required changes:**
   1. **Change `bg-center` to `bg-top`** on line ~16 - image anchors to top, bottom gets cropped
   2. **DELETE the entire dark gradient overlay div** (line ~19-20) - no overlay at all
   3. **Keep the bottom wave SVG** (lines 46-51) - that stays
-  4. **Add text-shadow to quote text** for readability without overlay (e.g., `style="text-shadow: 0 2px 4px rgba(0,0,0,0.5)"`)
+  4. **Add text-shadow to quote text** for readability without overlay (e.g., `style=\"text-shadow: 0 2px 4px rgba(0,0,0,0.5)\"`)
 - **AC:**
-  - [ ] `bg-center` changed to `bg-top` in background div
-  - [ ] Dark gradient overlay div completely removed (no `from-gray-900/40` etc.)
-  - [ ] All 3 banners (Home/About/Services) show their TOP wave decoration (manually added by human)
-  - [ ] Quote text still readable (text-shadow added)
-  - [ ] Bottom wave SVG decoration retained
+  - [x] `bg-center` changed to `bg-top` in background div
+  - [x] Dark gradient overlay div completely removed (no `from-gray-900/40` etc.)
+  - [x] All 3 banners (Home/About/Services) show their TOP wave decoration (manually added by human)
+  - [x] Quote text still readable (text-shadow added)
+  - [x] Bottom wave SVG decoration retained
 
 ---
 
-### 9.8 About page: Fix "How I Work" section layout
+### 9.8 About page: Fix \"How I Work\" section layout ✅
 - **Problem:** Heading is centered above grid; image is too large; layout doesn't match page style
 - **File:** `src/pages/about.astro` (lines 64-127)
 - **Current structure (WRONG):**
@@ -79,14 +79,14 @@
   3. Make image smaller: add `max-w-xs` or `max-w-sm` class to the img or its container
   4. Image stays on left, text+heading on right
 - **AC:**
-  - [ ] "How I Work" h2 is inside right column, above text paragraphs
-  - [ ] h2 is left-aligned (not centered)
-  - [ ] Image is visibly smaller (max-w-xs or max-w-sm)
-  - [ ] Responsive: stacks sensibly on mobile
+  - [x] \"How I Work\" h2 is inside right column, above text paragraphs
+  - [x] h2 is left-aligned (not centered)
+  - [x] Image is visibly smaller (max-w-xs or max-w-sm)
+  - [x] Responsive: stacks sensibly on mobile
 
 ---
 
-### 9.9 About page: Fix "What I Work With" section layout
+### 9.9 About page: Fix \"What I Work With\" section layout ✅
 - **Problem:** Large empty space - image and intro text span full width above 8 cards
 - **File:** `src/pages/about.astro` (lines 129-244)
 - **Current structure (WRONG):**
@@ -122,12 +122,12 @@
   4. Make image smaller and keep in right column
   5. Remaining 4 cards go in a grid below the main 2-col grid
 - **AC:**
-  - [ ] "What I Work With" h2 is inside left column, above intro text
-  - [ ] h2 is left-aligned (not centered)
-  - [ ] First 4 cards appear in left column below intro text
-  - [ ] Image is in right column, smaller size
-  - [ ] No large empty white space
-  - [ ] Responsive: stacks sensibly on mobile
+  - [x] \"What I Work With\" h2 is inside left column, above intro text
+  - [x] h2 is left-aligned (not centered)
+  - [x] First 4 cards appear in left column below intro text
+  - [x] Image is in right column, smaller size
+  - [x] No large empty white space
+  - [x] Responsive: stacks sensibly on mobile
 
 ---
 

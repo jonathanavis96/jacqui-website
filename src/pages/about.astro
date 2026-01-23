@@ -66,10 +66,6 @@ import TrustBadges from '../components/TrustBadges.astro';
     <section class="py-16 md:py-20 bg-purple-50">
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8 text-center">
-            How I Work
-          </h2>
-
           <!-- Image + Text Grid -->
           <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-8">
             <!-- Mirror Image (Left) -->
@@ -77,12 +73,16 @@ import TrustBadges from '../components/TrustBadges.astro';
               <img 
                 src="/images/image3_mirror.webp" 
                 alt="Reflective mirror symbolizing self-exploration in therapy" 
-                class="w-full h-auto rounded-lg shadow-lg object-cover"
+                class="max-w-xs w-full h-auto rounded-lg shadow-lg object-cover"
               />
             </div>
 
             <!-- Text (Right) -->
             <div class="order-1 md:order-2 prose prose-lg">
+              <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8 text-left">
+                How I Work
+              </h2>
+
               <p class="text-gray-700 leading-relaxed mb-6">
                 My therapeutic approach is grounded in <strong>psychodynamic therapy</strong>, which focuses on understanding the deeper patterns and relationships that shape how we experience ourselves and the world. I believe that meaningful change comes from exploring not just what we think and do, but also what we feel and why.
               </p>
@@ -131,31 +131,22 @@ import TrustBadges from '../components/TrustBadges.astro';
     <section class="py-16 md:py-20 bg-white">
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8 text-center">
-            What I Work With
-          </h2>
+          <!-- Main Grid: Left column (h2 + intro + 4 cards) + Right column (image) -->
+          <div class="grid md:grid-cols-2 gap-8 md:gap-12 mb-10">
+            <!-- Left Column -->
+            <div class="order-1 md:order-1">
+              <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6 text-left">
+                What I Work With
+              </h2>
 
-          <!-- Image + Text Grid -->
-          <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-10">
-            <!-- Text (Left) -->
-            <div class="order-1 md:order-1 prose prose-lg">
-              <p class="text-gray-700 leading-relaxed">
-                I work with people experiencing a wide range of concerns. Some common areas include:
-              </p>
-            </div>
+              <div class="prose prose-lg mb-6">
+                <p class="text-gray-700 leading-relaxed">
+                  I work with people experiencing a wide range of concerns. Some common areas include:
+                </p>
+              </div>
 
-            <!-- Butterfly Image (Right) -->
-            <div class="order-2 md:order-2">
-              <img 
-                src="/images/image4_butterfly.webp" 
-                alt="Butterfly symbolizing transformation and growth" 
-                class="w-full h-auto rounded-lg shadow-lg object-cover"
-              />
-            </div>
-          </div>
-
-          <div class="max-w-4xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-6">
+              <!-- First 4 cards in left column -->
+              <div class="grid grid-cols-1 gap-6">
             <!-- Trauma -->
             <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
@@ -195,7 +186,22 @@ import TrustBadges from '../components/TrustBadges.astro';
                 Navigating bereavement, loss, and the complex emotions that come with endings.
               </p>
             </div>
+              </div>
+            </div>
 
+            <!-- Right Column: Image -->
+            <div class="order-2 md:order-2 flex items-center justify-center">
+              <img 
+                src="/images/image4_butterfly.webp" 
+                alt="Butterfly symbolizing transformation and growth" 
+                class="max-w-sm w-full h-auto rounded-lg shadow-lg object-cover"
+              />
+            </div>
+          </div>
+
+          <!-- Remaining 4 cards below -->
+          <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-6">
             <!-- Burnout -->
             <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
