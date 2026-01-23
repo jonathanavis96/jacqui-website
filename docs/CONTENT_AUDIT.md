@@ -1,4 +1,4 @@
-# Content Audit - Jacqui Howles Website
+# Content Audit - Jacqui Chowles Website
 
 Captured content requirements from existing site: https://www.jacquichowles.com/
 

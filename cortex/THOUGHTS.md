@@ -1,4 +1,4 @@
-# Cortex Thoughts - Jacqui Howles Website
+# Cortex Thoughts - Jacqui Chowles Website
 
 Current mission and strategic focus.
 
@@ -6,13 +6,13 @@ Current mission and strategic focus.
 
 ## Current Mission
 
-**Status:** Project Bootstrap Complete  
-**Phase:** 0 (Setup) → Phase 1 (Discovery)  
-**Last Updated:** 2026-01-22 15:50:00
+**Status:** Phase 5 - QA & Polish  
+**Phase:** 5 (QA) - Nearly complete!  
+**Last Updated:** 2026-01-23 02:20:00
 
 ### Project Overview
 
-Building a conversion-focused website for Jacqui Howles, a solo counselling psychologist.
+Building a conversion-focused website for Jacqui Chowles, a solo counselling psychologist.
 
 **Hard Deadline:** 14th February 2026 (Psychology Today renewal - $276/year at stake)
 
@@ -26,47 +26,43 @@ Building a conversion-focused website for Jacqui Howles, a solo counselling psyc
 ### Success Criteria
 
 - [ ] Site live before 14th Feb 2026
-- [ ] All existing content preserved and restructured
+- [x] All existing content preserved and restructured
 - [ ] Psychology Today badge integrated
-- [ ] Mobile-responsive design
-- [ ] Clear booking/contact pathway
-- [ ] Professional, calming aesthetic
+- [x] Mobile-responsive design
+- [x] Clear booking/contact pathway
+- [x] Professional, calming aesthetic
 
-### Current Objectives
+### Tech Stack (Confirmed)
 
-1. **Phase 1 (Discovery):** Audit existing site, finalize requirements
-2. **Phase 2 (Architecture):** Tech stack, sitemap, section blueprints
-3. **Phase 3 (Design):** Visual direction, component library
-4. **Phase 4 (Build):** Implement pages
-5. **Phase 5 (QA):** Test, polish, accessibility
-6. **Phase 6 (Launch):** Deploy, verify, handoff
+- **Framework:** Astro (static site generator)
+- **Styling:** Tailwind CSS
+- **Hosting:** Netlify
+- **Forms:** Netlify Forms
 
-### Open Questions (for Jono to ask Jacqui)
+### Psychology Today Badge
 
-- [ ] More testimonial quotes needed?
-- [ ] Aesthetic preferences (colors, photo style, vibe references)?
-- [ ] In-person logistics (where, when, availability)?
+**Profile URL:** https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696
 
-### Tech Stack Decision (Pending)
+### Remaining Tasks
 
-**Leaning toward:** Astro (static site generator)
-- Fast, lightweight, perfect for content sites
-- Easy to deploy (Netlify/Vercel)
-- Good DX for future maintenance
-
-**Alternative:** Next.js (if more interactivity needed later)
-
-See `cortex/DECISIONS.md` for architectural decisions.
+1. **0.0** Fix "Howles" → "Chowles" typo throughout codebase (URGENT)
+2. **5.1** Add Psychology Today verification badge
+3. **5.5** Content review with client
+4. **6.x** Launch tasks (DNS, go-live, monitoring)
 
 ---
 
 ## Session Log
 
+### 2026-01-23 02:20:00 - Name Correction & Sync
+- Fixed client name: "Howles" → "Chowles"
+- Synced Cortex plan with Ralph's completed work
+- Added Psychology Today profile URL to task 5.1
+
 ### 2026-01-22 15:50:00 - Project Bootstrap
 - Created project structure at `~/code/jacqui-website`
 - Set up Cortex and Ralph layers
 - Pre-populated IMPLEMENTATION_PLAN with phases from PROJECT_BRIEF
-- Ready for Phase 1: Discovery
 
 ---
 

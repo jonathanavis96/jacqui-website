@@ -1,4 +1,4 @@
-# Section Blueprints - Jacqui Howles Website
+# Section Blueprints - Jacqui Chowles Website
 
 Detailed section-by-section breakdown of all 4 pages. Serves as both implementation guide and documentation of the built structure.
 

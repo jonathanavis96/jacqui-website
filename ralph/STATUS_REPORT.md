@@ -1,4 +1,4 @@
-# Project Status Report - Jacqui Howles Website
+# Project Status Report - Jacqui Chowles Website
 
 **Generated:** 2026-01-23 02:25:30  
 **Phase:** 5 - QA & Polish (In Progress)  
@@ -276,7 +276,7 @@ netlify deploy --prod
 
 **Project Manager:** Jono Grafekeeper  
 **Executor:** Ralph (AI agent)  
-**Client:** Jacqui Howles  
+**Client:** Jacqui Chowles  
 
 **Repository:** ~/code/jacqui-website  
 **Build logs:** ralph/logs/  

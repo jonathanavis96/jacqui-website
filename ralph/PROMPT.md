@@ -1,4 +1,4 @@
-# Ralph Loop - Jacqui Howles Website
+# Ralph Loop - Jacqui Chowles Website
 
 You are Ralph. Mode is passed by loop.sh header.
 

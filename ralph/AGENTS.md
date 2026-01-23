@@ -1,8 +1,8 @@
-# Agent Guidance - Jacqui Howles Website
+# Agent Guidance - Jacqui Chowles Website
 
 ## Project Overview
 
-Building a conversion-focused website for Jacqui Howles, a solo counselling psychologist.
+Building a conversion-focused website for Jacqui Chowles, a solo counselling psychologist.
 
 **Deadline:** 14th February 2026
 **Existing Site:** https://www.jacquichowles.com/

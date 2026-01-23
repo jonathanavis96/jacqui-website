@@ -26,3 +26,4 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 12 | 1.3 | P1 | Section blueprints completed - documented all 4 pages with detailed breakdowns, design system, and content principles | 2026-01-23 |
 | 13 | Assessment | P1 | Comprehensive codebase assessment completed - verified all builds passing, identified 3 P0 blockers (WhatsApp, email inconsistency, profile photo) | 2026-01-23 |
 | 14 | Validation | P1 | Final validation completed - all acceptance criteria verified, build passing (108KB, 4 pages), ready for client input on P0 blockers | 2026-01-23 |
+| 15 | 0.0 | P0 | Fixed client name from "Howles" to "Chowles" throughout entire codebase (src/, docs/, ralph/) and corrected email typo (jacquihowles→jacquichowles) | 2026-01-23 |

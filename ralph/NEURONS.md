@@ -1,4 +1,4 @@
-# NEURONS - Jacqui Howles Website Structure
+# NEURONS - Jacqui Chowles Website Structure
 
 Quick map of project structure. Update as codebase evolves.
 

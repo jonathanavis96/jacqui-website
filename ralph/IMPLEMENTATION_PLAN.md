@@ -7,10 +7,12 @@
 
 ## 🚨 URGENT: Name Correction
 
-- [ ] **0.0** Fix client name throughout codebase
+- [x] **0.0** Fix client name throughout codebase
   - **Goal:** Change "Howles" to "Chowles" everywhere
   - **AC:** `grep -ri "howles" src/` returns no results, all references say "Jacqui Chowles"
   - **Priority:** CRITICAL - do this first!
+  - **Completed:** 2026-01-23
+  - **Notes:** Fixed all instances in src/, docs/, and ralph/ directories. Also corrected email typo (jacquihowles→jacquichowles)
 
 ---
 
@@ -129,9 +131,9 @@
 ## Phase 5: Polish & QA
 
 - [ ] **5.1** Add Psychology Today verification badge
-  - **Goal:** Integrate actual badge with client's verification code
-  - **AC:** Badge displays, links to Psychology Today profile
-  - **Blocked by:** Client provides verification code
+  - **Goal:** Integrate "Verified by Psychology Today" badge
+  - **AC:** Badge displays, links to https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696
+  - **Link:** https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696
 
 - [x] **5.2** Mobile responsiveness pass
   - **Goal:** Test and fix all breakpoints
