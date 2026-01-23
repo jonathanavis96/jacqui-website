@@ -31,6 +31,20 @@ For website patterns and best practices, use progressive disclosure:
 - `design/color-system.md` - Color palette decisions
 - `launch/deployment.md` - Netlify deployment
 
+## CRITICAL: One Task Per BUILD Iteration
+
+**In BUILD mode: Complete exactly ONE task from IMPLEMENTATION_PLAN.md, then STOP.**
+
+- Pick the first unchecked `- [ ]` task
+- Complete it fully
+- Commit with conventional commit message
+- Mark task as `- [x]` in IMPLEMENTATION_PLAN.md
+- **STOP** - Do not continue to next task
+
+This is non-negotiable. Multiple tasks = wasted context and harder reviews.
+
+---
+
 ## Token Efficiency Rules (CRITICAL)
 
 ### PLANNING Mode Output

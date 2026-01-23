@@ -5,8 +5,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(dirname "$SCRIPT_DIR")"
 
-AC_FILE="${1:-${ROOT}/rules/AC.rules}"
-APPROVALS_FILE="${2:-${ROOT}/rules/MANUAL_APPROVALS.rules}"
+AC_FILE="${1:-${ROOT}/ralph/rules/AC.rules}"
+APPROVALS_FILE="${2:-${ROOT}/ralph/rules/MANUAL_APPROVALS.rules}"
 
 VERIFY_DIR="${SCRIPT_DIR}/.verify"
 REPORT_FILE="${VERIFY_DIR}/latest.txt"
