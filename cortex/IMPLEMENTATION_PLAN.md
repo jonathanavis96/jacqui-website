@@ -209,11 +209,13 @@
 
 ### 8.1 - Text & Button Visibility Fixes
 
-- [ ] **8.1.1** Fix Homepage "Book a free consultation" button
+- [x] **8.1.1** Fix Homepage "Book a free consultation" button
   - **Issue:** Button and text appears white/invisible on light background
   - **Fix:** Button background → `#85349A`, text → white
   - **Hover:** Slightly darker purple
   - **Files:** `src/components/Hero.astro` or `src/pages/index.astro`
+  - **Completed:** 2026-01-23
+  - **Notes:** Already implemented - Hero.astro has bg-purple-brand (#85349A), hover:bg-purple-brand-hover (#6E2A7F), text-white
 
 - [ ] **8.1.2** Fix About page bottom CTA section
   - **Issue:** Entire section invisible (purple text on purple background)
