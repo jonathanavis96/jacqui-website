@@ -37,7 +37,7 @@ export default {
       },
       fontFamily: {
         sans: ['Nunito Sans', 'system-ui', 'sans-serif'],
-        heading: ['Manrope', 'system-ui', 'sans-serif'],
+        heading: ['Nunito', 'system-ui', 'sans-serif'],
       },
     },
   },

@@ -1,0 +1,58 @@
+---
+// Reusable quote banner component with curved purple border
+interface Props {
+  quote: string;
+  author: string;
+  backgroundImage?: string;
+}
+
+const { quote, author, backgroundImage = '' } = Astro.props;
+---
+
+<section class="relative py-20 md:py-24 overflow-hidden">
+  <!-- Curved purple border at top -->
+  <div class="absolute top-0 left-0 w-full overflow-hidden leading-none">
+    <svg class="relative block w-full h-12" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#8F65AB"></path>
+    </svg>
+  </div>
+  
+  <!-- Background image with overlay -->
+  {backgroundImage && (
+    <div 
+      class="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+      style={`background-image: url('${backgroundImage}');`}
+    >
+      <div class="absolute inset-0 bg-gray-900 opacity-70"></div>
+    </div>
+  )}
+  
+  <!-- Fallback solid background if no image -->
+  {!backgroundImage && (
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-900 to-purple-800"></div>
+  )}
+  
+  <!-- Quote content -->
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="max-w-4xl mx-auto text-center">
+      <svg class="w-12 h-12 md:w-16 md:h-16 text-purple-300 mx-auto mb-6 opacity-50" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+      </svg>
+      
+      <blockquote class="text-xl md:text-2xl lg:text-3xl text-white italic leading-relaxed mb-6">
+        {quote}
+      </blockquote>
+      
+      <cite class="text-base md:text-lg text-purple-200 not-italic font-semibold">
+        — {author}
+      </cite>
+    </div>
+  </div>
+  
+  <!-- Curved purple border at bottom -->
+  <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
+    <svg class="relative block w-full h-12" viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#8F65AB"></path>
+    </svg>
+  </div>
+</section>

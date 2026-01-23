@@ -32,3 +32,6 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 18 | B.2 | P1 | Purple accent color added - updated Tailwind config with purple palette, applied to nav hovers (purple-700), active border (purple-600), and CTA section (purple-600/700) | 2026-01-23 |
 | 19 | 5.6-5.9 | P1 | SEO enhancements completed - added sitemap.xml (@astrojs/sitemap), robots.txt, favicon (SVG with JC initials), verified all meta tags | 2026-01-23 |
 | 20 | B.3-B.5 | P1 | Branding updates completed - logo size increased to h-16, background removed with mix-blend-multiply, CTA banner changed to muted purple (#8B6AAE, #7B5EA7) | 2026-01-23 |
+| 21 | 7.1.1-7.1.3 | P1 | Color system overhaul completed - all blue colors converted to purple brand (#85349A), added purple-brand and purple-brand-hover to Tailwind config, updated all components and pages | 2026-01-23 |
+| 22 | 7.2.1 | P1 | Typography updated - changed heading font from Manrope to Nunito (rounded, soft style), updated Google Fonts imports in BaseLayout | 2026-01-23 |
+| 23 | 7.3.1-7.3.4 | P1 | Quote banners implemented - created QuoteBanner component with curved purple borders, added inspirational quotes to Homepage (Anaïs Nin), About (Irvin D. Yalom), and Services (Rupi Kaur) pages | 2026-01-23 |

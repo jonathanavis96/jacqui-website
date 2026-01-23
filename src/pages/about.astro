@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import QuoteBanner from '../components/QuoteBanner.astro';
 import TrustBadges from '../components/TrustBadges.astro';
 ---
 
@@ -13,7 +14,7 @@ import TrustBadges from '../components/TrustBadges.astro';
   <main class="flex-grow bg-white">
     
     <!-- Hero Section -->
-    <section class="bg-gradient-to-b from-blue-50 to-white py-16 md:py-20">
+    <section class="bg-gradient-to-b from-purple-50 to-white py-16 md:py-20">
       <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto text-center">
           <h1 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
@@ -51,7 +52,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             </p>
 
             <!-- Pull Quote -->
-            <blockquote class="border-l-4 border-blue-600 pl-6 py-4 my-12 italic text-xl text-gray-700">
+            <blockquote class="border-l-4 border-purple-brand pl-6 py-4 my-12 italic text-xl text-gray-700">
               "Therapy is about creating a safe space where you can explore your experiences, understand your patterns, and find your way forward—at your own pace."
             </blockquote>
           </div>
@@ -60,7 +61,7 @@ import TrustBadges from '../components/TrustBadges.astro';
     </section>
 
     <!-- How I Work Section -->
-    <section class="py-16 md:py-20 bg-blue-50">
+    <section class="py-16 md:py-20 bg-purple-50">
       <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
           <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8">
@@ -82,19 +83,19 @@ import TrustBadges from '../components/TrustBadges.astro';
               </h3>
               <ul class="space-y-4">
                 <li class="flex items-start">
-                  <span class="text-blue-600 mr-3 text-xl">•</span>
+                  <span class="text-purple-brand mr-3 text-xl">•</span>
                   <span class="text-gray-700"><strong>A safe, non-judgmental space</strong> where you can speak openly about your experiences</span>
                 </li>
                 <li class="flex items-start">
-                  <span class="text-blue-600 mr-3 text-xl">•</span>
+                  <span class="text-purple-brand mr-3 text-xl">•</span>
                   <span class="text-gray-700"><strong>A collaborative relationship</strong> where we work together to understand your concerns and goals</span>
                 </li>
                 <li class="flex items-start">
-                  <span class="text-blue-600 mr-3 text-xl">•</span>
+                  <span class="text-purple-brand mr-3 text-xl">•</span>
                   <span class="text-gray-700"><strong>Trauma-informed care</strong> that respects your pace and honors your experiences</span>
                 </li>
                 <li class="flex items-start">
-                  <span class="text-blue-600 mr-3 text-xl">•</span>
+                  <span class="text-purple-brand mr-3 text-xl">•</span>
                   <span class="text-gray-700"><strong>A focus on relationships</strong>—both the relationship between us and your relationships with others</span>
                 </li>
               </ul>
@@ -122,7 +123,7 @@ import TrustBadges from '../components/TrustBadges.astro';
 
           <div class="grid md:grid-cols-2 gap-6">
             <!-- Trauma -->
-            <div class="bg-blue-50 rounded-lg p-6">
+            <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Trauma, PTSD & Complex PTSD
               </h3>
@@ -132,7 +133,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             </div>
 
             <!-- Depression -->
-            <div class="bg-blue-50 rounded-lg p-6">
+            <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Depression
               </h3>
@@ -142,7 +143,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             </div>
 
             <!-- Anxiety -->
-            <div class="bg-blue-50 rounded-lg p-6">
+            <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Anxiety
               </h3>
@@ -152,7 +153,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             </div>
 
             <!-- Grief -->
-            <div class="bg-blue-50 rounded-lg p-6">
+            <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Grief & Loss
               </h3>
@@ -162,7 +163,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             </div>
 
             <!-- Burnout -->
-            <div class="bg-blue-50 rounded-lg p-6">
+            <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Burnout
               </h3>
@@ -172,7 +173,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             </div>
 
             <!-- Transitions -->
-            <div class="bg-blue-50 rounded-lg p-6">
+            <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Life Transitions
               </h3>
@@ -182,7 +183,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             </div>
 
             <!-- Identity -->
-            <div class="bg-blue-50 rounded-lg p-6">
+            <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Identity Issues
               </h3>
@@ -192,7 +193,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             </div>
 
             <!-- Couples -->
-            <div class="bg-blue-50 rounded-lg p-6">
+            <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Couples Therapy
               </h3>
@@ -207,10 +208,16 @@ import TrustBadges from '../components/TrustBadges.astro';
           </p>
         </div>
       </div>
+    <!-- Inspirational Quote -->
+    <QuoteBanner
+      quote="It's the relationship that heals, the relationship heals by providing a space where the patient feels safe to explore the depths of their mind and spirit, knowing that someone will be there to witness, understand, and support their journey."
+      author="Irvin D. Yalom"
+    />
+
     </section>
 
     <!-- Credentials Section -->
-    <section class="py-16 md:py-20 bg-gradient-to-b from-white to-blue-50">
+    <section class="py-16 md:py-20 bg-gradient-to-b from-white to-purple-50">
       <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
           <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8 text-center">
@@ -259,25 +266,25 @@ import TrustBadges from '../components/TrustBadges.astro';
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 md:py-20 bg-blue-600 text-white">
+    <section class="py-16 md:py-20 bg-purple-brand text-white">
       <div class="container mx-auto px-4">
         <div class="max-w-3xl mx-auto text-center">
           <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6">
             Ready to take the next step?
           </h2>
-          <p class="text-xl mb-8 text-blue-100">
+          <p class="text-xl mb-8 text-purple-100">
             Book a free consultation to see if we're a good fit, or learn more about how I work.
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="/contact" 
-              class="inline-block bg-white hover:bg-gray-100 text-blue-600 font-bold py-4 px-8 rounded-lg transition-colors text-lg"
+              class="inline-block bg-white hover:bg-gray-100 text-purple-brand font-bold py-4 px-8 rounded-lg transition-colors text-lg"
             >
               Get in touch
             </a>
             <a 
               href="/services" 
-              class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-bold py-4 px-8 rounded-lg border-2 border-white transition-colors text-lg"
+              class="inline-block bg-purple-brand-hover hover:bg-purple-brand-hover text-white font-bold py-4 px-8 rounded-lg border-2 border-white transition-colors text-lg"
             >
               View services
             </a>

@@ -253,18 +253,18 @@
 
 ### 7.1 - Color System Overhaul
 
-- [ ] **7.1.1** Update button colors from blue to purple
+- [x] **7.1.1** Update button colors from blue to purple
   - **Goal:** Replace all `blue-600`/`blue-700` button colors with `#85349A`
   - **AC:** All buttons use purple (`#85349A`), hover states use darker shade
   - **Files:** All `.astro` files, `tailwind.config.mjs`
   - **Notes:** Add `purple-brand: '#85349A'` to Tailwind config for consistency
 
-- [ ] **7.1.2** Update banner backgrounds to `#8F65AB`
+- [x] **7.1.2** Update banner backgrounds to `#8F65AB`
   - **Goal:** All CTA/section banners use consistent purple (`#8F65AB`)
   - **AC:** CTASection and all page banners use `#8F65AB` background
   - **Files:** `CTASection.astro`, `about.astro`, `services.astro`, `contact.astro`
 
-- [ ] **7.1.3** Convert blue accents to purple throughout
+- [x] **7.1.3** Convert blue accents to purple throughout
   - **Goal:** Replace `blue-50`, `blue-100`, `blue-600` backgrounds/accents with purple equivalents
   - **AC:** No blue color classes remain in codebase (except where intentional)
   - **Files:** All page and component files
@@ -276,7 +276,7 @@
 
 ### 7.2 - Typography Update
 
-- [ ] **7.2.1** Change heading font to rounded/soft style
+- [x] **7.2.1** Change heading font to rounded/soft style
   - **Goal:** Replace current heading font with a softer, rounded font (e.g., Nunito, Quicksand, Poppins)
   - **AC:** All headings use new rounded font, `font-heading` updated in Tailwind config
   - **Files:** `tailwind.config.mjs`, `BaseLayout.astro` (Google Fonts import)
@@ -284,7 +284,7 @@
 
 ### 7.3 - Quote Banner Sections
 
-- [ ] **7.3.1** Create QuoteBanner component
+- [x] **7.3.1** Create QuoteBanner component
   - **Goal:** Reusable full-width quote banner with curved purple top border
   - **AC:** Component accepts: quote text, author, background image URL
   - **Files:** `src/components/QuoteBanner.astro`
@@ -296,21 +296,21 @@
     - Author name below in smaller white text
     - Responsive (text scales on mobile)
 
-- [ ] **7.3.2** Add quote banner to Homepage
+- [x] **7.3.2** Add quote banner to Homepage
   - **Goal:** Add Anaïs Nin quote after services section
   - **Quote:** *"And the time came when the risk to remain tight in a bud was more painful than the risk it took to blossom."*
   - **Author:** Anaïs Nin
   - **Background:** Source lavender/purple flower field image (stock photo)
   - **AC:** Quote banner displays on homepage, responsive
 
-- [ ] **7.3.3** Add quote banner to About page
+- [x] **7.3.3** Add quote banner to About page
   - **Goal:** Add Irvin D. Yalom quote between sections
   - **Quote:** *"It's the relationship that heals, the relationship heals by providing a space where the patient feels safe to explore the depths of their mind and spirit, knowing that someone will be there to witness, understand, and support their journey."*
   - **Author:** Irvin D. Yalom
   - **Background:** Source mountain road with sunlight image (stock photo)
   - **AC:** Quote banner displays on about page, responsive
 
-- [ ] **7.3.4** Add quote banner to Services page
+- [x] **7.3.4** Add quote banner to Services page
   - **Goal:** Add Rupi Kaur quote between sections
   - **Quote:** *"Healing is everyday work. Some days you will feel like you are on top of the world, and some days you will feel like you cannot get up. And that is okay. It is a journey, not a destination."*
   - **Author:** Rupi Kaur
