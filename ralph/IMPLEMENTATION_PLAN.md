@@ -328,7 +328,7 @@
 
 ### 8.4 - Wave Border Refinement
 
-- [ ] **8.4.1** Fix top wave border to follow image clip-path exactly
+- [x] **8.4.1** Fix top wave border to follow image clip-path exactly
   - **Issue:** Current 4px purple outline doesn't align with the wave-clipped image edge
   - **Goal:** Make the purple border line follow the EXACT same bezier curve as the image clip-path
   - **Approach:** 
@@ -336,16 +336,22 @@
     2. Use same path for both: SVG clip-path on image AND stroke border
     3. This ensures border perfectly outlines the clipped image edge
   - **Files:** `src/components/QuoteBanner.astro`
+  - **Completed:** 2026-01-23
+  - **Notes:** Created unified SVG path definition in hidden <svg>, referenced via unique wave ID
 
-- [ ] **8.4.2** Smooth the wave curve (no sharp edges)
+- [x] **8.4.2** Smooth the wave curve (no sharp edges)
   - **Issue:** Current wave may have angular/sharp points
   - **Goal:** Use smooth bezier curves throughout the wave path
   - **Files:** `src/components/QuoteBanner.astro`
+  - **Completed:** 2026-01-23
+  - **Notes:** Replaced polygon with smooth bezier curve path, added stroke-linecap/linejoin="round"
 
-- [ ] **8.4.3** Increase wave border width to 12px
+- [x] **8.4.3** Increase wave border width to 12px
   - **Issue:** Current border is 4px, too thin
   - **Goal:** Change stroke-width from 4 to 12
   - **Files:** `src/components/QuoteBanner.astro`
+  - **Completed:** 2026-01-23
+  - **Notes:** Updated stroke-width to 12, increased SVG container height to h-16 to accommodate
 
 ---
 
