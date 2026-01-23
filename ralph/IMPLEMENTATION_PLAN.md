@@ -314,10 +314,12 @@
   - **New location:** After the purple "Interested in consultancy services?" box, before "Ready to get started?"
   - **Completed:** 2026-01-23 (already done in previous iteration)
 
-- [ ] **8.2.7** Make QuoteBanner fill full width
+- [x] **8.2.7** Make QuoteBanner fill full width
   - **Issue:** Quote banner doesn't span full site width
   - **Goal:** Ensure QuoteBanner fills 100% viewport width
   - **Files:** `src/components/QuoteBanner.astro`
+  - **Completed:** 2026-01-23
+  - **Notes:** Added w-full class to section element
 
 ### 8.3 - Spacing & Layout Fixes
 
