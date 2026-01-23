@@ -54,13 +54,14 @@
 
 ---
 
-### 9.4 About page: Reduce spacing between hero and bio
+### 9.4 About page: Reduce spacing between hero and bio ✅
 - **Goal:** Tighten spacing between headshot and "Over a decade..." text
 - **Context:** Currently hero has pb-8, bio section has pt-8 - too much gap
 - **AC:**
-  - [ ] Spacing between hero and bio section reduced
-  - [ ] Visual flow feels natural (not cramped, not sparse)
+  - [x] Spacing between hero and bio section reduced (pb-4 md:pb-6, pt-4 md:pt-6)
+  - [x] Visual flow feels natural (not cramped, not sparse)
 - **Skill:** `design/spacing-layout.md`
+- **Completed:** 2026-01-23 (commit TBD)
 
 ---
 

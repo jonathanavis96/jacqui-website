@@ -65,19 +65,35 @@ import TrustBadges from '../components/TrustBadges.astro';
     <!-- How I Work Section -->
     <section class="py-16 md:py-20 bg-purple-50">
       <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8 text-center">
             How I Work
           </h2>
 
-          <div class="prose prose-lg max-w-none">
-            <p class="text-gray-700 leading-relaxed mb-6">
-              My therapeutic approach is grounded in <strong>psychodynamic therapy</strong>, which focuses on understanding the deeper patterns and relationships that shape how we experience ourselves and the world. I believe that meaningful change comes from exploring not just what we think and do, but also what we feel and why.
-            </p>
+          <!-- Image + Text Grid -->
+          <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-8">
+            <!-- Mirror Image (Left) -->
+            <div class="order-2 md:order-1">
+              <img 
+                src="/images/image3_mirror.webp" 
+                alt="Reflective mirror symbolizing self-exploration in therapy" 
+                class="w-full h-auto rounded-lg shadow-lg object-cover"
+              />
+            </div>
 
-            <p class="text-gray-700 leading-relaxed mb-6">
-              I also draw on other modalities as needed, including trauma-focused approaches, attachment theory, and relational therapy. My work is informed by a deep respect for each person's unique story and the contexts that have shaped their lives.
-            </p>
+            <!-- Text (Right) -->
+            <div class="order-1 md:order-2 prose prose-lg">
+              <p class="text-gray-700 leading-relaxed mb-6">
+                My therapeutic approach is grounded in <strong>psychodynamic therapy</strong>, which focuses on understanding the deeper patterns and relationships that shape how we experience ourselves and the world. I believe that meaningful change comes from exploring not just what we think and do, but also what we feel and why.
+              </p>
+
+              <p class="text-gray-700 leading-relaxed mb-6">
+                I also draw on other modalities as needed, including trauma-focused approaches, attachment theory, and relational therapy. My work is informed by a deep respect for each person's unique story and the contexts that have shaped their lives.
+              </p>
+            </div>
+          </div>
+
+          <div class="max-w-4xl mx-auto prose prose-lg">
 
             <div class="bg-white rounded-lg p-8 my-8">
               <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
@@ -114,16 +130,32 @@ import TrustBadges from '../components/TrustBadges.astro';
     <!-- What I Work With Section -->
     <section class="py-16 md:py-20 bg-white">
       <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8 text-center">
             What I Work With
           </h2>
 
-          <p class="text-gray-700 leading-relaxed mb-10">
-            I work with people experiencing a wide range of concerns. Some common areas include:
-          </p>
+          <!-- Image + Text Grid -->
+          <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-10">
+            <!-- Text (Left) -->
+            <div class="order-1 md:order-1 prose prose-lg">
+              <p class="text-gray-700 leading-relaxed">
+                I work with people experiencing a wide range of concerns. Some common areas include:
+              </p>
+            </div>
 
-          <div class="grid md:grid-cols-2 gap-6">
+            <!-- Butterfly Image (Right) -->
+            <div class="order-2 md:order-2">
+              <img 
+                src="/images/image4_butterfly.webp" 
+                alt="Butterfly symbolizing transformation and growth" 
+                class="w-full h-auto rounded-lg shadow-lg object-cover"
+              />
+            </div>
+          </div>
+
+          <div class="max-w-4xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-6">
             <!-- Trauma -->
             <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
