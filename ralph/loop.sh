@@ -18,7 +18,7 @@ if [[ -n "${RALPH_PROJECT_ROOT:-}" ]]; then
   ROOT="$RALPH_PROJECT_ROOT"
   RALPH="$ROOT/ralph"
 else
-  ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+  ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
   RALPH="$ROOT/ralph"
 fi
 LOGDIR="$RALPH/logs"
