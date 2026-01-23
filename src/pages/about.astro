@@ -31,11 +31,13 @@ import TrustBadges from '../components/TrustBadges.astro';
     <section class="py-16 md:py-20">
       <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto">
-          <!-- Photo placeholder -->
+          <!-- Jacqui's Photo -->
           <div class="mb-12 flex justify-center">
-            <div class="w-64 h-64 bg-gray-200 rounded-lg flex items-center justify-center text-gray-400">
-              Photo placeholder
-            </div>
+            <img 
+              src="/images/jacqui_headshot.png" 
+              alt="Jacqui Chowles - Counselling Psychologist" 
+              class="w-64 h-64 rounded-lg object-cover shadow-lg"
+            />
           </div>
 
           <div class="prose prose-lg max-w-none">
@@ -212,6 +214,7 @@ import TrustBadges from '../components/TrustBadges.astro';
     <QuoteBanner
       quote="It's the relationship that heals, the relationship heals by providing a space where the patient feels safe to explore the depths of their mind and spirit, knowing that someone will be there to witness, understand, and support their journey."
       author="Irvin D. Yalom"
+      backgroundImage="/images/Road_About_Banner.webp"
     />
 
     </section>
@@ -277,7 +280,7 @@ import TrustBadges from '../components/TrustBadges.astro';
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="/contact" 
+              href="/contact#contact-form" 
               class="inline-block bg-white hover:bg-gray-100 text-purple-brand font-bold py-4 px-8 rounded-lg transition-colors text-lg"
             >
               Get in touch

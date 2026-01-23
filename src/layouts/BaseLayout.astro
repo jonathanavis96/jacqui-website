@@ -37,5 +37,25 @@ const { title, description = 'Jacqui Chowles - Counselling Psychologist. Online 
   <body class="flex flex-col min-h-screen">
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <slot />
+    <script>
+      // Intersection Observer for scroll animations
+      document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+          observer.observe(el);
+        });
+      });
+    </script>
   </body>
 </html>
