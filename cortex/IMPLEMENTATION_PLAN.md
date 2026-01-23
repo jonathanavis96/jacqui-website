@@ -13,14 +13,15 @@
 
 ---
 
-### 9.1 Convert images to webp and move to public/images/
+### 9.1 Convert images to webp and move to public/images/ ✅
 - **Goal:** Optimize cortex/ images for web and move to public/images/
 - **Files:** image3_mirror.png, image4_butterfly.png, image5_chair.png, image6_chairs.png
 - **AC:**
-  - [ ] All 4 images converted to .webp format
-  - [ ] Images moved to public/images/
-  - [ ] Original .png files removed from cortex/
+  - [x] All 4 images converted to .webp format
+  - [x] Images moved to public/images/
+  - [x] Original .png files removed from cortex/
 - **Skill:** `build/performance.md`
+- **Completed:** 2026-01-23 (commit dd9a646)
 
 ---
 
