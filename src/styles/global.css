@@ -11,4 +11,23 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading;
   }
+  
+  /* Accessibility: Focus states */
+  a:focus,
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    @apply outline-2 outline-offset-2 outline-blue-600;
+  }
+  
+  /* Skip to main content link */
+  .skip-link {
+    @apply absolute left-0 top-0 bg-blue-600 text-white px-4 py-2 z-50 transform -translate-y-full;
+    transition: transform 0.2s;
+  }
+  
+  .skip-link:focus {
+    @apply translate-y-0;
+  }
 }
