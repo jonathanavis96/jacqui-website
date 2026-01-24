@@ -5,7 +5,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://jonathanavis96.github.io',
-  base: '/jacqui-website',
+  base: '/jacqui-website/',
   integrations: [tailwind(), sitemap()],
   output: 'static',
   build: {
