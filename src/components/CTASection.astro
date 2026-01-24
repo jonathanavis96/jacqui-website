@@ -1,5 +1,6 @@
 ---
 // Call-to-action section for homepage
+const base = import.meta.env.BASE_URL;
 ---
 
 <section class="bg-[#78716C] py-16 md:py-20">
@@ -13,13 +14,13 @@
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a 
-          href="/contact#contact-form" 
+          href={`${base}contact#contact-form`}
           class="inline-block bg-purple-brand hover:bg-purple-brand-hover text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg"
         >
           Book your free consultation
         </a>
         <a 
-          href="/about" 
+          href={`${base}about`}
           class="inline-block bg-white hover:bg-gray-100 text-purple-brand font-bold py-4 px-8 rounded-lg transition-colors text-lg"
         >
           Learn about my approach

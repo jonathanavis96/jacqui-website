@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { title, description = 'Jacqui Chowles - Counselling Psychologist. Online and in-person therapy for trauma, depression, anxiety, and more.' } = Astro.props;
+const base = import.meta.env.BASE_URL;
 ---
 
 <!DOCTYPE html>
@@ -23,8 +24,8 @@ const { title, description = 'Jacqui Chowles - Counselling Psychologist. Online 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <link rel="alternate icon" type="image/x-icon" href={`${base}favicon.ico`} />
     
     <!-- Fonts - Optimized loading with display=swap -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Nunito+Sans:wght@200;400;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -35,7 +36,7 @@ const { title, description = 'Jacqui Chowles - Counselling Psychologist. Online 
     <title>{title}</title>
   </head>
   <body class="flex flex-col min-h-screen">
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href={`${base}#main-content`} class="skip-link">Skip to main content</a>
     <slot />
     <script>
       // Intersection Observer for scroll animations

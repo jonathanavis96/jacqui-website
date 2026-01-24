@@ -4,6 +4,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import QuoteBanner from '../components/QuoteBanner.astro';
 import TrustBadges from '../components/TrustBadges.astro';
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout 
@@ -34,7 +36,7 @@ import TrustBadges from '../components/TrustBadges.astro';
           <!-- Jacqui's Photo -->
           <div class="mb-12 flex justify-center">
             <img 
-              src="/images/jacqui_headshot.png" 
+              src={`${base}images/jacqui_headshot.png`}
               alt="Jacqui Chowles - Counselling Psychologist" 
               class="w-80 h-auto rounded-lg object-cover shadow-lg"
             />
@@ -71,7 +73,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             <!-- Mirror Image (Left) -->
             <div class="order-2 md:order-1">
               <img 
-                src="/images/image3_mirror.webp" 
+                src={`${base}images/image3_mirror.webp`}
                 alt="Reflective mirror symbolizing self-exploration in therapy" 
                 class="max-w-xs w-full h-auto rounded-lg shadow-lg object-cover"
               />
@@ -192,7 +194,7 @@ import TrustBadges from '../components/TrustBadges.astro';
             <!-- Right Column: Image -->
             <div class="order-2 md:order-2 flex items-center justify-center">
               <img 
-                src="/images/image4_butterfly.webp" 
+                src={`${base}images/image4_butterfly.webp`}
                 alt="Butterfly symbolizing transformation and growth" 
                 class="max-w-sm w-full h-auto rounded-lg shadow-lg object-cover"
               />
@@ -318,13 +320,13 @@ import TrustBadges from '../components/TrustBadges.astro';
           </p>
           <div class="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
-              href="/contact#contact-form" 
+              href={`${base}contact#contact-form`}
               class="inline-block bg-purple-brand hover:bg-purple-brand-hover text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg"
             >
               Get in touch
             </a>
             <a 
-              href="/services" 
+              href={`${base}services`}
               class="inline-block bg-white hover:bg-gray-100 text-purple-brand font-bold py-4 px-8 rounded-lg border-2 border-white transition-colors text-lg"
             >
               View services

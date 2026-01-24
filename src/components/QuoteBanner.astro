@@ -7,21 +7,24 @@ interface Props {
   backgroundImage?: string;
 }
 
+const base = import.meta.env.BASE_URL;
 const { quote, author, backgroundImage = '' } = Astro.props;
+// Prepend base to backgroundImage if it starts with /
+const fullBgImage = backgroundImage.startsWith('/') ? `${base}${backgroundImage.slice(1)}` : backgroundImage;
 ---
 
 <section class="relative h-[250px] md:h-[350px] overflow-hidden w-full">
   <!-- Background image (no overlay - images pre-edited with decorations) -->
-  {backgroundImage && (
+  {fullBgImage && (
     <div 
       class="absolute inset-0 bg-cover bg-top bg-no-repeat" 
-      style={`background-image: url('${backgroundImage}');`}
+      style={`background-image: url('${fullBgImage}');`}
     >
     </div>
   )}
   
   <!-- Fallback solid background if no image -->
-  {!backgroundImage && (
+  {!fullBgImage && (
     <div class="absolute inset-0 bg-gradient-to-br from-purple-900 to-purple-800"></div>
   )}
   
