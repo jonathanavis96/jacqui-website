@@ -28,6 +28,7 @@
 - Finalize open questions with client
 - Content review with client
 - Domain transfer/DNS setup
+- **Setup Formspree** - Replace Netlify Forms with Formspree (current form won't work on GitHub Pages). Need Jacqui's email to create Formspree endpoint.
 - Go live
 - Post-launch monitoring
 
