@@ -244,19 +244,24 @@ Individuals, adolescents, and couples
 - [x] **11.5.2** Fix MD060/table-column-style in cortex/IMPLEMENTATION_PLAN.md (line 22)
   - **AC:** `markdownlint cortex/IMPLEMENTATION_PLAN.md` passes (no MD060 errors)
 
-### Phase 11.6: cortex/websites_notes_v2.md Lint Fixes
+### Phase 11.6: cortex/IMPLEMENTATION_PLAN.md Lint Fixes
 
-- [ ] **11.6.1** Fix MD004/ul-style in cortex/websites_notes_v2.md (lines 3, 5, 7-10, 12, 14-15, 17-18, 20, 22-23, 25-27, 29, 31-33, 35, 37, 39, 41)
+- [x] **11.6.1** Fix MD012/no-multiple-blanks in cortex/IMPLEMENTATION_PLAN.md (line 196)
+  - **AC:** `markdownlint cortex/IMPLEMENTATION_PLAN.md` passes (no MD012 errors)
+
+### Phase 11.7: cortex/websites_notes_v2.md Lint Fixes
+
+- [x] **11.7.1** Fix MD004/ul-style in cortex/websites_notes_v2.md (lines 3, 5, 7-10, 12, 14-15, 17-18, 20, 22-23, 25-27, 29, 31-33, 35, 37, 39, 41)
   - **AC:** `markdownlint cortex/websites_notes_v2.md` passes (no MD004 errors)
 
-### Phase 11.7: ralph/NEURONS.md Lint Fixes
+### Phase 11.8: ralph/NEURONS.md Lint Fixes
 
-- [x] **11.7.1** Fix MD040/fenced-code-language in ralph/NEURONS.md (lines 9, 84)
+- [x] **11.8.1** Fix MD040/fenced-code-language in ralph/NEURONS.md (lines 9, 84)
   - **AC:** `markdownlint ralph/NEURONS.md` passes (no MD040 errors)
 
-### Phase 11.8: ralph/STATUS_REPORT.md Lint Fixes
+### Phase 11.9: ralph/STATUS_REPORT.md Lint Fixes
 
-- [x] **11.8.1** Fix MD040/fenced-code-language in ralph/STATUS_REPORT.md (line 85)
+- [x] **11.9.1** Fix MD040/fenced-code-language in ralph/STATUS_REPORT.md (line 85)
   - **AC:** `markdownlint ralph/STATUS_REPORT.md` passes (no MD040 errors)
 
 ---

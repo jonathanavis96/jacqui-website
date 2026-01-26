@@ -84,6 +84,26 @@ Need to decide if we keep this structure or modify.
 
 ---
 
+## Decision Log
+
+### DEC-2026-01-26-001: HPCSA Registration Number
+
+**Status:** Confirmed
+
+**Decision:** Use HPCSA registration number **PS0133779** across the site.
+
+**Source:** `cortex/webste_notes_from_jacqui.md`
+
+---
+
+### DEC-2026-01-26-002: Mirror Image Usage
+
+**Status:** Confirmed
+
+**Decision:** `image3_mirror.webp` is approved for use on the website.
+
+---
+
 ## Pending Decisions
 
 - [ ] Color palette (awaiting client input)

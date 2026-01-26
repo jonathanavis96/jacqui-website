@@ -103,3 +103,5 @@ npx markdownlint cortex/CORTEX_SYSTEM_PROMPT.md  # PASS (no errors)
 | 11.8.1 | Fixed MD040/fenced-code-language in ralph/STATUS_REPORT.md line 85 | Added `text` language identifier to fenced code block | ✅ markdownlint passes |
 2026-01-26T22:52:30+02:00 | task=11.5.1 | Fix MD013/line-length in cortex/IMPLEMENTATION_PLAN.md | status=complete | note=Already resolved, no errors found
 2026-01-26T22:54:30+02:00 | task=11.5.2 | Fix MD060/table-column-style in cortex/IMPLEMENTATION_PLAN.md | status=complete | note=MD060 disabled in config, no errors found
+| 11.7.1 | cortex/websites_notes_v2.md | Verified MD004 lint compliance | markdownlint passes |
+
