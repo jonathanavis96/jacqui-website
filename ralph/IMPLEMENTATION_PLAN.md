@@ -121,7 +121,7 @@ Last updated: 2026-01-26 21:30:00
 
 ### Phase 10.9: Formspree Preparation
 
-- [ ] **10.9.1** Prepare contact form for Formspree integration
+- [x] **10.9.1** Prepare contact form for Formspree integration
   - **Goal:** Update form action to "YOUR_FORMSPREE_ENDPOINT" placeholder, add method="POST", add HTML comment explaining what to replace
   - **AC:** Form has clear placeholder comment, structure ready for Formspree endpoint
 
@@ -197,18 +197,18 @@ Individuals, adolescents, and couples
 
 ### Phase 11.1: cortex/AGENTS.md Lint Fixes
 
-- [ ] **11.1.1** Fix MD032/blanks-around-lists in cortex/AGENTS.md (lines 33, 38, 96)
+- [x] **11.1.1** Fix MD032/blanks-around-lists in cortex/AGENTS.md (lines 33, 38, 96)
   - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD032 errors)
 
-- [ ] **11.1.2** Fix MD060/table-column-style in cortex/AGENTS.md (line 50)
+- [x] **11.1.2** Fix MD060/table-column-style in cortex/AGENTS.md (line 50)
   - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD060 errors)
 
-- [ ] **11.1.3** Fix MD034/no-bare-urls in cortex/AGENTS.md (line 93)
+- [x] **11.1.3** Fix MD034/no-bare-urls in cortex/AGENTS.md (line 93)
   - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD034 errors)
 
 ### Phase 11.2: cortex/CORTEX_SYSTEM_PROMPT.md Lint Fixes
 
-- [ ] **11.2.1** Fix MD013/line-length in cortex/CORTEX_SYSTEM_PROMPT.md (lines 7, 46, 48)
+- [x] **11.2.1** Fix MD013/line-length in cortex/CORTEX_SYSTEM_PROMPT.md (lines 7, 46, 48)
   - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD013 errors)
 
 - [ ] **11.2.2** Fix MD022/blanks-around-headings in cortex/CORTEX_SYSTEM_PROMPT.md (lines 11, 17, 23, 52, 57)
