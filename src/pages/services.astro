@@ -168,13 +168,15 @@ const base = import.meta.env.BASE_URL;
         <div class="max-w-6xl mx-auto">
           <!-- Desktop: Image Left, Text Right -->
           <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
-            <div>
-              <img 
-                src={`${base}images/image6_chairs.webp`}
-                alt="Comfortable therapy room"
-                class="rounded-lg shadow-lg w-full h-auto"
-                loading="lazy"
-              />
+            <div class="flex items-center justify-center">
+              <div class="max-w-sm">
+                <img 
+                  src={`${base}images/image6_chairs.webp`}
+                  alt="Comfortable therapy room"
+                  class="rounded-lg shadow-lg w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
             </div>
 
             <div>
@@ -244,50 +246,6 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <!-- Therapy Spaces Image Grid -->
-    <section class="py-16 md:py-20 bg-gray-50">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <h2 class="text-2xl md:text-3xl font-heading font-bold text-gray-900 text-center mb-10">
-            Therapy Spaces
-          </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <div class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <img 
-                src={`${base}images/image5_chair.webp`}
-                alt="Comfortable therapy chair"
-                class="w-full h-64 object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <img 
-                src={`${base}images/image6_chairs.webp`}
-                alt="Therapy room chairs"
-                class="w-full h-64 object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <img 
-                src={`${base}images/therapy_office_1.webp`}
-                alt="Therapy office space"
-                class="w-full h-64 object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div class="overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <img 
-                src={`${base}images/therapy_office_2.webp`}
-                alt="Therapy consultation room"
-                class="w-full h-64 object-cover"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Consultancy Services Section -->
     <section id="consultancy" class="py-16 md:py-20 bg-white scroll-mt-24">
@@ -317,7 +275,7 @@ const base = import.meta.env.BASE_URL;
 
             <div class="order-first md:order-last">
               <img 
-                src={`${base}images/image3_mirror.webp`}
+                src={`${base}images/image5_chair.webp`}
                 alt="Professional consultancy and training"
                 class="rounded-lg shadow-lg w-full h-auto"
                 loading="lazy"

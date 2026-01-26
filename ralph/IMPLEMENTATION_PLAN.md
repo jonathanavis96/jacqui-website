@@ -62,7 +62,7 @@ Last updated: 2026-01-26 23:20:00
 
 ### Phase 10.8b: Contact Page Desktop Layout Fix (2 tasks)
 
-- [ ] **10.8b.2** Reduce Contact form visual dominance on desktop
+- [x] **10.8b.2** Reduce Contact form visual dominance on desktop
   - **Goal:** Wrap form in a card and constrain max width so it doesn't feel full-bleed
   - **Implementation notes (required):**
     - Wrap the form in a card: `bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8`
@@ -74,7 +74,7 @@ Last updated: 2026-01-26 23:20:00
 
 ### Phase 10.10: SEO Enhancements (2 tasks)
 
-- [ ] **10.10.1** Add canonical URLs + Open Graph + Twitter card meta
+- [x] **10.10.1** Add canonical URLs + Open Graph + Twitter card meta
   - **Goal:** Add `<link rel="canonical">` and OG/Twitter meta tags via `BaseLayout.astro`
   - **Implementation notes:**
     - Canonical must be absolute (use site URL + `Astro.url.pathname`)
@@ -82,7 +82,7 @@ Last updated: 2026-01-26 23:20:00
     - Twitter should include at minimum: `twitter:card`, `twitter:title`, `twitter:description`
   - **AC:** Built HTML contains canonical + OG + Twitter meta on all pages
 
-- [ ] **10.10.2** Add JSON-LD structured data
+- [x] **10.10.2** Add JSON-LD structured data
   - **Goal:** Add Person/LocalBusiness schema for Jacqui + practice location/contact
   - **Implementation notes:** Include at minimum: name, jobTitle, address (Roodepoort, Gauteng), telephone, url
   - **AC:** Built HTML contains an `application/ld+json` script with schema.org JSON-LD
@@ -139,20 +139,26 @@ Last updated: 2026-01-26 23:20:00
 
 ## Completed Tasks (Archive)
 
+- [x] **11.1** Fix MD024 in ralph/IMPLEMENTATION_PLAN.md (duplicate headings)
+  - **AC:** `markdownlint ralph/IMPLEMENTATION_PLAN.md` passes (no MD024 errors)
 
----
-
-## Completed (archive)
-
-
----
-
-## Completed (archive)
+- [x] **11.2** Fix MD012 in ralph/IMPLEMENTATION_PLAN.md (multiple blank lines)
+  - **AC:** `markdownlint ralph/IMPLEMENTATION_PLAN.md` passes (no MD012 errors)
 
 
 ---
 
-## Completed (archive)
+## Completed (archive - batch 1)
+
+
+---
+
+## Completed (archive - batch 2)
+
+
+---
+
+## Completed (archive - batch 3)
 
 - [x] **10.8b.1** Fix Contact page desktop grid structure
   - **Goal:** Ensure "Contact Information" and "What happens next?" remain together in the left column on desktop
@@ -257,5 +263,4 @@ Last updated: 2026-01-26 23:20:00
 
 - [x] **10.9.1** Prepare contact form for Formspree integration
   - **AC:** Clear placeholder for endpoint
-
 

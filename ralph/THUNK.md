@@ -122,3 +122,12 @@ npx markdownlint cortex/CORTEX_SYSTEM_PROMPT.md  # PASS (no errors)
 | 2026-01-26 23:37 | **10.7.1** Desktop zig-zag layout | Implemented alternating text/image layout for Services page (Online: text-left/image-right, In-Person: image-left/text-right, Consultancy: text-left/image-right). Used therapy_office_1.webp, image6_chairs.webp, image3_mirror.webp. Build passes. |
 | 2026-01-26 23:39 | **10.7.2** Reduce text-wall feel on Services page | Split consultancy intro paragraph into 2 shorter paragraphs. Added "Areas of expertise" subheading with descriptive text between intro and service cards grid. AC met: no section exceeds 2 paragraphs without visual break. Build passes. |
 | 2026-01-26 23:42 | 10.8b.1 | Fixed Contact page desktop grid - wrapped left column in `space-y-10` container to keep "Contact Information" and "What happens next?" together | contact.astro |
+| 2026-01-26 23:51 | 11.1 | Fix MD024 duplicate heading errors | Renamed three "Completed (archive)" headings to "batch 1/2/3" to make them unique. AC met: markdownlint passes. |
+| 2026-01-26 23:51 | 11.2 | Fix MD012 multiple blank lines | Removed trailing blank line at EOF (line 262). AC met: markdownlint passes. |
+| 2026-01-26 23:54 | 10.8b.2 | Reduce Contact form visual dominance on desktop | Wrapped form in card container (bg-white rounded-lg shadow-sm border border-gray-200 p-6 md:p-8) and constrained width (max-w-xl w-full md:ml-auto). Form now visually contained and not full-width on desktop. Build passes. |
+| 2026-01-26 23:56 | 10.10.1 | Add canonical URLs + Open Graph + Twitter card meta | Added SEO meta tags to BaseLayout.astro - canonical URLs, OG properties (type, url, title, description, image, site_name), Twitter Card properties (card, url, title, description, image). Verified in built HTML across all pages. |
+| 2026-01-26 23:58 | Add JSON-LD structured data | Added Person and LocalBusiness schema.org JSON-LD to BaseLayout with contact info, services, and location data for SEO |
+
+| 2026-01-26 23:59 | Era 3: BUILD complete | All development tasks finished. Remaining tasks blocked on: Formspree setup, rate info, content approval, DNS config, launch. Build passing. Ready for client handoff. |
+
+| 2026-01-26 23:59 | BUILD Phase Review | All development complete. Build passing. Blocked tasks: Formspree, rates, content approval, DNS, launch. |

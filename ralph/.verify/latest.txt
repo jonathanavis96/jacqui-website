@@ -1,6 +1,6 @@
 Ralph Verifier Report
-Time: 2026-01-26 23:43:35
-Git:  c05b3e6
+Time: 2026-01-27 00:03:12
+Git:  2118ded
 AC:   /home/grafe/code/jacqui-website/ralph/rules/AC.rules
 Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
@@ -8,11 +8,11 @@ Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
   desc: Astro build passes
   cmd:  cd .. && npm run build 2>&1 | tail -5
   exit: 0
-  stdout: 23:43:37 ✓ Completed in 26ms.
+  stdout: 00:03:14 ✓ Completed in 24ms.
 
-23:43:37 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
-23:43:37 [build] 4 page(s) built in 1.21s
-23:43:37 [build] Complete!
+00:03:14 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+00:03:14 [build] 4 page(s) built in 1.15s
+00:03:14 [build] Complete!
 [PASS] LINT-01
   desc: No lint errors (if configured)
   cmd:  cd .. && npm run lint 2>&1 || echo "Lint not configured"
@@ -24,7 +24,7 @@ npm error   npm link # Symlink a package folder
 npm error
 npm error To see a list of scripts, run:
 npm error   npm run
-npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T21_43_37_369Z-debug-0.log
+npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T22_03_14_437Z-debug-0.log
 Lint not configured
 [PASS] PAGE-01
   desc: Homepage exists
@@ -67,12 +67,13 @@ Lint not configured
   exit: 0
   stdout: ../src/components/TrustBadges.astro:            <a href="https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696?utm_source=PT&utm_medium=Verified&utm_campaign=PT_Badge_Profile" class="sx-verified-seal" target="_blank" rel="noopener"></a>
 ../src/components/TrustBadges.astro:            <script type="text/javascript" src="https://member.psychologytoday.com/verified-seal.js" data-badge="13" data-id="989696" data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy9bQkFER0VdL3Byb2ZpbGUvW1BST0ZJTEVfSURdP2NhbGxiYWNrPXN4Y2FsbGJhY2s="></script>
+../src/layouts/BaseLayout.astro:              "https://www.psychologytoday.com/za/counsellors/jacqui-chowles-roodepoort-gt/1208628"
 found
 [PASS] CONTENT-02
   desc: Contact info present
   cmd:  grep -r "contact\|email\|whatsapp" ../src/pages/contact.astro 2>/dev/null && echo found || echo "Contact info missing"
   exit: 0
-  stdout:                 id="contact-form"
+  stdout:                   id="contact-form"
                   <label for="email" class="block text-gray-700 font-bold mb-2">
                     type="email"
                     id="email"
@@ -92,6 +93,7 @@ found
 ../src/components/TrustBadges.astro:        Qualified & Registered
 ../src/components/TrustBadges.astro:        <!-- HPCSA Registration -->
 ../src/components/TrustBadges.astro:          <h3 class="font-bold text-gray-900 mb-2">HPCSA Registered</h3>
+../src/layouts/BaseLayout.astro:            "description": "Registered Counselling Psychologist specializing in trauma, depression, anxiety, and life transitions",
 ../src/pages/about.astro:              I am a registered Counselling Psychologist with over a decade of experience working with individuals, couples, and communities across diverse contexts. My journey in psychology began at the University of the Witwatersrand, where I developed a deep commitment to understanding and addressing the impact of trauma on mental health.
 ../src/pages/about.astro:    <!-- Credentials Section -->
 ../src/pages/about.astro:            Professional Credentials

@@ -8,6 +8,13 @@ interface Props {
 
 const { title, description = 'Jacqui Chowles - Counselling Psychologist. Online and in-person therapy for trauma, depression, anxiety, and more.' } = Astro.props;
 const base = import.meta.env.BASE_URL;
+
+// SEO: Construct canonical URL
+const siteUrl = 'https://www.jacquichowles.com';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
+
+// SEO: Open Graph image - use logo as default
+const ogImage = new URL('/images/JacquiChowlesLogo.webp', siteUrl).href;
 ---
 
 <!DOCTYPE html>
@@ -17,6 +24,24 @@ const base = import.meta.env.BASE_URL;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Jacqui Chowles" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     
     <!-- Performance: DNS prefetch and preconnect -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -32,6 +57,98 @@ const base = import.meta.env.BASE_URL;
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Nunito+Sans:wght@200;400;700&display=swap" rel="stylesheet">
     </noscript>
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.jacquichowles.com/#person",
+            "name": "Jacqui Chowles",
+            "jobTitle": "Counselling Psychologist",
+            "description": "Registered Counselling Psychologist specializing in trauma, depression, anxiety, and life transitions",
+            "url": "https://www.jacquichowles.com",
+            "image": "https://www.jacquichowles.com/images/jacqui_headshot.png",
+            "telephone": "+27-60-527-5743",
+            "email": "jacqui@jacquichowles.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Roodepoort",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "sameAs": [
+              "https://www.psychologytoday.com/za/counsellors/jacqui-chowles-roodepoort-gt/1208628"
+            ]
+          },
+          {
+            "@type": "LocalBusiness",
+            "@id": "https://www.jacquichowles.com/#business",
+            "name": "Jacqui Chowles Psychology Practice",
+            "description": "Professional psychology services including online and in-person therapy for trauma, depression, anxiety, and life transitions",
+            "url": "https://www.jacquichowles.com",
+            "telephone": "+27-60-527-5743",
+            "email": "jacqui@jacquichowles.com",
+            "priceRange": "R800-R1000",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Roodepoort",
+              "addressRegion": "Gauteng",
+              "addressCountry": "ZA"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "-26.1629",
+              "longitude": "27.8730"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Psychology Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Online Therapy",
+                    "description": "Virtual therapy sessions via video call"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "In-Person Therapy",
+                    "description": "Face-to-face therapy sessions in Roodepoort"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Psychological Consultancy",
+                    "description": "Professional consultation services for organizations"
+                  }
+                }
+              ]
+            },
+            "openingHoursSpecification": {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "09:00",
+              "closes": "17:00"
+            }
+          }
+        ]
+      }
+    </script>
     
     <title>{title}</title>
   </head>
