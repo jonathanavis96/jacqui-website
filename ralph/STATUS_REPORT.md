@@ -82,7 +82,7 @@ The core website build is finished with all pages live, responsive, accessible, 
 
 ### Build Status
 
-```
+```text
 ✅ npm run build - PASSING
 ✅ All 4 pages generated successfully
 ✅ Build size: ~110KB

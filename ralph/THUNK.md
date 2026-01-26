@@ -99,3 +99,7 @@ npx markdownlint cortex/CORTEX_SYSTEM_PROMPT.md  # PASS (no errors)
 | 11.3.3 | Fix MD060 cortex/DECISIONS.md | markdownlint passes - issue already resolved | 2026-01-26 |
 | 11.3.4 | Fix MD036 in cortex/DECISIONS.md | Already passing - no action needed | 2026-01-26T20:45:38Z |
 | 11.4.1 | Fix MD013/line-length in cortex/GAP_CAPTURE.md | markdownlint passes - MD013 disabled in config | 2026-01-26T20:46:49Z |
+| 2026-01-26 22:48 | 11.7.1 Fix MD040 in ralph/NEURONS.md | ✅ PASS | Added language specifiers (text) to fenced code blocks at lines 9 and 84 |
+| 11.8.1 | Fixed MD040/fenced-code-language in ralph/STATUS_REPORT.md line 85 | Added `text` language identifier to fenced code block | ✅ markdownlint passes |
+2026-01-26T22:52:30+02:00 | task=11.5.1 | Fix MD013/line-length in cortex/IMPLEMENTATION_PLAN.md | status=complete | note=Already resolved, no errors found
+2026-01-26T22:54:30+02:00 | task=11.5.2 | Fix MD060/table-column-style in cortex/IMPLEMENTATION_PLAN.md | status=complete | note=MD060 disabled in config, no errors found

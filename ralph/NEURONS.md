@@ -6,7 +6,7 @@ Quick map of project structure. Update as codebase evolves.
 
 ## Project Structure
 
-```
+```text
 jacqui-website/
 ├── cortex/                     # Manager layer (Cortex)
 │   ├── AGENTS.md              # Cortex operational rules
@@ -81,7 +81,7 @@ jacqui-website/
 
 ## Data Flow
 
-```
+```text
 cortex/IMPLEMENTATION_PLAN.md  →  (sync)  →  IMPLEMENTATION_PLAN.md
                                               ↓
                                          Ralph executes
