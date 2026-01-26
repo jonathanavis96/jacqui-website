@@ -133,26 +133,22 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
-    <!-- What I Work With Section -->
+    <!-- Areas of Focus Section -->
     <section class="py-16 md:py-20 bg-white">
       <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <!-- Main Grid: Left column (h2 + intro + 4 cards) + Right column (image) -->
-          <div class="grid md:grid-cols-2 gap-8 md:gap-12 mb-10">
-            <!-- Left Column -->
-            <div class="order-1 md:order-1">
-              <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6 text-left">
-                What I Work With
-              </h2>
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6 text-center">
+            Areas of Focus
+          </h2>
 
-              <div class="prose prose-lg mb-6">
-                <p class="text-gray-700 leading-relaxed">
-                  I work with people experiencing a wide range of concerns. Some common areas include:
-                </p>
-              </div>
+          <div class="prose prose-lg mb-10 text-center">
+            <p class="text-gray-700 leading-relaxed">
+              I work with people experiencing a wide range of concerns. Some common areas include:
+            </p>
+          </div>
 
-              <!-- First 4 cards in left column -->
-              <div class="grid grid-cols-1 gap-6">
+          <!-- Clean 2-column grid -->
+          <div class="grid md:grid-cols-2 gap-6">
             <!-- Trauma, PTSD & Complex Trauma -->
             <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
@@ -192,22 +188,7 @@ const base = import.meta.env.BASE_URL;
                 Support during pregnancy and the postpartum period, including birth-related trauma, adjustment to motherhood, fertility challenges, and identity changes.
               </p>
             </div>
-              </div>
-            </div>
 
-            <!-- Right Column: Image -->
-            <div class="order-2 md:order-2 flex items-center justify-center">
-              <img 
-                src={`${base}images/image4_butterfly.webp`}
-                alt="Butterfly symbolizing transformation and growth" 
-                class="max-w-sm w-full h-auto rounded-lg shadow-lg object-cover"
-              />
-            </div>
-          </div>
-
-          <!-- Remaining 5 cards below -->
-          <div class="max-w-4xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-6">
             <!-- Grief & Loss -->
             <div class="bg-purple-50 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
@@ -249,7 +230,7 @@ const base = import.meta.env.BASE_URL;
             </div>
 
             <!-- Couples / Relationship Therapy -->
-            <div class="bg-purple-50 rounded-lg p-6">
+            <div class="bg-purple-50 rounded-lg p-6 md:col-span-2">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Couples / Relationship Therapy
               </h3>
@@ -259,7 +240,7 @@ const base = import.meta.env.BASE_URL;
             </div>
           </div>
 
-          <p class="text-gray-600 mt-10 italic">
+          <p class="text-gray-600 mt-10 italic text-center">
             This is not an exhaustive list. If you're unsure whether I can help with what you're going through, please reach out—we can discuss it together.
           </p>
         </div>
