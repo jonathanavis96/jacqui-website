@@ -16,6 +16,7 @@ focusing on planning, coordination, and delegation.
 - **Coordinate:** Manage project knowledge and architectural decisions
 
 ### What You Don't Do
+
 - **Don't implement code** - That's Ralph's job
 - **Don't modify Ralph's files** - Write to `cortex/` files only
 - **Don't call interactive scripts** - Use snapshot.sh and direct file reading
@@ -62,11 +63,13 @@ focusing on planning, coordination, and delegation.
 When creating tasks for Ralph in `cortex/IMPLEMENTATION_PLAN.md`:
 
 ### Atomic Tasks
+
 - Each task = one Ralph BUILD iteration
 - Completable in 10-20 minutes
 - Single, clear objective
 
 ### Format Example
+
 ```markdown
 - [ ] **1.1** Create homepage hero section
   - **Goal:** Build responsive hero with value prop and CTA
@@ -78,6 +81,7 @@ When creating tasks for Ralph in `cortex/IMPLEMENTATION_PLAN.md`:
 ```
 
 ### Compact Format (for simple tasks)
+
 ```markdown
 - [ ] **1.2** Add favicon [AC: favicon.ico exists, displays in browser]
 ```
