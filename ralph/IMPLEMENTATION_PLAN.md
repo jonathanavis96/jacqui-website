@@ -1,192 +1,198 @@
 # Implementation Plan - Jacqui Chowles Website
 
-**Deadline:** 14th February 2026  
-**Status:** Phase 9 - Visual Polish (Round 2)  
-**Brain Skills Reference:** `~/code/brain/skills/domains/websites/README.md`
+Last updated: 2026-01-26 21:30:00
+
+## Current State Summary
+
+- **Homepage:** Built with hero, services overview, trust badges, CTA section
+- **About Page:** Bio, How I Work, What I Work With sections - needs content update
+- **Services Page:** Text-only, needs images
+- **Contact Page:** Form exists, FAQ section exists (needs accordion + new questions)
+- **Components:** Header, Footer, Hero, CTASection, QuoteBanner, ServiceCard, TrustBadges
+- **Styling:** Tailwind CSS with purple brand colours, responsive
+- **Images:** Banners done, stock office images downloaded (therapy_office_1.webp, therapy_office_2.webp)
+
+**Blockers:** Client content updates needed, Formspree requires Jacqui's email
 
 ---
 
-## Phase 9: Banner & Layout Fixes
+## Skill References
 
-### Critical Context for Ralph
-- **Images are pre-edited by human** - purple border + TOP wave decoration already baked into banner images
-- **QuoteBanner must show TOP of image** - use `bg-top` so the manually-added top wave displays; BOTTOM gets cropped
-- **NO dark overlay on banners** - remove ALL opacity/gradient overlays; images are designed to work as-is
-- **Skill workflow:** `build/component-development.md` for components, `design/spacing-layout.md` for layout
-
----
-
-## Tasks
-
-### 9.6 Fix homepage banner filename mismatch ✅
-- **Problem:** Homepage banner shows grey/broken because filename doesn't match
-- **Root cause:** File is `public/images/Lavender_Home_Banner_.webp` (trailing underscore) but code references `/images/Lavender_Home_Banner.webp` (no underscore)
-- **Fix:** Rename file to remove trailing underscore
-- **Command:** `mv public/images/Lavender_Home_Banner_.webp public/images/Lavender_Home_Banner.webp`
-- **AC:**
-  - [x] File renamed to `Lavender_Home_Banner.webp` (no trailing underscore)
-  - [x] Homepage QuoteBanner displays the lavender image (not grey)
+| Skill | Path | Use For |
+|-------|------|---------|
+| Section Composer | `~/code/brain/skills/domains/websites/architecture/section-composer.md` | Page structure, FAQ placement |
+| CTA Optimizer | `~/code/brain/skills/domains/websites/copywriting/cta-optimizer.md` | Button text, CTA wording |
+| Value Proposition | `~/code/brain/skills/domains/websites/copywriting/value-proposition.md` | Hero text, messaging |
+| Spacing & Layout | `~/code/brain/skills/domains/websites/design/spacing-layout.md` | Visual rhythm, mobile-first |
 
 ---
 
-### 9.7 Fix QuoteBanner component - remove overlay + anchor to TOP ✅
-- **Problem:** QuoteBanner has dark gradient overlay hiding the image, and crops from center instead of showing the top
-- **File:** `src/components/QuoteBanner.astro`
-- **Current code issues (around lines 16-21):**
-  ```astro
-  class="absolute inset-0 bg-cover bg-center bg-no-repeat"  <!-- bg-center is WRONG -->
-  ...
-  <div class="absolute inset-0 bg-gradient-to-b from-gray-900/40 via-gray-900/50 to-gray-900/60"></div>  <!-- DELETE THIS -->
-  ```
-- **Required changes:**
-  1. **Change `bg-center` to `bg-top`** on line ~16 - image anchors to top, bottom gets cropped
-  2. **DELETE the entire dark gradient overlay div** (line ~19-20) - no overlay at all
-  3. **Keep the bottom wave SVG** (lines 46-51) - that stays
-  4. **Add text-shadow to quote text** for readability without overlay (e.g., `style="text-shadow: 0 2px 4px rgba(0,0,0,0.5)"`)
-- **AC:**
-  - [x] `bg-center` changed to `bg-top` in background div
-  - [x] Dark gradient overlay div completely removed (no `from-gray-900/40` etc.)
-  - [x] All 3 banners (Home/About/Services) show their TOP wave decoration (manually added by human)
-  - [x] Quote text still readable (text-shadow added)
-  - [x] Bottom wave SVG decoration retained
+## HIGH Priority
+
+### Phase 10.1: UK English Spelling Fixes
+
+- [ ] **10.1.1** Fix all UK spellings across site
+  - **Goal:** Replace US spellings with UK equivalents in services.astro, about.astro, index.astro
+  - **Changes:**
+    - "specialized" → "specialised"
+    - "specializing" → "specialising"
+    - "organizations" → "organisations"
+    - "organizational" → "organisational"
+    - "generalized" → "generalised"
+  - **AC:** `grep -ri "ize\|ization" src/pages/` returns nothing
+
+### Phase 10.2: Contact Details Update
+
+- [ ] **10.2.1** Update phone number and add physical address
+  - **Goal:** Replace phone with +27 76 605 4736 in contact.astro and Footer.astro, update WhatsApp link to https://wa.me/27766054736, add address "Argyle Square, Tamarisk Street, Weltevreden Park, Roodepoort, Gauteng" to contact page
+  - **AC:** `grep -r "76 605 4736" src/` shows correct number, address visible on contact page
+
+### Phase 10.3: CTA Updates (Remove Free Consultation)
+
+- [ ] **10.3.1** Remove all "free consultation" mentions site-wide
+  - **Goal:** Update CTASection.astro, index.astro, services.astro, contact.astro, about.astro to remove "free" from all consultation references
+  - **Skill:** `~/code/brain/skills/domains/websites/copywriting/cta-optimizer.md`
+  - **New CTAs:** Primary = "Book a Consultation", Secondary = "Get in Touch" / "Send a Query"
+  - **AC:** `grep -ri "free.*consult\|free.*15" src/` returns nothing
+
+- [ ] **10.3.2** Fix about page CTA button contrast
+  - **Goal:** Change button from bg-purple-brand to bg-white text-purple-brand (lines ~320-325) so it's visible on purple background
+  - **AC:** Button uses white background, visually distinct from purple section
+
+### Phase 10.4: Homepage Content Update
+
+- [ ] **10.4.1** Update homepage terminology from "counselling psychology" to "therapy"
+  - **Goal:** Change hero/intro text to use "therapy" instead of "counselling psychology" where appropriate
+  - **Skill:** `~/code/brain/skills/domains/websites/copywriting/value-proposition.md`
+  - **AC:** Hero section uses "therapy" terminology, consultancy services section unchanged
+
+### Phase 10.5: About Page Content Updates
+
+- [ ] **10.5.1** Update About Me bio section
+  - **Goal:** Replace current bio with Jacqui's new text (see REFERENCE section)
+  - **AC:** Bio mentions hospitals, government facilities, organisations, and private practice experience
+
+- [ ] **10.5.2** Update How I Work section
+  - **Goal:** Replace current approach text with Jacqui's new text (see REFERENCE section)
+  - **AC:** Section mentions psychodynamic therapy, EMDR, mindfulness-based techniques, and relational therapy
+
+- [ ] **10.5.3** Update What I Work With list to include 8 items
+  - **Goal:** Ensure list includes: Anxiety & Stress, Depression, Trauma & PTSD, Grief & Loss, Relationship Difficulties, Life Transitions, Self-Esteem & Identity, Women's Mental Health & Perinatal Wellbeing
+  - **AC:** All 8 items present, "Women's Mental Health & Perinatal Wellbeing" is included
+
+- [ ] **10.5.4** Update Who I Work With section
+  - **Goal:** Specify "Individuals, adolescents, and couples"
+  - **AC:** All three client types mentioned in the section
+
+### Phase 10.6: Psychology Today Badge Integration
+
+- [ ] **10.6.1** Add Psychology Today verification badge
+  - **Goal:** Embed official PT badge in Footer or About page credentials section using provided embed code (see REFERENCE section)
+  - **AC:** Badge displays correctly and links to https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696
 
 ---
 
-### 9.8 About page: Fix "How I Work" section layout ✅
-- **Problem:** Heading is centered above grid; image is too large; layout doesn't match page style
-- **File:** `src/pages/about.astro` (lines 64-127)
-- **Current structure (WRONG):**
-  ```
-  <h2 centered>How I Work</h2>
-  <grid 2-col>
-    <image full-width>
-    <text>
-  </grid>
-  ```
-- **Required structure:**
-  ```
-  <grid 2-col>
-    <image smaller (max-w-xs or max-w-sm)>
-    <div>
-      <h2 left-aligned>How I Work</h2>
-      <text paragraphs>
-    </div>
-  </grid>
-  ```
-- **Specific changes:**
-  1. Move `<h2>How I Work</h2>` INSIDE the right column div, ABOVE the text
-  2. Change h2 from `text-center` to `text-left`
-  3. Make image smaller: add `max-w-xs` or `max-w-sm` class to the img or its container
-  4. Image stays on left, text+heading on right
-- **AC:**
-  - [x] "How I Work" h2 is inside right column, above text paragraphs
-  - [x] h2 is left-aligned (not centered)
-  - [x] Image is visibly smaller (max-w-xs or max-w-sm)
-  - [x] Responsive: stacks sensibly on mobile
+## MEDIUM Priority
+
+### Phase 10.7: Services Page Visual Redesign
+
+- [ ] **10.7.1** Add responsive image grid to services page
+  - **Goal:** Create CSS grid section using image5_chair.webp, image6_chairs.webp, therapy_office_1.webp, therapy_office_2.webp with auto-fit layout that works with 3 or 4 images
+  - **Skill:** `~/code/brain/skills/domains/websites/design/spacing-layout.md`
+  - **AC:** Images display in responsive grid, layout doesn't break if one image removed
+
+- [ ] **10.7.2** Review and fix services page visual flow
+  - **Goal:** Ensure consistent spacing, good mobile appearance, proper section order
+  - **Skill:** `~/code/brain/skills/domains/websites/architecture/section-composer.md`
+  - **AC:** Page looks good on mobile (375px) and desktop (1200px+)
+
+### Phase 10.8: FAQ Section Update
+
+- [ ] **10.8.1** Convert existing FAQ to accordion style with new questions
+  - **Goal:** Update FAQ section on contact.astro - convert to click-to-expand accordion, add 3 new questions at top, remove "free consultation" question
+  - **Skill:** `~/code/brain/skills/domains/websites/architecture/section-composer.md` (FAQ handles objections near bottom, before CTA)
+  - **New questions to add at top:**
+    1. "Is therapy right for me?" (or similar - addresses "do I need therapy?")
+    2. "What does the process look like?" (or similar - addresses "what's the process?")
+    3. "What are your rates?" (use XXX placeholders for amounts)
+  - **Existing questions to keep:** "How do I book?", "How long is therapy?", "Medical aid?"
+  - **Remove:** "Do you offer a free consultation?" question
+  - **AC:** FAQ is accordion style (click heading to show/hide answer), has 6 questions total, no "free consultation" mention
+
+### Phase 10.9: Formspree Preparation
+
+- [ ] **10.9.1** Prepare contact form for Formspree integration
+  - **Goal:** Update form action to "YOUR_FORMSPREE_ENDPOINT" placeholder, add method="POST", add HTML comment explaining what to replace
+  - **AC:** Form has clear placeholder comment, structure ready for Formspree endpoint
 
 ---
 
-### 9.9 About page: Fix "What I Work With" section layout ✅
-- **Problem:** Large empty space - image and intro text span full width above 8 cards
-- **File:** `src/pages/about.astro` (lines 129-244)
-- **Current structure (WRONG):**
-  ```
-  <h2 centered>What I Work With</h2>
-  <grid 2-col>
-    <text intro>
-    <image>
-  </grid>
-  <grid 2-col full-width>
-    <8 cards>
-  </grid>
-  ```
-- **Required structure:**
-  ```
-  <grid 2-col>
-    <div left-col>
-      <h2 left-aligned>What I Work With</h2>
-      <text intro>
-      <grid 2-col for 4 cards>  <!-- first 4 cards here -->
-    </div>
-    <div right-col>
-      <image smaller, vertically centered>
-    </div>
-  </grid>
-  <grid 2-col for remaining 4 cards below>
-  ```
-- **Goal:** Cards flow alongside the image - no big empty white space
-- **Specific changes:**
-  1. Move `<h2>What I Work With</h2>` into left column, above intro text
-  2. Change h2 from `text-center` to `text-left`
-  3. Move first 4 cards INTO the left column below intro text
-  4. Make image smaller and keep in right column
-  5. Remaining 4 cards go in a grid below the main 2-col grid
-- **AC:**
-  - [x] "What I Work With" h2 is inside left column, above intro text
-  - [x] h2 is left-aligned (not centered)
-  - [x] First 4 cards appear in left column below intro text
-  - [x] Image is in right column, smaller size
-  - [x] No large empty white space
-  - [x] Responsive: stacks sensibly on mobile
+## LOW Priority
+
+*No low priority tasks currently.*
 
 ---
 
-## Phase 10: Markdown Lint Fixes
+## BLOCKED (Human Required)
 
-**Context:** The following markdown lint errors were detected by markdownlint and need to be fixed to ensure documentation quality and consistency.
-
-- [x] **10.1** Fix MD013 (line-length) errors in cortex/AGENTS.md
-  - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD013 errors)
-  - **Lines:** 5, 47, 101
-
-- [ ] **10.2** Fix MD022 (blanks-around-headings) errors in cortex/AGENTS.md
-  - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD022 errors)
-  - **Lines:** 9, 15, 61, 66, 77
-
-- [ ] **10.3** Fix MD032 (blanks-around-lists) errors in cortex/AGENTS.md
-  - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD032 errors)
-  - **Lines:** 10, 16, 29, 34, 62, 89
-
-- [ ] **10.4** Fix MD060 (table-column-style) errors in cortex/AGENTS.md
-  - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD060 errors)
-  - **Lines:** 46 (multiple table pipe spacing issues)
-
-- [ ] **10.5** Fix MD034 (no-bare-urls) error in cortex/AGENTS.md
-  - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD034 errors)
-  - **Line:** 86
-
-- [ ] **10.6** Fix MD013 (line-length) errors in cortex/CORTEX_SYSTEM_PROMPT.md
-  - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD013 errors)
-  - **Lines:** 6, 14, 20, 34, 48, 55
-
-- [ ] **10.7** Fix MD022 (blanks-around-headings) errors in cortex/CORTEX_SYSTEM_PROMPT.md
-  - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD022 errors)
-  - **Lines:** 11, 17, 23, 52, 57
-
-- [ ] **10.8** Fix MD032 (blanks-around-lists) errors in cortex/CORTEX_SYSTEM_PROMPT.md
-  - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD032 errors)
-  - **Lines:** 12, 18, 24, 53, 58, 73
-
-- [ ] **10.9** Fix MD032 (blanks-around-lists) errors in cortex/DECISIONS.md
-  - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD032 errors)
-  - **Lines:** 15, 24, 30
-
-- [ ] **10.10** Fix MD031 (blanks-around-fences) errors in cortex/AGENTS.md
-  - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD031 errors)
-  - **Lines:** 67, 78
+- [ ] **Formspree Setup** - Create account with Jacqui's email, get endpoint code
+- [ ] **Rate Information** - Fill in XXX placeholders in FAQ with actual rates
+- [ ] **Content Review** - Client approval of all content changes
+- [ ] **Domain/DNS** - Configure domain to point to GitHub Pages
+- [ ] **Go Live** - Final deployment and verification
+- [ ] **Post-Launch** - Monitor for issues
 
 ---
 
-## 🚫 BLOCKED - Human Required
+## REFERENCE: New Content from Jacqui
 
-**Ralph: SKIP this section.**
+### Contact Details
 
-- Finalize open questions with client
-- Content review with client
-- Domain transfer/DNS setup
-- Go live
-- Post-launch monitoring
+- **Phone:** +27 76 605 4736
+- **WhatsApp:** https://wa.me/27766054736
+- **Address:** Argyle Square, Tamarisk Street, Weltevreden Park, Roodepoort, Gauteng
+- **HPCSA:** PS0133779
+
+### About Me Bio
+
+> I'm a registered Counselling Psychologist with a deep passion for helping people heal and grow. Over the years, I've had the privilege of working in various settings—hospitals, government facilities, organisations, and private practice—which has given me a broad understanding of human challenges and resilience.
+>
+> My approach is grounded in warmth, empathy, and a genuine belief in your ability to navigate life's difficulties. Therapy, for me, is about creating a safe, supportive space where you can explore your thoughts and emotions at your own pace. I tailor my therapeutic style to suit your unique needs, drawing from evidence-based approaches like psychodynamic and trauma-focused therapy, EMDR, mindfulness, and relational techniques.
+>
+> Whether you're dealing with anxiety, depression, trauma, relationship difficulties, or life transitions, I'm here to walk alongside you as you work toward healing and personal growth.
+
+### How I Work
+
+> I believe therapy works best when it feels collaborative and supportive. My style is warm, empathetic, and non-judgmental—I aim to create a space where you feel truly heard and understood.
+>
+> I draw from a range of therapeutic approaches, including psychodynamic therapy, EMDR, mindfulness-based techniques, and relational therapy. This allows me to tailor our sessions to what works best for you, whether that's exploring past experiences, building coping strategies, or focusing on the present moment.
+>
+> Our work together is guided by your goals. Whether you're looking to process a difficult experience, manage overwhelming emotions, or simply feel more like yourself again, I'll meet you where you are and support you every step of the way.
+
+### What I Work With (8 items)
+
+1. Anxiety & Stress
+2. Depression
+3. Trauma & PTSD
+4. Grief & Loss
+5. Relationship Difficulties
+6. Life Transitions
+7. Self-Esteem & Identity
+8. Women's Mental Health & Perinatal Wellbeing
+
+### Who I Work With
+
+Individuals, adolescents, and couples
+
+### Psychology Today Embed Code
+
+```html
+<a href="https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696?utm_source=PT&utm_medium=Verified&utm_campaign=PT_Badge_Profile" class="sx-verified-seal" target="_blank" rel="noopener"></a>
+<script type="text/javascript" src="https://member.psychologytoday.com/verified-seal.js" data-badge="13" data-id="989696" data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy9bQkFER0VdL3Byb2ZpbGUvW1BST0ZJTEVfSURdP2NhbGxiYWNrPXN4Y2FsbGJhY2s="></script>
+```
 
 ---
 
-*Last Updated: 2026-01-23 16:00:00*
+## MAINTENANCE
+
+*No maintenance items currently pending.*

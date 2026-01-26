@@ -1,19 +1,62 @@
-# Ralph Loop - Jacqui Chowles Website
+# Ralph Loop - Jacqui Howles Website
 
-You are Ralph. Mode is passed by loop.sh header.
+You are Ralph. AGENTS.md was injected above. Mode is in the header.
 
-## Core Mechanics
+## Verifier Feedback (CRITICAL - Already Injected!)
 
-Read `~/code/brain/workers/ralph/PROMPT.md` for full Ralph loop mechanics (PLANNING vs BUILDING modes, commit flow, stop conditions).
+**⚠️ DO NOT read `.verify/latest.txt` - verifier status is already injected in the header above.**
+
+Look for the `# VERIFIER STATUS` section at the top of this prompt. It contains:
+
+- SUMMARY (PASS/FAIL/WARN counts)
+- Any failing or warning checks with details
+
+If the header contains `# LAST_VERIFIER_RESULT: FAIL`, you MUST:
+
+1. **STOP** - Do not pick a new task from ralph/IMPLEMENTATION_PLAN.md
+2. **CHECK** the `# VERIFIER STATUS` section above for failure details
+3. **FIX** the failing acceptance criteria listed in `# FAILED_RULES:`
+4. **COMMIT** your fix with message: `fix(ralph): resolve AC failure <RULE_ID>`
+5. **THEN** output `:::BUILD_READY:::` so the verifier can re-run
+
+---
+
+## MANDATORY: Startup Procedure (Cheap First)
+
+**Do NOT open large files at startup.** Use targeted commands instead.
+
+### Forbidden at Startup
+
+Never `open_files` for these (too expensive):
+
+- `NEURONS.md`
+- `cortex/THOUGHTS.md`
+- `ralph/IMPLEMENTATION_PLAN.md` (full file)
+- `ralph/THUNK.md` (full file)
+
+### Required Startup Sequence
+
+```bash
+# 1. Find next unchecked task (DO THIS FIRST)
+grep -n "^- \[ \]" ralph/IMPLEMENTATION_PLAN.md | head -20
+
+# 2. If you need context for a specific task, slice by line number
+sed -n '20,50p' ralph/IMPLEMENTATION_PLAN.md
+
+# 3. Check for existing components before creating new ones
+ls -la src/components/ src/pages/
+```
+
+---
 
 ## Project Context Files
 
 | File | Purpose |
 |------|---------|
-| THOUGHTS.md | Project goals, success criteria, tech stack - **READ FIRST** |
-| NEURONS.md | Codebase map (read via subagent when needed) |
-| IMPLEMENTATION_PLAN.md | TODO list (persistent across iterations) |
-| AGENTS.md | Validation commands, project conventions |
+| `cortex/THOUGHTS.md` | Project goals, success criteria - **READ FIRST** |
+| `NEURONS.md` | Codebase map (read via subagent when needed) |
+| `ralph/IMPLEMENTATION_PLAN.md` | TODO list (persistent across iterations) |
+| `ralph/AGENTS.md` | Validation commands, project conventions |
 
 ## Brain Knowledge Base
 
@@ -23,13 +66,32 @@ For website patterns and best practices, use progressive disclosure:
 2. `~/code/brain/skills/domains/websites/<phase>/<skill>.md` - Specific skills
 3. `~/code/brain/skills/SUMMARY.md` - Full knowledge base overview
 
-**Key website skills for this project:**
+**Key skills for this project:**
 
-- `discovery/requirements-distiller.md` - Extract requirements from briefs
-- `architecture/section-composer.md` - Structure page sections
-- `copywriting/value-proposition.md` - Craft compelling copy
+- `discovery/requirements-distiller.md` - Extract requirements
+- `architecture/section-composer.md` - Page section design
+- `copywriting/value-proposition.md` - Conversion copy
 - `design/color-system.md` - Color palette decisions
 - `launch/deployment.md` - Netlify deployment
+
+---
+
+## MANDATORY: Checkpoint After Every Task
+
+**Every completed task MUST include ALL THREE staged together:**
+
+1. ✅ The code/doc fix itself
+2. ✅ ralph/THUNK.md entry (append to current era table)
+3. ✅ ralph/IMPLEMENTATION_PLAN.md update (mark task `[x]`)
+
+```bash
+# CORRECT: Stage all changes together (loop.sh commits at PLAN phase)
+git add -A
+```
+
+**DO NOT commit during BUILD mode** - loop.sh batches commits at the start of each PLAN phase.
+
+---
 
 ## CRITICAL: One Task Per BUILD Iteration
 
@@ -37,71 +99,111 @@ For website patterns and best practices, use progressive disclosure:
 
 - Pick the first unchecked `- [ ]` task
 - Complete it fully
-- Commit with conventional commit message
 - Mark task as `- [x]` in IMPLEMENTATION_PLAN.md
+- Stage changes with `git add -A`
 - **STOP** - Do not continue to next task
-
-This is non-negotiable. Multiple tasks = wasted context and harder reviews.
 
 ---
 
-## Token Efficiency Rules (CRITICAL)
+## Output Format
 
-### PLANNING Mode Output
+**Start:** `STATUS | branch=<branch> | runner=<rovodev|opencode> | model=<model>`
 
-In PLANNING mode, you MUST end with:
+**Progress:** `PROGRESS | phase=<plan|build> | step=<short> | tasks=<done>/<total> | file=<path>`
 
-```text
-:::BUILD_READY:::
+**End:** `:::PLAN_READY:::` or `:::BUILD_READY:::` on its own line.
+
+---
+
+## PLANNING Mode (Iteration 1 or every 3rd)
+
+### Context Gathering (Cheap First - NO Large File Opens)
+
+```bash
+# What tasks exist?
+grep -n "^## Phase\|^- \[ \]" ralph/IMPLEMENTATION_PLAN.md | head -40
+
+# Only slice specific sections if needed
+sed -n '10,50p' ralph/IMPLEMENTATION_PLAN.md
 ```
 
-This signals loop.sh to proceed to BUILD mode. Without this marker, the iteration is wasted.
+### Actions
 
-### Batch Similar Fixes
+1. Create/update ralph/IMPLEMENTATION_PLAN.md with prioritized tasks
+2. Use checkbox format: `- [ ]` or `- [x]` (NEVER numbered lists)
+3. Stage planning updates: `git add -A`
+4. Push accumulated commits: `git push`
+5. **STOP** - Output `:::PLAN_READY:::`
 
-When you encounter multiple instances of the same issue type (e.g., SC2155, SC2086):
+---
 
-1. **FIX ALL instances in one iteration** - don't create separate tasks for each
-2. **Group by error type**, not by file
-3. **One commit per error type**: `fix(ralph): resolve SC2155 in all shell scripts`
+## BUILDING Mode (All other iterations)
 
-### Formatting Discipline
+### Context Gathering
 
-- **DO NOT** run shfmt on individual files repeatedly
-- If shellcheck fixes require reformatting, run `shfmt -w -i 2 <file>` ONCE after all fixes
-- **NEVER** include "applied shfmt formatting" as the main work - it's incidental to the real fix
+```bash
+grep -n "^- \[ \]" ralph/IMPLEMENTATION_PLAN.md | head -10
+```
+
+### Actions
+
+1. Pick FIRST unchecked `[ ]` task - this is your ONLY task
+2. Implement the change
+3. Validate per AGENTS.md commands (`npm run build`)
+4. Stage all changes: `git add -A`
+5. **STOP** - Output `:::BUILD_READY:::`
+
+---
+
+## Token Efficiency (CRITICAL)
+
+Target: <20 tool calls per iteration.
+
+### Non-Negotiable Principle
+
+**Prefer commands that return tiny outputs** (grep/head/sed/tail) over opening large files.
+
+### No Duplicate Commands
+
+- **NEVER run the same bash command twice** in one iteration
+- Use the injected verifier status - never read `.verify/latest.txt`
+
+### Constrain Searches
+
+If a grep returns too many matches (>50), immediately narrow:
+
+```bash
+# GOOD: constrained
+rg -n "pattern" src/components/ | head -20
+```
 
 ### Context You Already Have
 
-**NEVER repeat these (you already know):**
+**NEVER repeat these:**
 
 - `pwd`, `git branch` - known from header
-- `.verify/latest.txt` - read ONCE at start
-- `tail THUNK.md` - get next number ONCE
+- Verifier status - already injected
 - Same file content - read ONCE, remember it
 
-**ALWAYS batch:** `grep pattern file1 file2 file3` not 3 separate calls.
+---
 
-### Task ID Uniqueness
+## Safety Rules (Non-Negotiable)
 
-**CRITICAL:** Before creating any task ID, search IMPLEMENTATION_PLAN.md to verify it doesn't exist.
+- **No force push** unless explicitly instructed
+- **Search before creating** - Verify something doesn't exist
+- **One task per BUILD** - No batching
+- **Never delete tasks** - Mark `[x]` but never delete
 
-- Use format: `<phase>.<sequence>` (e.g., `9.1`, `9.2`)
-- If `9.1` exists, use `9.2`, not `9.1` again
-- Duplicate IDs cause confusion and wasted iterations
+---
 
-## Self-Improvement Protocol
+## Workspace Boundaries
 
-**End of each BUILD iteration**:
+| Access Level | Paths | Notes |
+|--------------|-------|-------|
+| **Full access** | `src/`, `public/`, `docs/` | Read, write, create |
+| **Protected** | `ralph/rules/AC.rules`, `ralph/verifier.sh`, `ralph/loop.sh` | Read only |
 
-If you used undocumented knowledge/procedure/tooling:
-
-1. Search `~/code/brain/skills/` for existing matching skill
-2. Search `~/code/brain/skills/self-improvement/GAP_BACKLOG.md` for existing gap entry
-3. If not found: append new entry to `GAP_BACKLOG.md`
-4. If gap is clear, specific, and recurring: promote to `SKILL_BACKLOG.md`
-
-See `~/code/brain/skills/self-improvement/GAP_CAPTURE_RULES.md` for details.
+---
 
 ## Project-Specific Notes
 
@@ -128,3 +230,9 @@ See `~/code/brain/skills/self-improvement/GAP_CAPTURE_RULES.md` for details.
 | About | Bio, approach, credentials, "what I work with" |
 | Services | Online therapy, in-person therapy, consultancy |
 | Contact | Email, WhatsApp, booking CTA |
+
+---
+
+## Commit Format
+
+`<type>(<scope>): <summary>` where type is `feat|fix|docs|refactor|chore|test`
