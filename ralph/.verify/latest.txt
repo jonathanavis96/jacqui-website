@@ -1,6 +1,6 @@
 Ralph Verifier Report
-Time: 2026-01-26 22:01:45
-Git:  58467fa
+Time: 2026-01-26 22:09:38
+Git:  055b9e6
 AC:   /home/grafe/code/jacqui-website/ralph/rules/AC.rules
 Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
@@ -8,11 +8,11 @@ Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
   desc: Astro build passes
   cmd:  cd .. && npm run build 2>&1 | tail -5
   exit: 0
-  stdout: 22:01:47 ✓ Completed in 23ms.
+  stdout: 22:09:40 ✓ Completed in 23ms.
 
-22:01:47 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
-22:01:47 [build] 4 page(s) built in 1.09s
-22:01:47 [build] Complete!
+22:09:40 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+22:09:40 [build] 4 page(s) built in 1.20s
+22:09:40 [build] Complete!
 [PASS] LINT-01
   desc: No lint errors (if configured)
   cmd:  cd .. && npm run lint 2>&1 || echo "Lint not configured"
@@ -24,7 +24,7 @@ npm error   npm link # Symlink a package folder
 npm error
 npm error To see a list of scripts, run:
 npm error   npm run
-npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T20_01_47_484Z-debug-0.log
+npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T20_09_40_794Z-debug-0.log
 Lint not configured
 [PASS] PAGE-01
   desc: Homepage exists
@@ -94,7 +94,7 @@ found
 ../src/components/TrustBadges.astro:        Qualified & Registered
 ../src/components/TrustBadges.astro:        <!-- HPCSA Registration -->
 ../src/components/TrustBadges.astro:          <h3 class="font-bold text-gray-900 mb-2">HPCSA Registered</h3>
-../src/pages/about.astro:              I am a registered Counselling Psychologist with over a decade of experience working with individuals, couples, and communities across diverse contexts. My journey in psychology began at the University of the Witwatersrand, where I developed a deep commitment to understanding and addressing the impact of trauma on mental health.
+../src/pages/about.astro:              I'm a registered Counselling Psychologist with a deep passion for helping people heal and grow. Over the years, I've had the privilege of working in various settings—hospitals, government facilities, organisations, and private practice—which has given me a broad understanding of human challenges and resilience.
 ../src/pages/about.astro:    <!-- Credentials Section -->
 ../src/pages/about.astro:            Professional Credentials
 ../src/pages/about.astro:                  Registered Counselling Psychologist with the Health Professions Council of South Africa (HPCSA)

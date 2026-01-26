@@ -68,19 +68,19 @@ Last updated: 2026-01-26 21:30:00
 
 ### Phase 10.5: About Page Content Updates
 
-- [ ] **10.5.1** Update About Me bio section
+- [x] **10.5.1** Update About Me bio section
   - **Goal:** Replace current bio with Jacqui's new text (see REFERENCE section)
   - **AC:** Bio mentions hospitals, government facilities, organisations, and private practice experience
 
-- [ ] **10.5.2** Update How I Work section
+- [x] **10.5.2** Update How I Work section
   - **Goal:** Replace current approach text with Jacqui's new text (see REFERENCE section)
   - **AC:** Section mentions psychodynamic therapy, EMDR, mindfulness-based techniques, and relational therapy
 
-- [ ] **10.5.3** Update What I Work With list to include 8 items
+- [x] **10.5.3** Update What I Work With list to include 8 items
   - **Goal:** Ensure list includes: Anxiety & Stress, Depression, Trauma & PTSD, Grief & Loss, Relationship Difficulties, Life Transitions, Self-Esteem & Identity, Women's Mental Health & Perinatal Wellbeing
   - **AC:** All 8 items present, "Women's Mental Health & Perinatal Wellbeing" is included
 
-- [ ] **10.5.4** Update Who I Work With section
+- [x] **10.5.4** Update Who I Work With section
   - **Goal:** Specify "Individuals, adolescents, and couples"
   - **AC:** All three client types mentioned in the section
 
