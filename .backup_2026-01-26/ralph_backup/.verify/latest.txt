@@ -1,0 +1,14 @@
+Ralph Verifier Report
+Time: 2026-01-23 16:14:09
+Git:  43636f6
+AC:   /home/grafe/code/jacqui-website/ralph/rules/AC.rules
+Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
+------------------------------------------------------------
+------------------------------------------------------------
+SUMMARY
+  PASS: 0
+  FAIL: 0
+  WARN: 0 (manual_warn=0)
+  SKIP: 0
+  Manual gate=block failures: 0
+  Hash guard: OK

@@ -1,0 +1,51 @@
+# Acceptance Criteria Rules - Jacqui Chowles Website
+# Format: ID|TYPE|DESCRIPTION|COMMAND
+# Types: cmd (shell command), file (file exists), manual (human check)
+
+# =============================================================================
+# Build & Lint
+# =============================================================================
+BUILD-01|cmd|Astro build passes|npm run build 2>&1 | tail -5
+LINT-01|cmd|No lint errors (if configured)|npm run lint 2>&1 || echo "Lint not configured"
+
+# =============================================================================
+# Pages Exist
+# =============================================================================
+PAGE-01|file|Homepage exists|src/pages/index.astro
+PAGE-02|file|About page exists|src/pages/about.astro
+PAGE-03|file|Services page exists|src/pages/services.astro
+PAGE-04|file|Contact page exists|src/pages/contact.astro
+
+# =============================================================================
+# Components
+# =============================================================================
+COMP-01|file|Header component exists|src/components/Header.astro
+COMP-02|file|Footer component exists|src/components/Footer.astro
+COMP-03|file|Layout exists|src/layouts/BaseLayout.astro
+
+# =============================================================================
+# Content Requirements
+# =============================================================================
+CONTENT-01|cmd|Psychology Today badge placeholder|grep -r "psychology.today\|psychologytoday\|PT-badge" src/ || echo "Badge not found"
+CONTENT-02|cmd|Contact info present|grep -r "contact\|email\|whatsapp" src/pages/contact.astro 2>/dev/null || echo "Contact info missing"
+CONTENT-03|cmd|HPCSA reference present|grep -ri "hpcsa\|registered\|credentials" src/ || echo "HPCSA not found"
+
+# =============================================================================
+# Design & Responsiveness
+# =============================================================================
+DESIGN-01|cmd|Tailwind configured|test -f tailwind.config.mjs && echo "Tailwind configured" || echo "Missing tailwind.config.mjs"
+DESIGN-02|cmd|Mobile breakpoints used|grep -r "md:\|lg:\|sm:" src/ | head -3 || echo "No responsive classes"
+
+# =============================================================================
+# Protected Files (hash guards)
+# =============================================================================
+GUARD-01|cmd|PROMPT.md unchanged|sha256sum PROMPT.md | awk '{print $1}' | diff -q - <(awk '{print $1}' .verify/prompt.sha256) && echo "OK" || echo "MODIFIED"
+GUARD-02|cmd|loop.sh unchanged|sha256sum loop.sh | awk '{print $1}' | diff -q - <(awk '{print $1}' .verify/loop.sha256) && echo "OK" || echo "MODIFIED"
+GUARD-03|cmd|verifier.sh unchanged|sha256sum verifier.sh | awk '{print $1}' | diff -q - <(awk '{print $1}' .verify/verifier.sha256) && echo "OK" || echo "MODIFIED"
+GUARD-04|cmd|AC.rules unchanged|sha256sum rules/AC.rules | awk '{print $1}' | diff -q - <(awk '{print $1}' .verify/ac.sha256) && echo "OK" || echo "MODIFIED"
+
+# =============================================================================
+# Deployment Ready
+# =============================================================================
+DEPLOY-01|file|Netlify config exists|netlify.toml
+DEPLOY-02|cmd|Build output exists|test -d dist && echo "dist/ exists" || echo "No dist/"
