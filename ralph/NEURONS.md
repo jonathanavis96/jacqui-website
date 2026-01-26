@@ -106,7 +106,7 @@ cortex/IMPLEMENTATION_PLAN.md  →  (sync)  →  IMPLEMENTATION_PLAN.md
 ## External References
 
 - **Brain skills:** `~/code/brain/skills/domains/websites/`
-- **Existing site:** https://www.jacquichowles.com/
+- **Existing site:** <https://www.jacquichowles.com/>
 - **Project brief:** `~/code/brain/cortex/projects/jacqui-howles-website/PROJECT_BRIEF.md`
 
 ---

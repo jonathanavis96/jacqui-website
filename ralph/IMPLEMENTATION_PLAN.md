@@ -31,7 +31,7 @@ Last updated: 2026-01-26 21:30:00
 
 ### Phase 10.1: UK English Spelling Fixes
 
-- [ ] **10.1.1** Fix all UK spellings across site
+- [x] **10.1.1** Fix all UK spellings across site
   - **Goal:** Replace US spellings with UK equivalents in services.astro, about.astro, index.astro
   - **Changes:**
     - "specialized" → "specialised"
@@ -44,7 +44,7 @@ Last updated: 2026-01-26 21:30:00
 ### Phase 10.2: Contact Details Update
 
 - [ ] **10.2.1** Update phone number and add physical address
-  - **Goal:** Replace phone with +27 76 605 4736 in contact.astro and Footer.astro, update WhatsApp link to https://wa.me/27766054736, add address "Argyle Square, Tamarisk Street, Weltevreden Park, Roodepoort, Gauteng" to contact page
+  - **Goal:** Replace phone with +27 76 605 4736 in contact.astro and Footer.astro, update WhatsApp link to <https://wa.me/27766054736>, add address "Argyle Square, Tamarisk Street, Weltevreden Park, Roodepoort, Gauteng" to contact page
   - **AC:** `grep -r "76 605 4736" src/` shows correct number, address visible on contact page
 
 ### Phase 10.3: CTA Updates (Remove Free Consultation)
@@ -88,7 +88,7 @@ Last updated: 2026-01-26 21:30:00
 
 - [ ] **10.6.1** Add Psychology Today verification badge
   - **Goal:** Embed official PT badge in Footer or About page credentials section using provided embed code (see REFERENCE section)
-  - **AC:** Badge displays correctly and links to https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696
+  - **AC:** Badge displays correctly and links to <https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696>
 
 ---
 
@@ -149,7 +149,7 @@ Last updated: 2026-01-26 21:30:00
 ### Contact Details
 
 - **Phone:** +27 76 605 4736
-- **WhatsApp:** https://wa.me/27766054736
+- **WhatsApp:** <https://wa.me/27766054736>
 - **Address:** Argyle Square, Tamarisk Street, Weltevreden Park, Roodepoort, Gauteng
 - **HPCSA:** PS0133779
 
@@ -190,6 +190,59 @@ Individuals, adolescents, and couples
 <a href="https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696?utm_source=PT&utm_medium=Verified&utm_campaign=PT_Badge_Profile" class="sx-verified-seal" target="_blank" rel="noopener"></a>
 <script type="text/javascript" src="https://member.psychologytoday.com/verified-seal.js" data-badge="13" data-id="989696" data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy9bQkFER0VdL3Byb2ZpbGUvW1BST0ZJTEVfSURdP2NhbGxiYWNrPXN4Y2FsbGJhY2s="></script>
 ```
+
+---
+
+## Phase 11: Markdown Lint Fixes
+
+### Phase 11.1: cortex/AGENTS.md Lint Fixes
+
+- [ ] **11.1.1** Fix MD032/blanks-around-lists in cortex/AGENTS.md (lines 33, 38, 96)
+  - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD032 errors)
+
+- [ ] **11.1.2** Fix MD060/table-column-style in cortex/AGENTS.md (line 50)
+  - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD060 errors)
+
+- [ ] **11.1.3** Fix MD034/no-bare-urls in cortex/AGENTS.md (line 93)
+  - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD034 errors)
+
+### Phase 11.2: cortex/CORTEX_SYSTEM_PROMPT.md Lint Fixes
+
+- [ ] **11.2.1** Fix MD013/line-length in cortex/CORTEX_SYSTEM_PROMPT.md (lines 7, 46, 48)
+  - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD013 errors)
+
+- [ ] **11.2.2** Fix MD022/blanks-around-headings in cortex/CORTEX_SYSTEM_PROMPT.md (lines 11, 17, 23, 52, 57)
+  - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD022 errors)
+
+- [ ] **11.2.3** Fix MD032/blanks-around-lists in cortex/CORTEX_SYSTEM_PROMPT.md (lines 12, 18, 24, 53, 58, 73)
+  - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD032 errors)
+
+### Phase 11.3: cortex/DECISIONS.md Lint Fixes
+
+- [ ] **11.3.1** Fix MD032/blanks-around-lists in cortex/DECISIONS.md (lines 15, 24, 30, 35, 60, 73)
+  - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD032 errors)
+
+- [ ] **11.3.2** Fix MD058/blanks-around-tables in cortex/DECISIONS.md (line 52)
+  - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD058 errors)
+
+- [ ] **11.3.3** Fix MD060/table-column-style in cortex/DECISIONS.md (line 53)
+  - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD060 errors)
+
+- [ ] **11.3.4** Fix MD036/no-emphasis-as-heading in cortex/DECISIONS.md (line 89)
+  - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD036 errors)
+
+### Phase 11.4: cortex/GAP_CAPTURE.md Lint Fixes
+
+- [ ] **11.4.1** Fix MD013/line-length in cortex/GAP_CAPTURE.md (line 3)
+  - **AC:** `markdownlint cortex/GAP_CAPTURE.md` passes (no MD013 errors)
+
+### Phase 11.5: cortex/IMPLEMENTATION_PLAN.md Lint Fixes
+
+- [ ] **11.5.1** Fix MD013/line-length in cortex/IMPLEMENTATION_PLAN.md (line 13)
+  - **AC:** `markdownlint cortex/IMPLEMENTATION_PLAN.md` passes (no MD013 errors)
+
+- [ ] **11.5.2** Fix MD060/table-column-style in cortex/IMPLEMENTATION_PLAN.md (line 22)
+  - **AC:** `markdownlint cortex/IMPLEMENTATION_PLAN.md` passes (no MD060 errors)
 
 ---
 

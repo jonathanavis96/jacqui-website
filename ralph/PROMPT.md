@@ -55,6 +55,7 @@ ls -la src/components/ src/pages/
 
 **WRONG:** `open_files(['cortex/IMPLEMENTATION_PLAN.md', 'cortex/AGENTS.md', ...])`
 **RIGHT:** `grep -n "^- \[ \]" ralph/IMPLEMENTATION_PLAN.md | head -20`
+
 ## Project Context Files
 
 | File | Purpose |

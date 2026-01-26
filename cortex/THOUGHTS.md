@@ -41,11 +41,12 @@ Building a conversion-focused website for Jacqui Chowles, a solo counselling psy
 
 ### Psychology Today Badge
 
-**Profile URL:** https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696
+**Profile URL:** <https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696>
 
 ### Blocked Tasks (Human Required)
 
 All development work is complete. Waiting on:
+
 - Finalize open questions with client
 - Content review with client
 - Domain transfer/DNS setup
@@ -57,16 +58,19 @@ All development work is complete. Waiting on:
 ## Session Log
 
 ### 2026-01-23 14:33:00 - Plans Cleaned Up
+
 - Removed all completed tasks from both Cortex and Ralph plans
 - Consolidated remaining tasks into "Human Required" section
 - Updated status to reflect project is ready for launch
 
 ### 2026-01-23 02:20:00 - Name Correction & Sync
+
 - Fixed client name: "Howles" → "Chowles"
 - Synced Cortex plan with Ralph's completed work
 - Added Psychology Today profile URL to task 5.1
 
 ### 2026-01-22 15:50:00 - Project Bootstrap
+
 - Created project structure at `~/code/jacqui-website`
 - Set up Cortex and Ralph layers
 - Pre-populated IMPLEMENTATION_PLAN with phases from PROJECT_BRIEF

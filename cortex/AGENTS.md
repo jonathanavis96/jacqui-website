@@ -30,11 +30,13 @@ focusing on planning, coordination, and delegation.
 ## Files You Can Modify
 
 **Write Access (Cortex's domain):**
+
 - `cortex/IMPLEMENTATION_PLAN.md` - Your task plans for Ralph
 - `cortex/THOUGHTS.md` - Your strategic analysis and decisions
 - `cortex/DECISIONS.md` - Architectural decisions and conventions
 
 **Read-Only (Ralph's domain or protected):**
+
 - `IMPLEMENTATION_PLAN.md` - Ralph's working copy (synced from your plan)
 - `PROMPT.md` - Ralph's system prompt (protected by hash guard)
 - `loop.sh` - Ralph's execution loop (protected by hash guard)
@@ -90,9 +92,10 @@ When creating tasks for Ralph in `cortex/IMPLEMENTATION_PLAN.md`:
 
 **Client:** Jacqui Howles (solo counselling psychologist)
 **Deadline:** 14th February 2026 (Psychology Today renewal)
-**Existing Site:** https://www.jacquichowles.com/
+**Existing Site:** <https://www.jacquichowles.com/>
 
 **Key Requirements:**
+
 - Keep ALL existing content (restructure, don't delete)
 - Landing page: "overview without overload"
 - Design: calm, inviting, not overly feminine

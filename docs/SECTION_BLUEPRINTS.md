@@ -15,6 +15,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 ### Section Breakdown
 
 #### 1. Hero Section
+
 - **Component:** `Hero.astro`
 - **Goal:** Immediate clarity on who Jacqui is and how she helps
 - **Content:**
@@ -26,6 +27,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** Mobile-first, large touch targets for CTAs
 
 #### 2. Services Overview Section
+
 - **Component:** Inline section with `ServiceCard.astro` (×3)
 - **Goal:** Show breadth of offerings at a glance
 - **Content:**
@@ -38,6 +40,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** 3-column grid on desktop, stacked on mobile
 
 #### 3. "What I Work With" Section
+
 - **Component:** Inline checklist section
 - **Goal:** SEO + visitor self-qualification ("this is for me")
 - **Content:**
@@ -54,6 +57,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** 2-column grid, scannable format
 
 #### 4. Trust Badges Section
+
 - **Component:** `TrustBadges.astro`
 - **Goal:** Establish credibility and professional legitimacy
 - **Content:**
@@ -63,6 +67,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** Centered, prominent but not overwhelming
 
 #### 5. Final CTA Section
+
 - **Component:** `CTASection.astro`
 - **Goal:** Final conversion opportunity before footer
 - **Content:**
@@ -81,6 +86,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 ### Section Breakdown
 
 #### 1. Hero Section
+
 - **Goal:** Set welcoming, personal tone
 - **Content:**
   - H1: "About Me"
@@ -88,6 +94,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** Gradient background (blue-50 to white)
 
 #### 2. Bio Section
+
 - **Goal:** Personal connection through professional story
 - **Content:**
   - Photo placeholder (left side on desktop)
@@ -100,6 +107,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** 2-column layout (image + text) on desktop, stacked on mobile
 
 #### 3. "How I Work" / Approach Section
+
 - **Goal:** Demystify therapy process, explain modalities
 - **Content:**
   - Section heading: "How I work"
@@ -110,6 +118,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** Clean, readable typography
 
 #### 4. Credentials Section
+
 - **Goal:** Professional legitimacy
 - **Content:**
   - HPCSA registration details
@@ -118,15 +127,18 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** Badge-style presentation
 
 #### 5. "What I Work With" Section
+
 - **Goal:** Reiterate specializations for SEO and clarity
 - **Content:** Same 8 focus areas as homepage (with expanded descriptions)
 - **Design notes:** Consistent with homepage styling
 
 #### 6. Trust Badges
+
 - **Component:** `TrustBadges.astro` (reused)
 - **Content:** HPCSA + Psychology Today badge
 
 #### 7. CTA Section
+
 - **Goal:** Encourage next step after reading about Jacqui
 - **Content:**
   - Headline: "Ready to start?"
@@ -143,11 +155,13 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 ### Section Breakdown
 
 #### 1. Hero Section
+
 - **Content:**
   - H1: "Services"
   - Intro: "Flexible therapy and consultancy services to meet you where you are"
 
 #### 2. Online Therapy Section
+
 - **ID:** `#online`
 - **Goal:** Explain online therapy offering in detail
 - **Content:**
@@ -168,6 +182,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** White background, border-left accent for subsections
 
 #### 3. In-Person Therapy Section
+
 - **ID:** `#in-person`
 - **Goal:** Introduce NEW in-person option
 - **Content:**
@@ -185,6 +200,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** Blue-50 background for visual separation
 
 #### 4. Consultancy Section
+
 - **ID:** `#consultancy`
 - **Goal:** Showcase professional services beyond individual therapy
 - **Content:**
@@ -206,6 +222,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** 3-column grid (desktop), 1-column (mobile), card styling
 
 #### 5. CTA Section
+
 - **Goal:** Convert consultancy browsers
 - **Content:**
   - Headline: "Let's work together"
@@ -222,11 +239,13 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 ### Section Breakdown
 
 #### 1. Hero Section
+
 - **Content:**
   - H1: "Get in Touch"
   - Intro: "Book a free consultation or reach out with any questions"
 
 #### 2. Contact Methods Section
+
 - **Goal:** Multiple contact options for different preferences
 - **Content:**
   - **Primary:** Contact form (Netlify Forms)
@@ -239,6 +258,7 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 - **Design notes:** Form on left (desktop), contact options on right
 
 #### 3. "What Happens Next?" Section
+
 - **Goal:** Set expectations, reduce anxiety about reaching out
 - **Content:**
   - 3-step process:
@@ -252,14 +272,17 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 ## Shared Components
 
 ### Header (`Header.astro`)
+
 - **Content:** Logo, Navigation (Home, About, Services, Contact), Mobile hamburger menu
 - **Design:** Sticky header, white background, shadow on scroll
 
 ### Footer (`Footer.astro`)
+
 - **Content:** Contact info, quick links, credentials, copyright
 - **Design:** Dark background, multi-column on desktop
 
 ### Base Layout (`BaseLayout.astro`)
+
 - **Purpose:** Consistent HTML structure, SEO meta tags
 - **Features:** Dynamic title/description, favicon, viewport, Open Graph, skip link
 
@@ -268,24 +291,29 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 ## Design System Summary
 
 ### Color Palette
+
 - **Primary:** Blue (trust, calm) - `blue-600`, `blue-700`
 - **Backgrounds:** White, `blue-50` (light accent)
 - **Text:** `gray-900` (headings), `gray-700` (body), `gray-600` (secondary)
 
 ### Typography
+
 - **Headings:** `font-heading` (defined in Tailwind config)
 - **Body:** System font stack for performance
 - **Scale:** Responsive (3xl/4xl → 4xl/5xl for H1s)
 
 ### Spacing
+
 - **Section padding:** `py-16 md:py-20`
 - **Container:** `max-w-6xl` or `max-w-4xl`
 - **Grid gaps:** `gap-8`
 
 ### Responsive Breakpoints
+
 - **sm:** 640px, **md:** 768px, **lg:** 1024px
 
 ### Interactive Elements
+
 - **Buttons:** Primary (blue bg), Secondary (white bg on dark), Hover states
 - **Links:** Underline on hover, blue color
 - **Focus states:** Visible outline for keyboard navigation
@@ -305,10 +333,12 @@ Detailed section-by-section breakdown of all 4 pages. Serves as both implementat
 ## SEO Strategy
 
 ### Keywords (naturally integrated)
+
 - Counselling psychologist, Online therapy South Africa, Trauma therapy
 - PTSD treatment, Depression counselling, Anxiety support, Couples therapy
 
 ### On-page SEO
+
 - H1 on every page (unique), Descriptive title tags, Meta descriptions
 - Alt text on images, Semantic HTML structure
 

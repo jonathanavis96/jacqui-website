@@ -8,11 +8,10 @@
 
 **⚠️ IMPORTANT:** Ralph's tasks are in `ralph/IMPLEMENTATION_PLAN.md`. The `cortex/IMPLEMENTATION_PLAN.md` is for Cortex only.
 
-
 Ralph loop for Jacqui Howles Psychology Website. Runs PLAN/BUILD cycles to build and maintain the website.
 
 **Deadline:** 14th February 2026
-**Existing Site:** https://www.jacquichowles.com/
+**Existing Site:** <https://www.jacquichowles.com/>
 **Tech Stack:** Astro + Tailwind CSS + Netlify
 
 ## Quick Start
