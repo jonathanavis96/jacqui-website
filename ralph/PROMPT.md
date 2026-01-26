@@ -25,19 +25,25 @@ If the header contains `# LAST_VERIFIER_RESULT: FAIL`, you MUST:
 
 **Do NOT open large files at startup.** Use targeted commands instead.
 
-### Forbidden at Startup
+### Forbidden at Startup (NEVER open_files for these)
 
-Never `open_files` for these (too expensive):
+**NEVER call `open_files` on ANY of these files - use grep/sed/head instead:**
 
-- `NEURONS.md`
-- `cortex/THOUGHTS.md`
-- `ralph/IMPLEMENTATION_PLAN.md` (full file)
-- `ralph/THUNK.md` (full file)
+- `NEURONS.md` - use `ls` to explore structure
+- `cortex/THOUGHTS.md` - slice with `head -30` if needed
+- `cortex/AGENTS.md` - NOT needed for BUILD tasks
+- `cortex/CORTEX_SYSTEM_PROMPT.md` - NOT needed for BUILD tasks  
+- `cortex/DECISIONS.md` - NOT needed for BUILD tasks
+- `cortex/IMPLEMENTATION_PLAN.md` - Cortex's file, NOT Ralph's task list
+- `ralph/IMPLEMENTATION_PLAN.md` (full file) - use grep to find tasks
+- `ralph/THUNK.md` (full file) - use tail to append only
 
-### Required Startup Sequence
+**⚠️ Ralph's tasks are in `ralph/IMPLEMENTATION_PLAN.md`, NOT `cortex/IMPLEMENTATION_PLAN.md`**
+
+### Required Startup Sequence (DO THIS EXACTLY)
 
 ```bash
-# 1. Find next unchecked task (DO THIS FIRST)
+# 1. Find next unchecked task (DO THIS FIRST - this is YOUR task list)
 grep -n "^- \[ \]" ralph/IMPLEMENTATION_PLAN.md | head -20
 
 # 2. If you need context for a specific task, slice by line number
@@ -47,8 +53,8 @@ sed -n '20,50p' ralph/IMPLEMENTATION_PLAN.md
 ls -la src/components/ src/pages/
 ```
 
----
-
+**WRONG:** `open_files(['cortex/IMPLEMENTATION_PLAN.md', 'cortex/AGENTS.md', ...])`
+**RIGHT:** `grep -n "^- \[ \]" ralph/IMPLEMENTATION_PLAN.md | head -20`
 ## Project Context Files
 
 | File | Purpose |

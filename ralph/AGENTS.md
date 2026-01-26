@@ -6,6 +6,9 @@
 
 ## Purpose
 
+**⚠️ IMPORTANT:** Ralph's tasks are in `ralph/IMPLEMENTATION_PLAN.md`. The `cortex/IMPLEMENTATION_PLAN.md` is for Cortex only.
+
+
 Ralph loop for Jacqui Howles Psychology Website. Runs PLAN/BUILD cycles to build and maintain the website.
 
 **Deadline:** 14th February 2026
@@ -16,7 +19,7 @@ Ralph loop for Jacqui Howles Psychology Website. Runs PLAN/BUILD cycles to build
 
 1. Read `cortex/THOUGHTS.md` for project goals
 2. Read `NEURONS.md` for codebase structure
-3. Check `ralph/IMPLEMENTATION_PLAN.md` for current tasks
+3. Check `ralph/IMPLEMENTATION_PLAN.md` for current tasks (NOT cortex/IMPLEMENTATION_PLAN.md)
 
 ## Validation Commands
 
