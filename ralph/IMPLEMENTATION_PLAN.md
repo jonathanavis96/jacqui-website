@@ -135,7 +135,7 @@
 
 **Context:** The following markdown lint errors were detected by markdownlint and need to be fixed to ensure documentation quality and consistency.
 
-- [ ] **10.1** Fix MD013 (line-length) errors in cortex/AGENTS.md
+- [x] **10.1** Fix MD013 (line-length) errors in cortex/AGENTS.md
   - **AC:** `markdownlint cortex/AGENTS.md` passes (no MD013 errors)
   - **Lines:** 5, 47, 101
 

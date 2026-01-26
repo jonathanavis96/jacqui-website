@@ -50,3 +50,4 @@ Append-only log of completed tasks. DO NOT rewrite or restructure.
 | 36 | 9.4 | P1 | About page spacing reduced - tightened gap between hero and bio section by reducing hero pb-4/pb-6 to pb-2/pb-3 and bio pt-4/pt-6 to pt-2/pt-3 for better visual flow | 2026-01-23 |
 | 37 | 9.5 | P1 | About page side-by-side images completed - mirror and butterfly images integrated with rounded corners, alternating left/right placement, responsive mobile stack | 2026-01-23 |
 | 38 | 9.6-9.9 | P1 | Banner and About page layout fixes completed - renamed homepage banner file, removed QuoteBanner overlay + anchored to top, restructured How I Work and What I Work With sections with left-aligned headings and optimized image placement | 2026-01-23 |
+39 | 10.1 | P1 | Fixed MD013 line-length errors in cortex/AGENTS.md - wrapped long lines on 5, 47, and 101 to comply with 80-character limit | 2026-01-26
