@@ -1,6 +1,6 @@
 Ralph Verifier Report
-Time: 2026-01-26 22:09:38
-Git:  055b9e6
+Time: 2026-01-26 22:21:04
+Git:  519c5d7
 AC:   /home/grafe/code/jacqui-website/ralph/rules/AC.rules
 Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
@@ -8,11 +8,11 @@ Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
   desc: Astro build passes
   cmd:  cd .. && npm run build 2>&1 | tail -5
   exit: 0
-  stdout: 22:09:40 ✓ Completed in 23ms.
+  stdout: 22:21:06 ✓ Completed in 23ms.
 
-22:09:40 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
-22:09:40 [build] 4 page(s) built in 1.20s
-22:09:40 [build] Complete!
+22:21:06 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+22:21:06 [build] 4 page(s) built in 1.08s
+22:21:06 [build] Complete!
 [PASS] LINT-01
   desc: No lint errors (if configured)
   cmd:  cd .. && npm run lint 2>&1 || echo "Lint not configured"
@@ -24,7 +24,7 @@ npm error   npm link # Symlink a package folder
 npm error
 npm error To see a list of scripts, run:
 npm error   npm run
-npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T20_09_40_794Z-debug-0.log
+npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T20_21_06_303Z-debug-0.log
 Lint not configured
 [PASS] PAGE-01
   desc: Homepage exists
@@ -65,7 +65,8 @@ Lint not configured
   desc: Psychology Today badge placeholder
   cmd:  grep -r "psychology.today\|psychologytoday\|PT-badge" ../src/ 2>/dev/null && echo found || echo "Badge not found"
   exit: 0
-  stdout: ../src/components/TrustBadges.astro:            <a href="https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696" target="_blank" rel="noopener" class="text-purple-brand hover:underline">
+  stdout: ../src/components/TrustBadges.astro:            <a href="https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696?utm_source=PT&utm_medium=Verified&utm_campaign=PT_Badge_Profile" class="sx-verified-seal" target="_blank" rel="noopener"></a>
+../src/components/TrustBadges.astro:            <script type="text/javascript" src="https://member.psychologytoday.com/verified-seal.js" data-badge="13" data-id="989696" data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy9bQkFER0VdL3Byb2ZpbGUvW1BST0ZJTEVfSURdP2NhbGxiYWNrPXN4Y2FsbGJhY2s="></script>
 found
 [PASS] CONTENT-02
   desc: Contact info present
@@ -80,8 +81,7 @@ found
                     name="email"
                     placeholder="your@email.com"
                   <p><strong>Privacy note:</strong> Your information will be kept confidential and used only to respond to your enquiry. By submitting this form, you consent to me contacting you regarding your message.</p>
-                Start by sending me a message via the form above, email, or WhatsApp. We'll schedule a consultation call to discuss what you're looking for and see if we're a good fit. If we decide to work together, we'll book your first session from there.
-                I offer both online and in-person sessions. In-person availability is limited, so contact me to discuss current openings. Online sessions are available for clients anywhere in the world.
+                  Start by sending me a message via the form above, email, or WhatsApp. We'll schedule a consultation call to discuss what you're looking for and see if we're a good fit. If we decide to work together, we'll book your first session from there.
               Send an email
 found
 [PASS] CONTENT-03

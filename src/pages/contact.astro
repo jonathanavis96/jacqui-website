@@ -266,46 +266,116 @@ const base = import.meta.env.BASE_URL;
             Common Questions
           </h2>
 
-          <div class="space-y-6">
-            <!-- FAQ Item -->
-            <div class="bg-white rounded-lg p-6 shadow-sm">
-              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-                How do I book my first session?
-              </h3>
-              <p class="text-gray-700">
-                Start by sending me a message via the form above, email, or WhatsApp. We'll schedule a consultation call to discuss what you're looking for and see if we're a good fit. If we decide to work together, we'll book your first session from there.
-              </p>
-            </div>
+          <div class="space-y-4">
+            <!-- FAQ Item - Is therapy right for me? -->
+            <details class="bg-white rounded-lg shadow-sm group">
+              <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors">
+                <h3 class="text-xl font-heading font-bold text-gray-900">
+                  Is therapy right for me?
+                </h3>
+                <svg class="w-6 h-6 text-purple-brand transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6">
+                <p class="text-gray-700">
+                  If you're feeling stuck, overwhelmed, or curious about making a change, therapy might be helpful. You don't need to be in crisis to benefit—many people come to therapy to work through life transitions, improve relationships, or better understand themselves. If you're wondering whether it's right for you, let's have a conversation.
+                </p>
+              </div>
+            </details>
 
-            <!-- FAQ Item -->
-            <div class="bg-white rounded-lg p-6 shadow-sm">
-              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-                Can I see you in person or only online?
-              </h3>
-              <p class="text-gray-700">
-                I offer both online and in-person sessions. In-person availability is limited, so contact me to discuss current openings. Online sessions are available for clients anywhere in the world.
-              </p>
-            </div>
+            <!-- FAQ Item - What does the process look like? -->
+            <details class="bg-white rounded-lg shadow-sm group">
+              <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors">
+                <h3 class="text-xl font-heading font-bold text-gray-900">
+                  What does the process look like?
+                </h3>
+                <svg class="w-6 h-6 text-purple-brand transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6">
+                <p class="text-gray-700">
+                  We'll start with an initial consultation to discuss what brings you to therapy and what you're hoping to achieve. From there, we'll work together at a pace that feels right for you. Sessions are typically weekly or fortnightly, and we'll regularly check in on your progress to ensure therapy is meeting your needs.
+                </p>
+              </div>
+            </details>
 
-            <!-- FAQ Item -->
-            <div class="bg-white rounded-lg p-6 shadow-sm">
-              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-                How long does therapy take?
-              </h3>
-              <p class="text-gray-700">
-                Every person's journey is different. Some people benefit from short-term focused work (a few months), while others prefer longer-term therapy. We'll discuss your goals and check in regularly about how things are progressing.
-              </p>
-            </div>
+            <!-- FAQ Item - What are your rates? -->
+            <details class="bg-white rounded-lg shadow-sm group">
+              <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors">
+                <h3 class="text-xl font-heading font-bold text-gray-900">
+                  What are your rates?
+                </h3>
+                <svg class="w-6 h-6 text-purple-brand transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6">
+                <p class="text-gray-700 mb-3">
+                  My rates are as follows:
+                </p>
+                <ul class="text-gray-700 space-y-2 ml-4">
+                  <li>• Individual therapy (50 minutes): <strong>R XXX</strong></li>
+                  <li>• Couples therapy (60 minutes): <strong>R XXX</strong></li>
+                  <li>• Consultancy services: <strong>Contact for quote</strong></li>
+                </ul>
+                <p class="text-gray-700 mt-3">
+                  Payment is due at the time of each session. I can provide invoices for medical aid reimbursement if applicable.
+                </p>
+              </div>
+            </details>
 
-            <!-- FAQ Item -->
-            <div class="bg-white rounded-lg p-6 shadow-sm">
-              <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-                Do you accept medical aid?
-              </h3>
-              <p class="text-gray-700">
-                I don't bill medical aid directly, but I can provide invoices for you to submit for reimbursement if your plan covers out-of-network providers or has mental health benefits.
-              </p>
-            </div>
+            <!-- FAQ Item - How do I book? -->
+            <details class="bg-white rounded-lg shadow-sm group">
+              <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors">
+                <h3 class="text-xl font-heading font-bold text-gray-900">
+                  How do I book my first session?
+                </h3>
+                <svg class="w-6 h-6 text-purple-brand transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6">
+                <p class="text-gray-700">
+                  Start by sending me a message via the form above, email, or WhatsApp. We'll schedule a consultation call to discuss what you're looking for and see if we're a good fit. If we decide to work together, we'll book your first session from there.
+                </p>
+              </div>
+            </details>
+
+            <!-- FAQ Item - How long does therapy take? -->
+            <details class="bg-white rounded-lg shadow-sm group">
+              <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors">
+                <h3 class="text-xl font-heading font-bold text-gray-900">
+                  How long does therapy take?
+                </h3>
+                <svg class="w-6 h-6 text-purple-brand transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6">
+                <p class="text-gray-700">
+                  Every person's journey is different. Some people benefit from short-term focused work (a few months), while others prefer longer-term therapy. We'll discuss your goals and check in regularly about how things are progressing.
+                </p>
+              </div>
+            </details>
+
+            <!-- FAQ Item - Medical aid -->
+            <details class="bg-white rounded-lg shadow-sm group">
+              <summary class="flex justify-between items-center cursor-pointer p-6 hover:bg-gray-50 transition-colors">
+                <h3 class="text-xl font-heading font-bold text-gray-900">
+                  Do you accept medical aid?
+                </h3>
+                <svg class="w-6 h-6 text-purple-brand transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </summary>
+              <div class="px-6 pb-6">
+                <p class="text-gray-700">
+                  I don't bill medical aid directly, but I can provide invoices for you to submit for reimbursement if your plan covers out-of-network providers or has mental health benefits.
+                </p>
+              </div>
+            </details>
           </div>
         </div>
       </div>

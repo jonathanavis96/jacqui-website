@@ -86,7 +86,7 @@ Last updated: 2026-01-26 21:30:00
 
 ### Phase 10.6: Psychology Today Badge Integration
 
-- [ ] **10.6.1** Add Psychology Today verification badge
+- [x] **10.6.1** Add Psychology Today verification badge
   - **Goal:** Embed official PT badge in Footer or About page credentials section using provided embed code (see REFERENCE section)
   - **AC:** Badge displays correctly and links to <https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696>
 
@@ -96,19 +96,19 @@ Last updated: 2026-01-26 21:30:00
 
 ### Phase 10.7: Services Page Visual Redesign
 
-- [ ] **10.7.1** Add responsive image grid to services page
+- [x] **10.7.1** Add responsive image grid to services page
   - **Goal:** Create CSS grid section using image5_chair.webp, image6_chairs.webp, therapy_office_1.webp, therapy_office_2.webp with auto-fit layout that works with 3 or 4 images
   - **Skill:** `~/code/brain/skills/domains/websites/design/spacing-layout.md`
   - **AC:** Images display in responsive grid, layout doesn't break if one image removed
 
-- [ ] **10.7.2** Review and fix services page visual flow
+- [x] **10.7.2** Review and fix services page visual flow
   - **Goal:** Ensure consistent spacing, good mobile appearance, proper section order
   - **Skill:** `~/code/brain/skills/domains/websites/architecture/section-composer.md`
   - **AC:** Page looks good on mobile (375px) and desktop (1200px+)
 
 ### Phase 10.8: FAQ Section Update
 
-- [ ] **10.8.1** Convert existing FAQ to accordion style with new questions
+- [x] **10.8.1** Convert existing FAQ to accordion style with new questions
   - **Goal:** Update FAQ section on contact.astro - convert to click-to-expand accordion, add 3 new questions at top, remove "free consultation" question
   - **Skill:** `~/code/brain/skills/domains/websites/architecture/section-composer.md` (FAQ handles objections near bottom, before CTA)
   - **New questions to add at top:**
