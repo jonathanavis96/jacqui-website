@@ -1,8 +1,12 @@
-# Agent Guidance - Jacqui Chowles Website
+# AGENTS.md - Ralph Loop (Jacqui Howles Website)
 
-## Project Overview
+## First Step: Read Project Context
 
-Building a conversion-focused website for Jacqui Chowles, a solo counselling psychologist.
+**Before any task, read `cortex/THOUGHTS.md`** - it contains project goals and success criteria.
+
+## Purpose
+
+Ralph loop for Jacqui Howles Psychology Website. Runs PLAN/BUILD cycles to build and maintain the website.
 
 **Deadline:** 14th February 2026
 **Existing Site:** https://www.jacquichowles.com/
@@ -10,66 +14,67 @@ Building a conversion-focused website for Jacqui Chowles, a solo counselling psy
 
 ## Quick Start
 
-1. Read `THOUGHTS.md` for project goals
+1. Read `cortex/THOUGHTS.md` for project goals
 2. Read `NEURONS.md` for codebase structure
-3. Check `IMPLEMENTATION_PLAN.md` for current tasks
+3. Check `ralph/IMPLEMENTATION_PLAN.md` for current tasks
 
 ## Validation Commands
 
 ```bash
-# Build check
+# Build check (REQUIRED before completing any task)
 npm run build
 
-# Preview (manual)
+# Preview locally (manual)
 npm run preview
 
-# Lint (if configured)
+# Lint check
 npm run lint
 ```
 
-## Key Constraints
+## Environment Notes
 
-1. **Content preservation** - ALL existing content must be kept
-2. **Design direction** - Calm, inviting, professional (not overly feminine)
-3. **Trust markers** - HPCSA + Psychology Today badge required
-4. **Mobile-first** - Responsive design essential
-5. **Deadline** - Must ship before 14th Feb 2026
+**WSL/Windows 11 Specifics:**
 
-## File Structure
+- Working directory: `~/code/jacqui-website`
+- Git line endings: Use `core.autocrlf=input`
+- Path separators: Use Unix-style `/` paths
 
-```
-jacqui-website/
-├── cortex/                 # Cortex manager layer
-│   ├── AGENTS.md          # Cortex rules
-│   ├── IMPLEMENTATION_PLAN.md  # Task source (Ralph syncs from here)
-│   ├── THOUGHTS.md        # Strategic context
-│   └── DECISIONS.md       # Architectural decisions
-│
-├── src/                    # Astro source (Ralph builds)
-│   ├── pages/             # Page routes
-│   ├── components/        # Reusable components
-│   ├── layouts/           # Page layouts
-│   └── styles/            # Global styles
-│
-├── public/                 # Static assets
-│
-├── PROMPT.md              # Ralph's instructions (protected)
-├── IMPLEMENTATION_PLAN.md # Ralph's working copy
-├── THUNK.md               # Completed tasks log
-├── NEURONS.md             # Codebase map
-├── loop.sh                # Ralph executor (protected)
-├── verifier.sh            # AC checker (protected)
-└── rules/AC.rules         # Verification rules (protected)
+## How to Run
+
+```bash
+cd ~/code/jacqui-website
+
+# Single iteration
+bash ralph/loop.sh
+
+# Multiple iterations
+bash ralph/loop.sh --iterations 10
+
+# Dry run (preview only)
+bash ralph/loop.sh --dry-run
 ```
 
-## Protected Files (hash-guarded)
+## Task Monitors
 
-- `PROMPT.md` + `.verify/prompt.sha256`
-- `loop.sh` + `.verify/loop.sha256`
-- `verifier.sh` + `.verify/verifier.sha256`
-- `rules/AC.rules` + `.verify/ac.sha256`
+Real-time task tracking:
 
-## Brain Skills Reference
+```bash
+# Pending tasks
+bash ralph/current_ralph_tasks.sh
+
+# Completed tasks
+bash ralph/thunk_ralph_tasks.sh
+```
+
+## Loop Stop Sentinel
+
+Ralph outputs when ALL tasks complete:
+
+```text
+:::COMPLETE:::
+```
+
+## Brain Knowledge Base References
 
 Website skills at: `~/code/brain/skills/domains/websites/`
 
@@ -82,17 +87,17 @@ Website skills at: `~/code/brain/skills/domains/websites/`
 | QA | `acceptance-criteria.md`, `accessibility.md` |
 | Launch | `deployment.md`, `finishing-pass.md` |
 
-## Running Ralph
+## Troubleshooting
 
-```bash
-cd ~/code/jacqui-website
-bash loop.sh                    # Single iteration
-bash loop.sh --iterations 10    # Multiple iterations
-bash loop.sh --dry-run          # Preview changes
-```
+- **Build fails**: Check `npm run build` output for errors
+- **Loop doesn't stop**: Check `:::COMPLETE:::` output
+- **Ralph batches tasks**: See PROMPT.md "ONE task" emphasis
+- **Wrong mode**: Check iteration number (1 or 3rd = PLAN)
 
 ## See Also
 
-- `cortex/THOUGHTS.md` - Strategic goals
-- `cortex/DECISIONS.md` - Architectural decisions
-- `docs/` - Project documentation
+- **cortex/THOUGHTS.md** - Strategic goals and deadline
+- **cortex/DECISIONS.md** - Architectural decisions
+- **NEURONS.md** - Codebase structure map
+- **ralph/VALIDATION_CRITERIA.md** - Quality gates
+- **docs/** - Project documentation

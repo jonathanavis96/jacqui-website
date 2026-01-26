@@ -18,14 +18,22 @@ if [[ -n "${RALPH_PROJECT_ROOT:-}" ]]; then
   ROOT="$RALPH_PROJECT_ROOT"
   RALPH="$ROOT/ralph"
 else
-  # Get absolute path to this script, then go up one level for ROOT
+  # Get absolute path to this script, then go up two levels for ROOT (project/ralph -> project)
   SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-  ROOT="$(dirname "$SCRIPT_DIR")"
   RALPH="$SCRIPT_DIR"
+  ROOT="$(dirname "$SCRIPT_DIR")"
 fi
 LOGDIR="$RALPH/logs"
 VERIFY_REPORT="$RALPH/.verify/latest.txt"
 mkdir -p "$LOGDIR"
+
+# Source shared utilities (includes RollFlow tracking functions)
+# shellcheck source=../shared/common.sh
+source "$(dirname "$RALPH")/shared/common.sh"
+
+# Source shared cache library
+# shellcheck source=../shared/cache.sh
+source "$(dirname "$RALPH")/shared/cache.sh"
 
 # Cleanup logs older than 7 days on startup
 cleanup_old_logs() {
@@ -116,7 +124,61 @@ acquire_lock() {
     fi
   fi
 }
+
+release_lock() {
+  # Release file lock and remove lock file
+  if [[ -f "$LOCK_FILE" ]]; then
+    rm -f "$LOCK_FILE"
+  fi
+  # Close file descriptor if flock was used
+  exec 9>&- 2>/dev/null || true
+}
+
 acquire_lock
+
+# =============================================================================
+# Event Emission (provider-neutral markers)
+# =============================================================================
+# Emits lifecycle events to state/events.jsonl for external tooling.
+# Best-effort: never fails the loop if event emission fails.
+
+BRAIN_EVENT_SCRIPT="$ROOT/bin/brain-event"
+
+emit_event() {
+  # Best-effort event emission - never block the loop
+  if [[ -x "$BRAIN_EVENT_SCRIPT" ]]; then
+    "$BRAIN_EVENT_SCRIPT" --runner "${RUNNER:-unknown}" "$@" 2>/dev/null || true
+  fi
+}
+
+# Trap for error event on unexpected exit
+_loop_exit_code=0
+_loop_emitted_end=false
+
+cleanup_and_emit() {
+  local exit_code=$?
+
+  # Avoid double-emission
+  if [[ "$_loop_emitted_end" == "true" ]]; then
+    cleanup
+    release_lock
+    exit $exit_code
+  fi
+  _loop_emitted_end=true
+
+  # Emit appropriate event based on exit code
+  if [[ $exit_code -ne 0 && $exit_code -ne 130 ]]; then
+    # Error exit (not SIGINT)
+    emit_event --event error --iter "${CURRENT_ITER:-0}" --status fail --code "$exit_code" --msg "loop exited unexpectedly"
+  fi
+
+  cleanup
+  release_lock
+  exit $exit_code
+}
+
+# Will be set up after argument parsing
+CURRENT_ITER=0
 
 # Interrupt handling: First Ctrl+C = graceful exit, Second Ctrl+C = immediate exit
 INTERRUPT_COUNT=0
@@ -177,15 +239,15 @@ usage() {
   cat <<'EOF'
 Usage:
   loop.sh [--prompt <path>] [--iterations N] [--plan-every N] [--yolo|--no-yolo]
-          [--runner rovodev|opencode|cerebras] [--model <model>] [--branch <name>] [--dry-run] [--no-monitors]
+          [--runner rovodev|opencode] [--model <model>] [--branch <name>] [--dry-run] [--no-monitors]
           [--opencode-serve] [--opencode-port N] [--opencode-attach <url>] [--opencode-format json|text]
-          [--rollback [N]] [--resume]
+          [--cache-skip] [--force-no-cache] [--force-fresh] [--rollback [N]] [--resume]
 
 Defaults:
   --iterations 1
   --plan-every 3
   --runner      rovodev
-  --model       Sonnet 4.5 (rovodev) or Grok Code (opencode), Llama models (cerebras). Use --model auto for rovodev config.
+  --model       Sonnet 4.5 (rovodev) or Grok Code (opencode). Use --model auto for rovodev config.
   --branch      Defaults to <repo>-work (e.g., brain-work, NeoQueue-work)
   If --prompt is NOT provided, loop alternates:
     - PLAN on iteration 1 and every N iterations
@@ -201,10 +263,9 @@ Model Selection:
                     Or provide a full model ID directly.
 
 Runner Selection:
-  --runner rovodev|opencode|cerebras
+  --runner rovodev|opencode
                    rovodev: uses acli rovodev run (default)
                    opencode: uses opencode run (provider/model). See: opencode models
-                   cerebras: uses Cerebras API (requires CEREBRAS_API_KEY env var)
 
 Branch Workflow:
   --branch <name>  Work on specified branch (creates if needed, switches to it)
@@ -212,10 +273,17 @@ Branch Workflow:
                    Then run pr-batch.sh to create PRs to main
 
 Safety Features:
-  --dry-run       Preview changes without committing (appends instruction to prompt)
-  --no-monitors   Skip auto-launching monitor terminals (useful for CI/CD or headless environments)
-  --rollback [N]  Undo last N Ralph commits (default: 1). Requires confirmation.
-  --resume        Resume from last incomplete iteration (checks for uncommitted changes)
+  --dry-run         Preview changes without committing (appends instruction to prompt)
+  --no-monitors     Skip auto-launching monitor terminals (useful for CI/CD or headless environments)
+  --cache-skip      Enable cache lookup to skip redundant tool calls (requires RollFlow cache DB)
+  --cache-mode <mode> Cache behavior: off (no caching, default), record (run everything, store PASS),
+                    use (check cache first, skip on hit, record misses)
+  --cache-scope <scopes> Comma-separated list of cache scopes: verify,read,llm_ro
+                    Default: verify,read (safe for all phases)
+  --force-no-cache  Disable cache lookup even if CACHE_SKIP=1 (forces all tools to run)
+  --force-fresh     Bypass all caching regardless of CACHE_MODE/SCOPE (useful for debugging stale cache)
+  --rollback [N]    Undo last N Ralph commits (default: 1). Requires confirmation.
+  --resume          Resume from last incomplete iteration (checks for uncommitted changes)
 
 OpenCode Options:
   --opencode-serve      Start local OpenCode server for faster runs (implies --opencode-attach localhost:4096)
@@ -250,6 +318,12 @@ Examples:
 
   # Resume after error
   bash ralph/loop.sh --resume
+
+  # Enable cache skip to speed up repeated runs
+  bash ralph/loop.sh --cache-skip --iterations 5
+
+  # Force all tools to run even with cache enabled
+  CACHE_SKIP=1 bash ralph/loop.sh --force-no-cache --iterations 1
 EOF
 }
 
@@ -258,6 +332,7 @@ ITERATIONS=1
 PLAN_EVERY=3
 YOLO_FLAG="--yolo"
 RUNNER="rovodev"
+AGENT_NAME="ralph" # Agent identifier for cache isolation
 PROMPT_ARG=""
 MODEL_ARG=""
 BRANCH_ARG=""
@@ -270,91 +345,183 @@ ROLLBACK_MODE=false
 ROLLBACK_COUNT=1
 RESUME_MODE=false
 NO_MONITORS=false
+CACHE_SKIP="${CACHE_SKIP:-false}"
+CACHE_MODE="${CACHE_MODE:-off}"           # off|record|use - controls cache behavior
+CACHE_SCOPE="${CACHE_SCOPE:-verify,read}" # verify,read,llm_ro - comma-separated list of allowed scopes
+
+# Export cache variables so subprocesses (verifier.sh) inherit them
+export CACHE_MODE CACHE_SCOPE AGENT_NAME
+
+# Note: :::CACHE_CONFIG::: marker moved inside iteration loop (see line ~1452)
+# to include iter= and ts= fields per task X.4.1
+FORCE_NO_CACHE=false
+FORCE_FRESH=false # Bypass all caching regardless of CACHE_MODE/SCOPE
 CONSECUTIVE_VERIFIER_FAILURES=0
+
+# Deprecation: CACHE_SKIP → CACHE_MODE/CACHE_SCOPE migration
+# Accept truthy values: 1, true, yes, y, on (case-insensitive)
+cache_skip_lower=$(echo "${CACHE_SKIP}" | tr '[:upper:]' '[:lower:]')
+if [[ "${cache_skip_lower}" == "true" || "${cache_skip_lower}" == "1" ||
+  "${cache_skip_lower}" == "yes" || "${cache_skip_lower}" == "y" ||
+  "${cache_skip_lower}" == "on" ]]; then
+  echo "⚠️  WARNING: CACHE_SKIP is deprecated and will be removed in a future release."
+  echo "    Please use: CACHE_MODE=use CACHE_SCOPE=verify,read"
+  echo "    Automatically migrating for this run..."
+  CACHE_MODE="use"
+  CACHE_SCOPE="verify,read"
+fi
+
+# =============================================================================
+# Cache Scope Mapping by Phase
+# =============================================================================
+#
+# Ralph loop operates in different phases, each with distinct cache safety requirements:
+#
+# PHASE            | ALLOWED SCOPES        | RATIONALE
+# -----------------|----------------------|---------------------------------------------
+# PLAN             | verify, read         | LLM must reason fresh - planning requires
+#                  |                      | full context and creative problem-solving
+# -----------------|----------------------|---------------------------------------------
+# BUILD            | verify, read         | LLM must execute tasks fresh - caching would
+#                  |                      | cause Ralph to skip work and report "done"
+#                  |                      | without actually implementing changes
+# -----------------|----------------------|---------------------------------------------
+# VERIFY (future)  | verify, read, llm_ro | Safe to cache: verifier checks deterministic
+#                  |                      | rules, read-only LLM analysis has no state
+#                  |                      | side effects
+# -----------------|----------------------|---------------------------------------------
+# REPORT (future)  | verify, read, llm_ro | Safe to cache: report generation is read-only
+#                  |                      | and deterministic based on logs
+# -----------------|----------------------|---------------------------------------------
+#
+# Cache Scopes:
+#   - verify: Deterministic checks (shellcheck, markdownlint, hash validation)
+#   - read:   File reads, git operations (cached by path+mtime)
+#   - llm_ro: Read-only LLM analysis (cached by prompt+git_sha, no state mutation)
+#
+# Current Implementation (Phase 12.4.x):
+#   CACHE_SKIP flag enables caching for all phases (emergency brake for debugging)
+#   Phase 1.x will implement proper scope enforcement with hard-blocks for llm_ro
+#   in PLAN/BUILD phases regardless of CACHE_SKIP setting.
+#
+# See docs/CACHE_DESIGN.md for full design rationale and safety analysis.
+# =============================================================================
+
+# Cache metrics tracking
+CACHE_HITS=0
+CACHE_MISSES=0
+TIME_SAVED_MS=0
 
 # Parse args
 while [[ $# -gt 0 ]]; do
   case "$1" in
-  --prompt)
-    PROMPT_ARG="${2:-}"
-    shift 2
-    ;;
-  --iterations)
-    ITERATIONS="${2:-}"
-    shift 2
-    ;;
-  --plan-every)
-    PLAN_EVERY="${2:-}"
-    shift 2
-    ;;
-  --yolo)
-    YOLO_FLAG="--yolo"
-    shift
-    ;;
-  --no-yolo)
-    YOLO_FLAG=""
-    shift
-    ;;
-  --runner)
-    RUNNER="${2:-}"
-    shift 2
-    ;;
-  --opencode-serve)
-    OPENCODE_SERVE=true
-    shift
-    ;;
-  --opencode-port)
-    OPENCODE_PORT="${2:-4096}"
-    shift 2
-    ;;
-  --opencode-attach)
-    OPENCODE_ATTACH="${2:-}"
-    shift 2
-    ;;
-  --opencode-format)
-    OPENCODE_FORMAT="${2:-default}"
-    shift 2
-    ;;
-  --model)
-    MODEL_ARG="${2:-}"
-    shift 2
-    ;;
-  --branch)
-    BRANCH_ARG="${2:-}"
-    shift 2
-    ;;
-  --dry-run)
-    DRY_RUN=true
-    shift
-    ;;
-  --no-monitors)
-    NO_MONITORS=true
-    shift
-    ;;
-  --rollback)
-    ROLLBACK_MODE=true
-    if [[ -n "${2:-}" && "$2" =~ ^[0-9]+$ ]]; then
-      ROLLBACK_COUNT="$2"
+    --prompt)
+      PROMPT_ARG="${2:-}"
       shift 2
-    else
+      ;;
+    --iterations)
+      ITERATIONS="${2:-}"
+      shift 2
+      ;;
+    --plan-every)
+      PLAN_EVERY="${2:-}"
+      shift 2
+      ;;
+    --yolo)
+      YOLO_FLAG="--yolo"
       shift
-    fi
-    ;;
-  --resume)
-    RESUME_MODE=true
-    shift
-    ;;
-  -h | --help)
-    usage
-    exit 0
-    ;;
-  *)
-    echo "Unknown arg: $1" >&2
-    usage
-    exit 2
-    ;;
+      ;;
+    --no-yolo)
+      YOLO_FLAG=""
+      shift
+      ;;
+    --runner)
+      RUNNER="${2:-}"
+      shift 2
+      ;;
+    --opencode-serve)
+      OPENCODE_SERVE=true
+      shift
+      ;;
+    --opencode-port)
+      OPENCODE_PORT="${2:-4096}"
+      shift 2
+      ;;
+    --opencode-attach)
+      OPENCODE_ATTACH="${2:-}"
+      shift 2
+      ;;
+    --opencode-format)
+      OPENCODE_FORMAT="${2:-default}"
+      shift 2
+      ;;
+    --model)
+      MODEL_ARG="${2:-}"
+      shift 2
+      ;;
+    --branch)
+      BRANCH_ARG="${2:-}"
+      shift 2
+      ;;
+    --dry-run)
+      DRY_RUN=true
+      shift
+      ;;
+    --no-monitors)
+      NO_MONITORS=true
+      shift
+      ;;
+    --cache-skip)
+      # shellcheck disable=SC2034  # Used in future cache lookup logic (12.4.2.4)
+      CACHE_SKIP=true
+      shift
+      ;;
+    --cache-mode)
+      CACHE_MODE="${2:-}"
+      shift 2
+      ;;
+    --cache-scope)
+      CACHE_SCOPE="${2:-}"
+      shift 2
+      ;;
+    --force-no-cache)
+      FORCE_NO_CACHE=true
+      shift
+      ;;
+    --force-fresh)
+      FORCE_FRESH=true
+      shift
+      ;;
+    --rollback)
+      ROLLBACK_MODE=true
+      if [[ -n "${2:-}" && "$2" =~ ^[0-9]+$ ]]; then
+        ROLLBACK_COUNT="$2"
+        shift 2
+      else
+        shift
+      fi
+      ;;
+    --resume)
+      RESUME_MODE=true
+      shift
+      ;;
+    -h | --help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown arg: $1" >&2
+      usage
+      exit 2
+      ;;
   esac
 done
+
+# Validate CACHE_MODE
+if [[ "$CACHE_MODE" != "off" && "$CACHE_MODE" != "record" && "$CACHE_MODE" != "use" ]]; then
+  echo "ERROR: Invalid CACHE_MODE='$CACHE_MODE'. Must be: off|record|use" >&2
+  exit 2
+fi
 
 # Model version configuration - SINGLE SOURCE OF TRUTH
 # Update these when new model versions are released
@@ -367,22 +534,22 @@ MODEL_SONNET_4="anthropic.claude-sonnet-4-20250514-v1:0"
 resolve_model() {
   local model="$1"
   case "$model" in
-  opus | opus4.5 | opus45)
-    echo "$MODEL_OPUS_45"
-    ;;
-  sonnet | sonnet4.5 | sonnet45)
-    echo "$MODEL_SONNET_45"
-    ;;
-  sonnet4)
-    echo "$MODEL_SONNET_4"
-    ;;
-  latest | auto)
-    # Use system default - don't override config
-    echo ""
-    ;;
-  *)
-    echo "$model"
-    ;;
+    opus | opus4.5 | opus45)
+      echo "$MODEL_OPUS_45"
+      ;;
+    sonnet | sonnet4.5 | sonnet45)
+      echo "$MODEL_SONNET_45"
+      ;;
+    sonnet4)
+      echo "$MODEL_SONNET_4"
+      ;;
+    latest | auto)
+      # Use system default - don't override config
+      echo ""
+      ;;
+    *)
+      echo "$model"
+      ;;
   esac
 }
 
@@ -391,112 +558,27 @@ resolve_model() {
 resolve_model_opencode() {
   local model="$1"
   case "$model" in
-  grok | grokfast | grok-code-fast-1)
-    # Confirmed via opencode models
-    echo "opencode/grok-code"
-    ;;
-  opus | opus4.5 | opus45)
-    # Placeholder - anthropic not available in current setup
-    echo "opencode/gpt-5-nano"
-    ;; # Fallback to available model
-  sonnet | sonnet4.5 | sonnet45)
-    # Placeholder - anthropic not available
-    echo "opencode/gpt-5-nano"
-    ;; # Fallback
-  latest | auto)
-    # Let OpenCode decide its own default if user explicitly asked for auto/latest
-    echo ""
-    ;;
-  *)
-    # Pass through (user provided provider/model already, or an OpenCode alias)
-    echo "$model"
-    ;;
+    grok | grokfast | grok-code-fast-1)
+      # Confirmed via opencode models
+      echo "opencode/grok-code"
+      ;;
+    opus | opus4.5 | opus45)
+      # Placeholder - anthropic not available in current setup
+      echo "opencode/gpt-5-nano"
+      ;; # Fallback to available model
+    sonnet | sonnet4.5 | sonnet45)
+      # Placeholder - anthropic not available
+      echo "opencode/gpt-5-nano"
+      ;; # Fallback
+    latest | auto)
+      # Let OpenCode decide its own default if user explicitly asked for auto/latest
+      echo ""
+      ;;
+    *)
+      # Pass through (user provided provider/model already, or an OpenCode alias)
+      echo "$model"
+      ;;
   esac
-}
-
-# Resolve model shortcut to Cerebras model ID
-# Available models: https://inference-docs.cerebras.ai/introduction
-resolve_model_cerebras() {
-  local model="$1"
-  case "$model" in
-  llama4 | llama-4 | scout)
-    echo "llama-4-scout-17b"
-    ;;
-  llama4-large | maverick)
-    echo "llama-4-maverick-17b"
-    ;;
-  llama3 | llama-3 | llama3-8b)
-    echo "llama3.1-8b"
-    ;;
-  llama3-large | llama3-70b)
-    echo "llama3.1-70b"
-    ;;
-  qwen | qwen3)
-    echo "qwen-3-32b"
-    ;;
-  qwen-large | qwen-235b)
-    echo "qwen-3-235b-a22b-instruct-2507"
-    ;;
-  glm | glm4 | glm-4.7)
-    echo "zai-glm-4.7"
-    ;;
-  auto | latest | "")
-    echo "llama-4-scout-17b"
-    ;;
-  *)
-    echo "$model"
-    ;;
-  esac
-}
-
-# Run Cerebras API call (OpenAI-compatible endpoint)
-run_cerebras_api() {
-  local prompt_file="$1"
-  local model="$2"
-  local output_file="$3"
-
-  if [[ -z "${CEREBRAS_API_KEY:-}" ]]; then
-    echo "ERROR: CEREBRAS_API_KEY environment variable not set"
-    echo "Get your API key from: https://cloud.cerebras.ai"
-    return 1
-  fi
-
-  # Create JSON payload using jq for proper escaping
-  local json_payload
-  json_payload=$(jq -n \
-    --arg model "$model" \
-    --rawfile content "$prompt_file" \
-    '{
-      model: $model,
-      messages: [{role: "user", content: $content}],
-      max_tokens: 16384,
-      temperature: 0.3
-    }')
-
-  # Make API call
-  local response
-  response=$(curl -sS "https://api.cerebras.ai/v1/chat/completions" \
-    -H "Authorization: Bearer $CEREBRAS_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d "$json_payload" 2>&1)
-
-  local rc=$?
-  if [[ $rc -ne 0 ]]; then
-    echo "ERROR: Cerebras API call failed (curl exit $rc)"
-    echo "$response"
-    return 1
-  fi
-
-  # Check for API error
-  if echo "$response" | jq -e '.error' >/dev/null 2>&1; then
-    echo "ERROR: Cerebras API error:"
-    echo "$response" | jq -r '.error.message // .error'
-    return 1
-  fi
-
-  # Extract and output the response content
-  echo "$response" | jq -r '.choices[0].message.content' | tee "$output_file"
-  return 0
 }
 
 # Setup model config - default to Sonnet 4.5 for Ralph loops
@@ -507,8 +589,6 @@ TEMP_CONFIG=""
 if [[ -z "$MODEL_ARG" ]]; then
   if [[ "$RUNNER" == "opencode" ]]; then
     MODEL_ARG="grok" # Default for OpenCode
-  elif [[ "$RUNNER" == "cerebras" ]]; then
-    MODEL_ARG="llama4" # Default for Cerebras (fast Llama 4 Scout)
   else
     MODEL_ARG="sonnet" # Default for RovoDev
   fi
@@ -516,8 +596,6 @@ fi
 
 if [[ "$RUNNER" == "opencode" ]]; then
   RESOLVED_MODEL="$(resolve_model_opencode "$MODEL_ARG")"
-elif [[ "$RUNNER" == "cerebras" ]]; then
-  RESOLVED_MODEL="$(resolve_model_cerebras "$MODEL_ARG")"
 else
   RESOLVED_MODEL="$(resolve_model "$MODEL_ARG")"
 fi
@@ -761,11 +839,148 @@ check_protected_file_failures() {
   return 1 # no protected file failures
 }
 
+# =============================================================================
+# Structured Marker Emission (Phase 0 Observability)
+# =============================================================================
+# Markers are emitted to BOTH:
+#   1. stderr (for terminal visibility)
+#   2. CURRENT_LOG_FILE (for rollflow_analyze parsing)
+#
+# CURRENT_LOG_FILE is set by run_once() before tool execution.
+# If not set, markers only go to stderr.
+
+CURRENT_LOG_FILE=""
+
+# Emit a structured marker to stderr AND log file (if set)
+# Args: $1 = marker line
+emit_marker() {
+  local marker="$1"
+  # Always emit to stderr for terminal visibility
+  echo "$marker" >&2
+  # Also append to log file if set (for rollflow_analyze)
+  if [[ -n "$CURRENT_LOG_FILE" && -f "$CURRENT_LOG_FILE" ]]; then
+    echo "$marker" >>"$CURRENT_LOG_FILE"
+  fi
+}
+
+# Emit structured TOOL_START marker
+# Args: $1 = tool_id, $2 = tool_name, $3 = cache_key, $4 = git_sha
+log_tool_start() {
+  local tool_id="$1"
+  local tool_name="$2"
+  local cache_key="$3"
+  local git_sha="$4"
+  local ts
+  ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  emit_marker ":::TOOL_START::: id=${tool_id} tool=${tool_name} cache_key=${cache_key} git_sha=${git_sha} ts=${ts}"
+}
+
+# Emit structured TOOL_END marker
+# Args: $1 = tool_id, $2 = result (PASS/FAIL), $3 = exit_code, $4 = duration_ms, $5 = reason (optional)
+log_tool_end() {
+  local tool_id="$1"
+  local result="$2"
+  local exit_code="$3"
+  local duration_ms="$4"
+  local reason="${5:-}"
+  local ts
+  ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  if [[ -n "$reason" ]]; then
+    emit_marker ":::TOOL_END::: id=${tool_id} result=${result} exit=${exit_code} duration_ms=${duration_ms} reason=${reason} ts=${ts}"
+  else
+    emit_marker ":::TOOL_END::: id=${tool_id} result=${result} exit=${exit_code} duration_ms=${duration_ms} ts=${ts}"
+  fi
+}
+
+# Emit cache hit marker
+# Args: $1 = cache_key, $2 = tool_name
+log_cache_hit() {
+  local cache_key="$1"
+  local tool_name="$2"
+  local ts
+  ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  emit_marker ":::CACHE_HIT::: cache_key=${cache_key} tool=${tool_name} ts=${ts}"
+}
+
+# Emit cache miss marker
+# Args: $1 = cache_key, $2 = tool_name
+log_cache_miss() {
+  local cache_key="$1"
+  local tool_name="$2"
+  local ts
+  ts="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  emit_marker ":::CACHE_MISS::: cache_key=${cache_key} tool=${tool_name} ts=${ts}"
+}
+
+# Wrapper for tool execution with structured logging
+# Ensures TOOL_END marker is emitted even on failure (via trap)
+# Args: $1 = tool_id, $2 = tool_name, $3 = tool_key, $4 = git_sha, $5 = command to execute
+# Returns: exit code from command
+run_tool() {
+  local tool_id="$1"
+  local tool_name="$2"
+  local tool_key="$3"
+  local git_sha="$4"
+  local tool_command="$5"
+
+  local start_ms
+  local end_ms
+  local duration_ms
+  local rc
+
+  # Start timing
+  start_ms="$(($(date +%s%N) / 1000000))"
+
+  # Log tool start
+  log_tool_start "$tool_id" "$tool_name" "$tool_key" "$git_sha"
+
+  # Set up trap to ensure TOOL_END on failure/interrupt
+  # This trap handles signals (INT/TERM) and ensures cleanup before exit
+  trap 'end_ms="$(($(date +%s%N) / 1000000))"; duration_ms="$((end_ms - start_ms))"; log_tool_end "$tool_id" "FAIL" "130" "$duration_ms" "interrupted"; exit 130' INT TERM
+
+  # Execute command (with set +e to capture exit code without triggering set -e)
+  set +e
+  eval "$tool_command"
+  rc=$?
+  set -e
+
+  # Clear trap
+  trap - INT TERM
+
+  # Calculate duration
+  end_ms="$(($(date +%s%N) / 1000000))"
+  duration_ms="$((end_ms - start_ms))"
+
+  # Log tool end - ALWAYS emit this marker (pass or fail)
+  if [[ $rc -ne 0 ]]; then
+    log_tool_end "$tool_id" "FAIL" "$rc" "$duration_ms" "exit_code_$rc"
+  else
+    log_tool_end "$tool_id" "PASS" "$rc" "$duration_ms"
+  fi
+
+  return $rc
+}
+
 run_verifier() {
+  local iter="${1:-0}"
   if [[ ! -x "$VERIFY_SCRIPT" ]]; then
-    echo "⚠️  Verifier not found or not executable: $VERIFY_SCRIPT"
-    LAST_VERIFIER_STATUS="SKIP"
-    return 0 # Don't block if verifier doesn't exist yet
+    # Check for .initialized marker to determine security vs bootstrap mode
+    if [[ -f "$RALPH/.verify/.initialized" ]]; then
+      # Security hard-fail: verifier was initialized but is now missing
+      echo "🚨 SECURITY ERROR: Verifier missing but .initialized marker exists!"
+      echo "   Expected: $VERIFY_SCRIPT"
+      echo "   Marker: $RALPH/.verify/.initialized"
+      LAST_VERIFIER_STATUS="FAIL"
+      LAST_VERIFIER_FAILED_RULES="verifier_missing_initialized"
+      LAST_VERIFIER_FAIL_COUNT=1
+      return 1
+    else
+      # Bootstrap mode: soft-fail, allow continuation
+      echo "⚠️  Verifier not found or not executable: $VERIFY_SCRIPT"
+      echo "   (Bootstrap mode - no .initialized marker found)"
+      LAST_VERIFIER_STATUS="SKIP"
+      return 0 # Don't block if verifier doesn't exist yet
+    fi
   fi
 
   # Auto-init baselines if missing
@@ -785,7 +1000,16 @@ run_verifier() {
   RUN_ID="$(date +%s)-$$"
   export RUN_ID
 
-  if "$VERIFY_SCRIPT"; then
+  # Emit structured verifier environment marker
+  local verifier_ts
+  verifier_ts="$(date +%s)"
+  emit_marker ":::VERIFIER_ENV::: iter=${iter:-0} ts=${verifier_ts} run_id=${RUN_ID}"
+
+  # Capture stderr to summarize cache metrics (avoid spamming 40+ lines)
+  local cache_stderr
+  cache_stderr=$(mktemp)
+
+  if "$VERIFY_SCRIPT" 2>"$cache_stderr"; then
     # Verify freshness: run_id.txt must match our RUN_ID
     if [[ -f "$RUN_ID_FILE" ]]; then
       local stored_id
@@ -794,6 +1018,7 @@ run_verifier() {
         echo "❌ Freshness check FAILED: run_id mismatch"
         echo "   Expected: $RUN_ID"
         echo "   Got: $stored_id"
+        rm -f "$cache_stderr"
         LAST_VERIFIER_STATUS="FAIL"
         LAST_VERIFIER_FAILED_RULES="freshness_check"
         LAST_VERIFIER_FAIL_COUNT=1
@@ -801,11 +1026,21 @@ run_verifier() {
       fi
     else
       echo "❌ Freshness check FAILED: run_id.txt not found"
+      rm -f "$cache_stderr"
       LAST_VERIFIER_STATUS="FAIL"
       LAST_VERIFIER_FAILED_RULES="freshness_check"
       LAST_VERIFIER_FAIL_COUNT=1
       return 1
     fi
+
+    # Show cache summary (hits/misses) instead of 40+ individual lines
+    local cache_hits cache_misses
+    cache_hits=$(grep -c '\[CACHE_HIT\]' "$cache_stderr" 2>/dev/null) || cache_hits=0
+    cache_misses=$(grep -c '\[CACHE_MISS\]' "$cache_stderr" 2>/dev/null) || cache_misses=0
+    if [[ $((cache_hits + cache_misses)) -gt 0 ]]; then
+      echo "📊 Cache: $cache_hits hits, $cache_misses misses"
+    fi
+    rm -f "$cache_stderr"
 
     echo "✅ All acceptance criteria passed! (run_id: $RUN_ID)"
     tail -10 "$RALPH/.verify/latest.txt" 2>/dev/null || true
@@ -814,6 +1049,15 @@ run_verifier() {
     LAST_VERIFIER_FAIL_COUNT=0
     return 0
   else
+    # Show cache summary even on failure
+    local cache_hits cache_misses
+    cache_hits=$(grep -c '\[CACHE_HIT\]' "$cache_stderr" 2>/dev/null) || cache_hits=0
+    cache_misses=$(grep -c '\[CACHE_MISS\]' "$cache_stderr" 2>/dev/null) || cache_misses=0
+    if [[ $((cache_hits + cache_misses)) -gt 0 ]]; then
+      echo "📊 Cache: $cache_hits hits, $cache_misses misses"
+    fi
+    rm -f "$cache_stderr"
+
     echo "❌ Acceptance criteria FAILED"
     echo ""
     # Show header and summary, skip individual check results
@@ -832,6 +1076,26 @@ run_once() {
   local ts
   ts="$(date +%F_%H%M%S)"
   local log="$LOGDIR/${ts}_iter${iter}_${phase}.log"
+
+  # Set global log file for marker emission (Phase 0 observability)
+  # Touch the file first so emit_marker can append to it
+  touch "$log"
+  CURRENT_LOG_FILE="$log"
+
+  # Hard-block llm_ro scope for PLAN/BUILD phases (task 1.3.3)
+  # These phases must always call the LLM fresh to avoid skipping work
+  local effective_cache_scope="$CACHE_SCOPE"
+  if [[ "$phase" == "plan" || "$phase" == "build" ]]; then
+    if echo "$CACHE_SCOPE" | grep -q "llm_ro"; then
+      # Remove llm_ro from scope
+      effective_cache_scope=$(echo "$CACHE_SCOPE" | sed 's/,llm_ro//g; s/llm_ro,//g; s/llm_ro//g' | sed 's/^,//; s/,$//')
+      echo ""
+      echo "⚠️  llm_ro scope ignored for ${phase^^} phase (cache safety)"
+      echo "   Original scope: $CACHE_SCOPE"
+      echo "   Effective scope: $effective_cache_scope"
+      echo ""
+    fi
+  fi
 
   echo
   echo "========================================"
@@ -858,8 +1122,57 @@ run_once() {
       if [[ "$LAST_VERIFIER_STATUS" == "FAIL" ]]; then
         echo "# FAILED_RULES: $LAST_VERIFIER_FAILED_RULES"
         echo "# FAILURE_COUNT: $LAST_VERIFIER_FAIL_COUNT"
-        echo "# ACTION_REQUIRED: Read .verify/latest.txt and fix AC failures BEFORE picking new tasks."
+        echo "# ACTION_REQUIRED: Fix AC failures shown below BEFORE picking new tasks."
       fi
+      echo ""
+    fi
+
+    # Inject current verifier summary (BUILD mode gets fresh state after auto-fix)
+    # IMPORTANT: This is the ONLY source of verifier info - DO NOT read .verify/latest.txt
+    if [[ "$phase" == "build" ]] && [[ -f "$VERIFY_REPORT" ]]; then
+      echo "# ═══════════════════════════════════════════════════════════════"
+      echo "# VERIFIER STATUS (injected by loop.sh - DO NOT read .verify/latest.txt)"
+      echo "# ═══════════════════════════════════════════════════════════════"
+      echo ""
+      # Extract summary section
+      sed -n '/^SUMMARY$/,/^$/p' "$VERIFY_REPORT" 2>/dev/null || true
+      echo ""
+      # Show WARN and FAIL items with full details
+      local warn_fail_count
+      warn_fail_count=$(grep -cE "^\[WARN\]|\[FAIL\]" "$VERIFY_REPORT" 2>/dev/null) || warn_fail_count=0
+      if [[ "$warn_fail_count" -gt 0 ]]; then
+        echo "# Issues requiring attention:"
+        grep -E "^\[WARN\]|\[FAIL\]" "$VERIFY_REPORT" 2>/dev/null
+        echo ""
+        # Include the desc/cmd/stdout for failed items
+        echo "# Details for failed checks:"
+        awk '/^\[FAIL\]/{p=1; print; next} p && /^  (desc|cmd|exit|stdout):/{print} p && /^\[/{p=0}' "$VERIFY_REPORT" 2>/dev/null || true
+      else
+        echo "# ✅ All checks passing!"
+      fi
+      echo ""
+      echo "# ═══════════════════════════════════════════════════════════════"
+      echo ""
+    fi
+
+    # Inject remaining markdown lint errors (PLAN mode only)
+    # PLAN Ralph should see these so he can add tasks to fix them
+    if [[ "$phase" == "plan" ]] && [[ -n "${MARKDOWN_LINT_ERRORS:-}" ]]; then
+      echo "# ═══════════════════════════════════════════════════════════════"
+      echo "# MARKDOWN LINT ERRORS (add tasks to IMPLEMENTATION_PLAN.md)"
+      echo "# ═══════════════════════════════════════════════════════════════"
+      echo "#"
+      echo "# The following markdown errors could NOT be auto-fixed."
+      echo "# Add tasks to IMPLEMENTATION_PLAN.md using this format:"
+      echo "#"
+      echo "#   - [ ] **X.Y** Fix <ERROR_CODE> in <filename>"
+      echo "#     - **AC:** \`markdownlint <file>\` passes (no <ERROR_CODE> errors)"
+      echo "#"
+      echo "# Errors to fix:"
+      echo "#"
+      echo "$MARKDOWN_LINT_ERRORS"
+      echo ""
+      echo "# ═══════════════════════════════════════════════════════════════"
       echo ""
     fi
 
@@ -884,23 +1197,150 @@ run_once() {
       echo "⚠️ **CRITICAL: This is a dry-run. DO NOT commit any changes.**"
       echo ""
       echo "Your task:"
-      echo "1. Read IMPLEMENTATION_PLAN.md and identify the first unchecked task"
+      echo "1. Read workers/IMPLEMENTATION_PLAN.md and identify the first unchecked task"
       echo "2. Analyze what changes would be needed to implement it"
       echo "3. Show file diffs or describe modifications you would make"
-      echo "4. Update IMPLEMENTATION_PLAN.md with detailed notes about your findings"
+      echo "4. Update workers/IMPLEMENTATION_PLAN.md with detailed notes about your findings"
       echo "5. DO NOT use git commit - stop after analysis"
       echo ""
       echo "Output format:"
       echo "- List files that would be created/modified"
       echo "- Show code snippets or diffs for key changes"
       echo "- Document any risks or dependencies discovered"
-      echo "- Add findings to IMPLEMENTATION_PLAN.md under 'Discoveries & Notes'"
+      echo "- Add findings to workers/IMPLEMENTATION_PLAN.md under 'Discoveries & Notes'"
       echo ""
       echo "This is a preview only. No commits will be made."
     fi
   } >"$prompt_with_mode"
 
-  # Feed prompt into selected runner
+  # Feed prompt into selected runner with RollFlow tracking markers
+  local tool_id tool_key start_ms end_ms duration_ms rc
+  local git_sha
+  git_sha="$(git rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
+  tool_id="$(tool_call_id)"
+  # Generate input-based cache key (prompt content hash + git SHA, NOT iteration number)
+  # This implements task 1.5.1: remove iteration-level caching, use content-based keys
+  local prompt_hash
+  prompt_hash="$(sha256sum "$prompt_with_mode" 2>/dev/null | cut -d' ' -f1 || echo 'unknown')"
+  # Use AGENT_NAME for cache key (task 4.4.1: agent isolation)
+  local agent_key="${AGENT_NAME:-${RUNNER}}"
+  if [[ -z "$AGENT_NAME" ]]; then
+    echo "⚠️  WARNING: AGENT_NAME not set, falling back to RUNNER for cache key" >&2
+  fi
+  tool_key="${agent_key,,}|${phase}|${prompt_hash:0:16}|${git_sha}"
+  start_ms="$(($(date +%s%N) / 1000000))"
+
+  # Check cache if CACHE_SKIP or CACHE_MODE=use is enabled and neither FORCE_NO_CACHE nor FORCE_FRESH is set
+  if [[ ("$CACHE_SKIP" == "true" || "$CACHE_MODE" == "use") && "$FORCE_NO_CACHE" != "true" && "$FORCE_FRESH" != "true" ]]; then
+    # Safety check: If BUILD phase has pending tasks, force fresh run (task 1.4.1)
+    if [[ "$phase" == "build" ]]; then
+      local plan_file="${ROOT}/workers/IMPLEMENTATION_PLAN.md"
+      if [[ -f "$plan_file" ]] && grep -q "^- \[ \]" "$plan_file"; then
+        local guard_ts=$(($(date +%s%N) / 1000000))
+        emit_marker ":::CACHE_GUARD::: iter=${iter} allowed=0 reason=pending_tasks phase=BUILD ts=${guard_ts}"
+        echo ""
+        echo "========================================"
+        echo "⚠️  Cache disabled: pending tasks detected"
+        echo "BUILD phase with [ ] tasks requires fresh execution"
+        echo "========================================"
+        echo ""
+        # Skip cache lookup, proceed with normal execution
+      elif lookup_cache_pass "$tool_key" "$git_sha" "$RUNNER"; then
+        # Cache hit - skip tool execution
+        local guard_ts=$(($(date +%s%N) / 1000000))
+        emit_marker ":::CACHE_GUARD::: iter=${iter} allowed=1 reason=no_pending_tasks phase=BUILD ts=${guard_ts}"
+        # Query saved duration from cache
+        local saved_ms=0
+        local cache_db="${CACHE_DB:-artifacts/rollflow_cache/cache.sqlite}"
+        if [[ -f "$cache_db" ]]; then
+          saved_ms=$(python3 -c "
+import sqlite3
+try:
+    conn = sqlite3.connect('$cache_db')
+    cursor = conn.execute('SELECT last_duration_ms FROM pass_cache WHERE cache_key = ?', ('$tool_key',))
+    row = cursor.fetchone()
+    conn.close()
+    print(row[0] if row and row[0] else 0)
+except Exception:
+    print(0)
+" 2>/dev/null) || saved_ms=0
+        fi
+
+        log_cache_hit "$tool_key" "$RUNNER"
+        CACHE_HITS=$((CACHE_HITS + 1))
+        TIME_SAVED_MS=$((TIME_SAVED_MS + saved_ms))
+
+        echo ""
+        echo "========================================"
+        echo "✓ Cache hit - skipping tool execution"
+        echo "Key: $tool_key"
+        echo "Tool: $RUNNER"
+        echo "Saved: ${saved_ms}ms"
+        echo "========================================"
+        echo ""
+        # Cleanup temp config before early return
+        if [[ -n "${TEMP_CONFIG:-}" && -f "${TEMP_CONFIG:-}" ]]; then
+          rm -f "$TEMP_CONFIG"
+        fi
+        return 0
+      else
+        # Cache miss - proceed with execution
+        local guard_ts=$(($(date +%s%N) / 1000000))
+        emit_marker ":::CACHE_GUARD::: iter=${iter} allowed=1 reason=no_pending_tasks phase=BUILD ts=${guard_ts}"
+        log_cache_miss "$tool_key" "${AGENT_NAME:-$RUNNER}"
+        CACHE_MISSES=$((CACHE_MISSES + 1))
+      fi
+    else
+      # PLAN phase - check cache normally
+      if lookup_cache_pass "$tool_key" "$git_sha" "$RUNNER"; then
+        # Cache hit - skip tool execution
+        local guard_ts=$(($(date +%s%N) / 1000000))
+        emit_marker ":::CACHE_GUARD::: iter=${iter} allowed=1 reason=idempotent_check phase=PLAN ts=${guard_ts}"
+        # Query saved duration from cache
+        local saved_ms=0
+        local cache_db="${CACHE_DB:-artifacts/rollflow_cache/cache.sqlite}"
+        if [[ -f "$cache_db" ]]; then
+          saved_ms=$(python3 -c "
+import sqlite3
+try:
+    conn = sqlite3.connect('$cache_db')
+    cursor = conn.execute('SELECT last_duration_ms FROM pass_cache WHERE cache_key = ?', ('$tool_key',))
+    row = cursor.fetchone()
+    conn.close()
+    print(row[0] if row and row[0] else 0)
+except Exception:
+    print(0)
+" 2>/dev/null) || saved_ms=0
+        fi
+
+        log_cache_hit "$tool_key" "$RUNNER"
+        CACHE_HITS=$((CACHE_HITS + 1))
+        TIME_SAVED_MS=$((TIME_SAVED_MS + saved_ms))
+
+        echo ""
+        echo "========================================"
+        echo "✓ Cache hit - skipping tool execution"
+        echo "Key: $tool_key"
+        echo "Tool: $RUNNER"
+        echo "Saved: ${saved_ms}ms"
+        echo "========================================"
+        echo ""
+        # Cleanup temp config before early return
+        if [[ -n "${TEMP_CONFIG:-}" && -f "${TEMP_CONFIG:-}" ]]; then
+          rm -f "$TEMP_CONFIG"
+        fi
+        return 0
+      else
+        # Cache miss - proceed with execution
+        local guard_ts=$(($(date +%s%N) / 1000000))
+        emit_marker ":::CACHE_GUARD::: iter=${iter} allowed=1 reason=idempotent_check phase=PLAN ts=${guard_ts}"
+        log_cache_miss "$tool_key" "${AGENT_NAME:-$RUNNER}"
+        CACHE_MISSES=$((CACHE_MISSES + 1))
+      fi
+    fi
+  fi
+
+  # Execute LLM call through run_tool() wrapper for structured logging
   if [[ "$RUNNER" == "opencode" ]]; then
     # NOTE: Passing full prompt as CLI arg can hit shell/argv limits if prompt is huge.
     # If that happens, pivot to a file-based approach after validating basic integration.
@@ -908,22 +1348,20 @@ run_once() {
     if [[ -n "${OPENCODE_ATTACH:-}" ]]; then
       attach_flag="--attach ${OPENCODE_ATTACH}"
     fi
-    opencode run "${attach_flag}" --model "${RESOLVED_MODEL}" --format "${OPENCODE_FORMAT}" "$(cat "$prompt_with_mode")" 2>&1 | tee "$log"
+    run_tool "$tool_id" "$RUNNER" "$tool_key" "$git_sha" \
+      "opencode run \"${attach_flag}\" --model \"${RESOLVED_MODEL}\" --format \"${OPENCODE_FORMAT}\" \"\$(cat \"$prompt_with_mode\")\" 2>&1 | tee -a \"$log\""
     rc=$?
+
     if [[ $rc -ne 0 ]]; then
       echo "❌ OpenCode failed (exit $rc). See: $log"
       tail -n 80 "$log" || true
       return 1
     fi
-  elif [[ "$RUNNER" == "cerebras" ]]; then
-    echo "🧠 Running Cerebras API with model: ${RESOLVED_MODEL}"
-    if ! run_cerebras_api "$prompt_with_mode" "$RESOLVED_MODEL" "$log"; then
-      echo "❌ Cerebras API failed. See: $log"
-      return 1
-    fi
   else
     # Default: RovoDev
-    script -q -c "cat \"$prompt_with_mode\" | acli rovodev run ${CONFIG_FLAG} ${YOLO_FLAG}" "$log"
+    run_tool "$tool_id" "$RUNNER" "$tool_key" "$git_sha" \
+      "script -q -c \"cat \\\"$prompt_with_mode\\\" | acli rovodev run ${CONFIG_FLAG} ${YOLO_FLAG}\" \"$log\""
+    rc=$?
   fi
 
   # Clean up temporary prompt
@@ -945,7 +1383,7 @@ run_once() {
 
   # Run verifier after both PLAN and BUILD iterations
   if [[ "$phase" == "plan" ]] || [[ "$phase" == "build" ]]; then
-    if run_verifier; then
+    if run_verifier "$iter"; then
       echo ""
       echo "========================================"
       echo "🎉 ${phase^^} iteration verified successfully!"
@@ -983,13 +1421,13 @@ run_once() {
   fi
 
   # Check if all tasks are done (for true completion)
-  if [[ -f "$RALPH/IMPLEMENTATION_PLAN.md" ]]; then
+  if [[ -f "$ROOT/workers/IMPLEMENTATION_PLAN.md" ]]; then
     local unchecked_count
     # Note: grep -c returns exit 1 when count is 0, so we capture output first then default
-    unchecked_count=$(grep -cE '^\s*-\s*\[ \]' "$RALPH/IMPLEMENTATION_PLAN.md" 2>/dev/null) || unchecked_count=0
+    unchecked_count=$(grep -cE '^\s*-\s*\[ \]' "$ROOT/workers/IMPLEMENTATION_PLAN.md" 2>/dev/null) || unchecked_count=0
     if [[ "$unchecked_count" -eq 0 ]]; then
       # All tasks done - run final verification
-      if run_verifier; then
+      if run_verifier "$iter"; then
         echo ""
         echo "========================================"
         echo "🎉 All tasks complete and verified!"
@@ -1105,24 +1543,6 @@ if [[ "$RUNNER" == "opencode" ]]; then
   }
 fi
 
-# Fail fast if cerebras runner but dependencies not found
-if [[ "$RUNNER" == "cerebras" ]]; then
-  command -v jq >/dev/null 2>&1 || {
-    echo "ERROR: jq not found in PATH (required for Cerebras runner)"
-    echo "Install with: sudo apt install jq"
-    exit 1
-  }
-  command -v curl >/dev/null 2>&1 || {
-    echo "ERROR: curl not found in PATH (required for Cerebras runner)"
-    exit 1
-  }
-  if [[ -z "${CEREBRAS_API_KEY:-}" ]]; then
-    echo "ERROR: CEREBRAS_API_KEY environment variable not set"
-    echo "Get your API key from: https://cloud.cerebras.ai"
-    exit 1
-  fi
-fi
-
 # Health check for attach endpoint (TCP port check)
 if [[ -n "${OPENCODE_ATTACH:-}" ]]; then
   hostport="${OPENCODE_ATTACH#http://}"
@@ -1139,6 +1559,9 @@ fi
 # Print effective config for debugging
 echo "Runner=${RUNNER} Model=${RESOLVED_MODEL:-<default>} Format=${OPENCODE_FORMAT:-<default>} Attach=${OPENCODE_ATTACH:-<none>} Serve=${OPENCODE_SERVE:-false}"
 
+# Change to repository root for all git operations
+cd "$ROOT"
+
 # Ensure we're on the worktree branch before starting
 echo ""
 echo "========================================"
@@ -1152,10 +1575,47 @@ if [[ "$NO_MONITORS" == "false" ]]; then
   launch_monitors
 fi
 
+# Generate RollFlow run ID and log run start marker
+ROLLFLOW_RUN_ID="run-$(date +%s)-$$"
+export ROLLFLOW_RUN_ID
+log_run_start "$ROLLFLOW_RUN_ID"
+
+# Print cache status reminder if enabled
+if [[ "$CACHE_SKIP" == "true" ]]; then
+  echo ""
+  echo "========================================"
+  echo "🚀 Cache skip enabled"
+  echo "Redundant tool calls will be skipped"
+  echo "========================================"
+  echo ""
+fi
+
+# Set up trap for error event on unexpected exit
+trap 'cleanup_and_emit' EXIT
+
 # Determine prompt strategy
 if [[ -n "$PROMPT_ARG" ]]; then
   PROMPT_FILE="$(resolve_prompt "$PROMPT_ARG")"
   for ((i = 1; i <= ITERATIONS; i++)); do
+    # Initialize log file early for marker emission (Phase 0 observability)
+    iter_ts="$(date +%F_%H%M%S)"
+    CURRENT_LOG_FILE="$LOGDIR/${iter_ts}_iter${i}_custom.log"
+    touch "$CURRENT_LOG_FILE"
+
+    # Log iteration start marker for RollFlow tracking
+    log_iter_start "iter-$i" "$ROLLFLOW_RUN_ID"
+    CURRENT_ITER=$i
+
+    # Emit ITER_START marker for rollflow_analyze (task X.1.1)
+    iter_start_ts="$(($(date +%s%N) / 1000000))"
+    emit_marker ":::ITER_START::: iter=$i run_id=$ROLLFLOW_RUN_ID ts=$iter_start_ts"
+
+    emit_event --event iteration_start --iter "$i"
+
+    # Log cache config for Cortex visibility (task X.4.1)
+    cache_config_ts="$(($(date +%s%N) / 1000000))"
+    emit_marker ":::CACHE_CONFIG::: mode=$CACHE_MODE scope=$CACHE_SCOPE exported=1 iter=$i ts=$cache_config_ts"
+
     # Check for interrupt before starting iteration
     if [[ "$INTERRUPT_RECEIVED" == "true" ]]; then
       echo ""
@@ -1190,11 +1650,11 @@ if [[ -n "$PROMPT_ARG" ]]; then
         echo ""
       fi
       echo "To regenerate baselines for these files:"
-      echo "  cd brain/ralph"
-      echo "  sha256sum loop.sh | cut -d' ' -f1 > .verify/loop.sha256"
-      echo "  sha256sum PROMPT.md | cut -d' ' -f1 > .verify/prompt.sha256"
-      echo "  sha256sum verifier.sh | cut -d' ' -f1 > .verify/verifier.sha256"
-      echo "  sha256sum rules/AC.rules | cut -d' ' -f1 > .verify/ac.sha256"
+      echo "  cd ralph"
+      echo "  sha256sum loop.sh | cut -d' ' -f1 > ../.verify/loop.sha256"
+      echo "  sha256sum PROMPT.md | cut -d' ' -f1 > ../.verify/prompt.sha256"
+      echo "  sha256sum verifier.sh | cut -d' ' -f1 > ../.verify/verifier.sha256"
+      echo "  sha256sum rules/AC.rules | cut -d' ' -f1 > ../.verify/ac.sha256"
       echo ""
       echo "After resolving, re-run the loop to continue."
       exit 1
@@ -1202,7 +1662,22 @@ if [[ -n "$PROMPT_ARG" ]]; then
 
     # Capture exit code without triggering set -e
     run_result=0
+    emit_event --event phase_start --iter "$i" --phase "custom"
+    # Emit PHASE_START marker for rollflow_analyze (task X.1.2)
+    phase_start_ts="$(($(date +%s%N) / 1000000))"
+    emit_marker ":::PHASE_START::: iter=$i phase=custom run_id=$ROLLFLOW_RUN_ID ts=$phase_start_ts"
     run_once "$PROMPT_FILE" "custom" "$i" || run_result=$?
+    if [[ $run_result -eq 0 ]]; then
+      emit_event --event phase_end --iter "$i" --phase "custom" --status ok
+      # Emit PHASE_END marker for rollflow_analyze (task X.1.2)
+      phase_end_ts="$(($(date +%s%N) / 1000000))"
+      emit_marker ":::PHASE_END::: iter=$i phase=custom status=ok run_id=$ROLLFLOW_RUN_ID ts=$phase_end_ts"
+    else
+      emit_event --event phase_end --iter "$i" --phase "custom" --status fail --code "$run_result"
+      # Emit PHASE_END marker for rollflow_analyze (task X.1.2)
+      phase_end_ts="$(($(date +%s%N) / 1000000))"
+      emit_marker ":::PHASE_END::: iter=$i phase=custom status=fail code=$run_result run_id=$ROLLFLOW_RUN_ID ts=$phase_end_ts"
+    fi
     # Check if Ralph signaled completion
     if [[ $run_result -eq 42 ]]; then
       echo ""
@@ -1245,10 +1720,52 @@ if [[ -n "$PROMPT_ARG" ]]; then
       # Reset counter on successful iteration
       CONSECUTIVE_VERIFIER_FAILURES=0
     fi
+
+    # Run gap radar after iteration completes (task 7.4.1)
+    if [[ -x "$ROOT/bin/gap-radar" ]]; then
+      echo ""
+      echo "Running gap radar analysis..."
+      if "$ROOT/bin/gap-radar" --dry-run 2>&1 | tee -a "$LOGDIR/iter${i}_custom.log"; then
+        echo "✓ Gap radar analysis complete"
+      else
+        echo "⚠ Gap radar analysis failed (non-blocking)"
+      fi
+      echo ""
+    fi
+
+    emit_event --event iteration_end --iter "$i" --status ok
+
+    # Emit ITER_END marker for rollflow_analyze (task X.1.1)
+    iter_end_ts="$(($(date +%s%N) / 1000000))"
+    emit_marker ":::ITER_END::: iter=$i run_id=$ROLLFLOW_RUN_ID ts=$iter_end_ts"
   done
 else
   # Alternating plan/build
   for ((i = 1; i <= ITERATIONS; i++)); do
+    # Initialize log file early for marker emission (Phase 0 observability)
+    # Note: run_once() will update CURRENT_LOG_FILE with the actual phase-specific log
+    iter_ts="$(date +%F_%H%M%S)"
+    if [[ $i -eq 1 || $((i % PLAN_EVERY)) -eq 0 ]]; then
+      CURRENT_LOG_FILE="$LOGDIR/${iter_ts}_iter${i}_plan.log"
+    else
+      CURRENT_LOG_FILE="$LOGDIR/${iter_ts}_iter${i}_build.log"
+    fi
+    touch "$CURRENT_LOG_FILE"
+
+    # Log iteration start marker for RollFlow tracking
+    log_iter_start "iter-$i" "$ROLLFLOW_RUN_ID"
+    CURRENT_ITER=$i
+
+    # Emit ITER_START marker for rollflow_analyze (task X.1.1)
+    iter_start_ts="$(($(date +%s%N) / 1000000))"
+    emit_marker ":::ITER_START::: iter=$i run_id=$ROLLFLOW_RUN_ID ts=$iter_start_ts"
+
+    emit_event --event iteration_start --iter "$i"
+
+    # Log cache config for Cortex visibility (task X.4.1)
+    cache_config_ts="$(($(date +%s%N) / 1000000))"
+    emit_marker ":::CACHE_CONFIG::: mode=$CACHE_MODE scope=$CACHE_SCOPE exported=1 iter=$i ts=$cache_config_ts"
+
     # Check for interrupt before starting iteration
     if [[ "$INTERRUPT_RECEIVED" == "true" ]]; then
       echo ""
@@ -1283,11 +1800,11 @@ else
         echo ""
       fi
       echo "To regenerate baselines for these files:"
-      echo "  cd brain/ralph"
-      echo "  sha256sum loop.sh | cut -d' ' -f1 > .verify/loop.sha256"
-      echo "  sha256sum PROMPT.md | cut -d' ' -f1 > .verify/prompt.sha256"
-      echo "  sha256sum verifier.sh | cut -d' ' -f1 > .verify/verifier.sha256"
-      echo "  sha256sum rules/AC.rules | cut -d' ' -f1 > .verify/ac.sha256"
+      echo "  cd ralph"
+      echo "  sha256sum loop.sh | cut -d' ' -f1 > ../.verify/loop.sha256"
+      echo "  sha256sum PROMPT.md | cut -d' ' -f1 > ../.verify/prompt.sha256"
+      echo "  sha256sum verifier.sh | cut -d' ' -f1 > ../.verify/verifier.sha256"
+      echo "  sha256sum rules/AC.rules | cut -d' ' -f1 > ../.verify/ac.sha256"
       echo ""
       echo "After resolving, re-run the loop to continue."
       exit 1
@@ -1296,20 +1813,178 @@ else
     # Capture exit code without triggering set -e
     run_result=0
     if [[ "$i" -eq 1 ]] || ((PLAN_EVERY > 0 && ((i - 1) % PLAN_EVERY == 0))); then
+      # Clean up completed tasks before PLAN phase
+      # Ralph already logs to THUNK.md during BUILD, so no --archive needed
+      if [[ -f "$RALPH/cleanup_plan.sh" ]]; then
+        echo "Cleaning up completed tasks from plan..."
+        if (cd "$RALPH" && bash cleanup_plan.sh) 2>&1; then
+          echo "✓ Plan cleanup complete"
+        else
+          echo "⚠ Plan cleanup failed (non-blocking)"
+        fi
+        echo ""
+      fi
+
+      # Commit any accumulated changes from BUILD iterations
+      if ! git diff --quiet || ! git diff --cached --quiet; then
+        echo "Committing accumulated BUILD changes..."
+        git add -A
+        git commit -m "build: accumulated changes from BUILD iterations" || true
+        echo "✓ BUILD changes committed"
+        echo ""
+      fi
+
+      # Snapshot plan BEFORE sync for drift detection (prevents direct-edit bypass)
+      PLAN_SNAPSHOT="$ROOT/.verify/plan_snapshot.md"
+      if [[ -f "$ROOT/workers/IMPLEMENTATION_PLAN.md" ]]; then
+        cp "$ROOT/workers/IMPLEMENTATION_PLAN.md" "$PLAN_SNAPSHOT"
+      fi
+
       # Sync tasks from Cortex before PLAN mode
       if [[ -f "$RALPH/sync_cortex_plan.sh" ]]; then
         echo "Syncing tasks from Cortex..."
-        if bash "$RALPH/sync_cortex_plan.sh" 2>&1; then
+        if (cd "$RALPH" && bash sync_cortex_plan.sh) 2>&1; then
           echo "✓ Cortex sync complete"
         else
           echo "⚠ Cortex sync failed (non-blocking)"
         fi
         echo ""
       fi
+
+      # Capture remaining markdown lint errors for PLAN phase
+      # PLAN Ralph should see these so he can add tasks to fix them
+      MARKDOWN_LINT_ERRORS=""
+      if command -v markdownlint &>/dev/null; then
+        echo "Checking for markdown lint errors..."
+        lint_output=$(markdownlint "$ROOT" 2>&1 | grep -E "error MD" | head -40) || true
+        if [[ -n "$lint_output" ]]; then
+          MARKDOWN_LINT_ERRORS="$lint_output"
+          echo "Found $(echo "$lint_output" | wc -l) markdown lint errors for PLAN review"
+        else
+          echo "No markdown lint errors found"
+        fi
+        unset lint_output
+      fi
+
+      emit_event --event phase_start --iter "$i" --phase "plan"
+      # Emit PHASE_START marker for rollflow_analyze (task X.1.2)
+      phase_start_ts="$(($(date +%s%N) / 1000000))"
+      emit_marker ":::PHASE_START::: iter=$i phase=plan run_id=$ROLLFLOW_RUN_ID ts=$phase_start_ts"
       run_once "$PLAN_PROMPT" "plan" "$i" || run_result=$?
+      if [[ $run_result -eq 0 ]]; then
+        emit_event --event phase_end --iter "$i" --phase "plan" --status ok
+        # Emit PHASE_END marker for rollflow_analyze (task X.1.2)
+        phase_end_ts="$(($(date +%s%N) / 1000000))"
+        emit_marker ":::PHASE_END::: iter=$i phase=plan status=ok run_id=$ROLLFLOW_RUN_ID ts=$phase_end_ts"
+      else
+        emit_event --event phase_end --iter "$i" --phase "plan" --status fail --code "$run_result"
+        # Emit PHASE_END marker for rollflow_analyze (task X.1.2)
+        phase_end_ts="$(($(date +%s%N) / 1000000))"
+        emit_marker ":::PHASE_END::: iter=$i phase=plan status=fail code=$run_result run_id=$ROLLFLOW_RUN_ID ts=$phase_end_ts"
+      fi
     else
+      # Auto-fix lint issues before BUILD iteration (only if relevant files changed)
+      autofix_git_sha="$(git rev-parse --short HEAD 2>/dev/null || echo 'unknown')"
+
+      # Check what files have changed (staged + unstaged)
+      changed_files="$(
+        git diff --name-only HEAD 2>/dev/null
+        git diff --name-only --cached 2>/dev/null
+      )"
+      md_changed=$(echo "$changed_files" | grep -c '\.md$' || true)
+
+      # Run fix-markdown only if .md files changed (saves ~7.5s when no markdown changes)
+      if [[ -f "$RALPH/fix-markdown.sh" ]] && [[ "$md_changed" -gt 0 ]]; then
+        echo "Running auto-fix for markdown ($md_changed .md file(s) changed)..."
+        fix_md_id="$(tool_call_id)"
+        fix_md_key="fix-markdown|${autofix_git_sha}"
+        run_tool "$fix_md_id" "fix-markdown" "$fix_md_key" "$autofix_git_sha" \
+          "(cd \"$ROOT\" && bash \"$RALPH/fix-markdown.sh\" . 2>/dev/null) || true" || true
+      elif [[ "$md_changed" -eq 0 ]]; then
+        echo "Skipping fix-markdown (no .md files changed)"
+      fi
+
+      # Run pre-commit only on staged files (saves ~10s vs --all-files)
+      # Note: PLAN-start commit runs full pre-commit via git hooks
+      # This is incremental check for BUILD phase changes only
+      if command -v pre-commit &>/dev/null; then
+        # Stage any changes so pre-commit can check them
+        if [[ -n "$changed_files" ]]; then
+          git add -A
+          # Only run if something is actually staged
+          if ! git diff --cached --quiet; then
+            echo "Running pre-commit on staged files..."
+            precommit_id="$(tool_call_id)"
+            precommit_key="pre-commit|${autofix_git_sha}"
+            run_tool "$precommit_id" "pre-commit" "$precommit_key" "$autofix_git_sha" \
+              "(cd \"$ROOT\" && pre-commit run 2>/dev/null) || true" || true
+          else
+            echo "Skipping pre-commit (nothing staged)"
+          fi
+        else
+          echo "Skipping pre-commit (no changes to check)"
+        fi
+      fi
+
+      # Run verifier to get current state (Ralph will see WARN/FAIL in context)
+      # Skip if no changes - post-iteration verifier will still run after Ralph works
+      if [[ -n "$changed_files" ]]; then
+        echo "Running verifier to check current state..."
+        verifier_pre_id="$(tool_call_id)"
+        verifier_pre_key="verifier-pre-build|${autofix_git_sha}"
+        run_tool "$verifier_pre_id" "verifier" "$verifier_pre_key" "$autofix_git_sha" \
+          "(cd \"$RALPH\" && bash verifier.sh 2>/dev/null) || true" || true
+      else
+        echo "Skipping pre-build verifier (no changes since last run)"
+      fi
+      echo ""
+
+      emit_event --event phase_start --iter "$i" --phase "build"
+      # Emit PHASE_START marker for rollflow_analyze (task X.1.2)
+      phase_start_ts="$(($(date +%s%N) / 1000000))"
+      emit_marker ":::PHASE_START::: iter=$i phase=build run_id=$ROLLFLOW_RUN_ID ts=$phase_start_ts"
       run_once "$BUILD_PROMPT" "build" "$i" || run_result=$?
+      if [[ $run_result -eq 0 ]]; then
+        emit_event --event phase_end --iter "$i" --phase "build" --status ok
+        # Emit PHASE_END marker for rollflow_analyze (task X.1.2)
+        phase_end_ts="$(($(date +%s%N) / 1000000))"
+        emit_marker ":::PHASE_END::: iter=$i phase=build status=ok run_id=$ROLLFLOW_RUN_ID ts=$phase_end_ts"
+      else
+        emit_event --event phase_end --iter "$i" --phase "build" --status fail --code "$run_result"
+        # Emit PHASE_END marker for rollflow_analyze (task X.1.2)
+        phase_end_ts="$(($(date +%s%N) / 1000000))"
+        emit_marker ":::PHASE_END::: iter=$i phase=build status=fail code=$run_result run_id=$ROLLFLOW_RUN_ID ts=$phase_end_ts"
+      fi
+
+      # Sync completions back to Cortex after BUILD iterations
+      if [[ -f "$RALPH/sync_completions_to_cortex.sh" ]]; then
+        echo "Syncing completions to Cortex..."
+        if (cd "$RALPH" && bash sync_completions_to_cortex.sh) 2>&1; then
+          echo "✓ Completions synced to Cortex"
+        else
+          echo "⚠ Completions sync failed (non-blocking)"
+        fi
+        echo ""
+      fi
     fi
+
+    # Plan drift detection: compare snapshot vs current plan
+    PLAN_SNAPSHOT="$ROOT/.verify/plan_snapshot.md"
+    if [[ -f "$PLAN_SNAPSHOT" ]] && [[ -f "$ROOT/workers/IMPLEMENTATION_PLAN.md" ]]; then
+      # Check for unexpected changes (tasks added directly, not via cortex sync)
+      snapshot_tasks=$(grep -c "^- \[ \]" "$PLAN_SNAPSHOT" 2>/dev/null || echo "0")
+      current_tasks=$(grep -c "^- \[ \]" "$ROOT/workers/IMPLEMENTATION_PLAN.md" 2>/dev/null || echo "0")
+      if [[ "$current_tasks" -gt "$snapshot_tasks" ]]; then
+        new_task_count=$((current_tasks - snapshot_tasks))
+        echo ""
+        echo "⚠️  Plan drift detected: $new_task_count new task(s) added directly to workers/IMPLEMENTATION_PLAN.md"
+        echo "    Tasks should be added via cortex/IMPLEMENTATION_PLAN.md and synced."
+        echo ""
+      fi
+      # Clean up snapshot
+      rm -f "$PLAN_SNAPSHOT"
+    fi
+
     # Check if Ralph signaled completion (exit code 42)
     if [[ $run_result -eq 42 ]]; then
       echo ""
@@ -1352,5 +2027,42 @@ else
       # Reset counter on successful iteration
       CONSECUTIVE_VERIFIER_FAILURES=0
     fi
+
+    # Run gap radar after BUILD iteration completes (task 7.4.1)
+    # Only run for BUILD iterations (not PLAN)
+    if [[ "$i" -ne 1 ]] && ! ((PLAN_EVERY > 0 && ((i - 1) % PLAN_EVERY == 0))); then
+      if [[ -x "$ROOT/bin/gap-radar" ]]; then
+        echo ""
+        echo "Running gap radar analysis..."
+        if "$ROOT/bin/gap-radar" --dry-run 2>&1 | tee -a "$LOGDIR/iter${i}_build.log"; then
+          echo "✓ Gap radar analysis complete"
+        else
+          echo "⚠ Gap radar analysis failed (non-blocking)"
+        fi
+        echo ""
+      fi
+    fi
+
+    emit_event --event iteration_end --iter "$i" --status ok
+
+    # Emit ITER_END marker for rollflow_analyze (task X.1.1)
+    iter_end_ts="$(($(date +%s%N) / 1000000))"
+    emit_marker ":::ITER_END::: iter=$i run_id=$ROLLFLOW_RUN_ID ts=$iter_end_ts"
   done
+fi
+
+# Print cache statistics summary at end of run
+if [[ "$CACHE_SKIP" == "true" ]]; then
+  echo ""
+  echo "========================================"
+  echo "📊 Cache Statistics"
+  echo "========================================"
+  echo "Cache hits:   $CACHE_HITS"
+  echo "Cache misses: $CACHE_MISSES"
+  if [[ $CACHE_HITS -gt 0 ]]; then
+    TIME_SAVED_SEC=$((TIME_SAVED_MS / 1000))
+    echo "Time saved:   ${TIME_SAVED_SEC}s (${TIME_SAVED_MS}ms)"
+  fi
+  echo "========================================"
+  echo ""
 fi
