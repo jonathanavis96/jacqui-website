@@ -1,6 +1,6 @@
 Ralph Verifier Report
-Time: 2026-01-26 23:30:24
-Git:  f7ff143
+Time: 2026-01-26 23:42:31
+Git:  c05b3e6
 AC:   /home/grafe/code/jacqui-website/ralph/rules/AC.rules
 Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
@@ -8,11 +8,11 @@ Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
   desc: Astro build passes
   cmd:  cd .. && npm run build 2>&1 | tail -5
   exit: 0
-  stdout: 23:30:26 ✓ Completed in 24ms.
+  stdout: 23:42:33 ✓ Completed in 25ms.
 
-23:30:26 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
-23:30:26 [build] 4 page(s) built in 1.30s
-23:30:26 [build] Complete!
+23:42:33 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+23:42:33 [build] 4 page(s) built in 1.16s
+23:42:33 [build] Complete!
 [PASS] LINT-01
   desc: No lint errors (if configured)
   cmd:  cd .. && npm run lint 2>&1 || echo "Lint not configured"
@@ -24,7 +24,7 @@ npm error   npm link # Symlink a package folder
 npm error
 npm error To see a list of scripts, run:
 npm error   npm run
-npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T21_30_26_498Z-debug-0.log
+npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T21_42_33_933Z-debug-0.log
 Lint not configured
 [PASS] PAGE-01
   desc: Homepage exists
@@ -108,16 +108,20 @@ found
   exit: 0
   stdout: ../src/components/Footer.astro:    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 found
-[PASS] GUARD-01
+[FAIL] GUARD-01
   desc: PROMPT.md unchanged
   cmd:  sha256sum PROMPT.md | awk '{print $1}' | diff -q - <(cat .verify/prompt.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
   exit: 0
-  stdout: OK
-[PASS] GUARD-02
+  stdout: MODIFIED
+  reasons:
+    - stdout mismatch expected='OK' got='MODIFIED'
+[FAIL] GUARD-02
   desc: loop.sh unchanged
   cmd:  sha256sum loop.sh | awk '{print $1}' | diff -q - <(cat .verify/loop.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
   exit: 0
-  stdout: OK
+  stdout: MODIFIED
+  reasons:
+    - stdout mismatch expected='OK' got='MODIFIED'
 [PASS] GUARD-03
   desc: verifier.sh unchanged
   cmd:  sha256sum verifier.sh | awk '{print $1}' | diff -q - <(cat .verify/verifier.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
@@ -140,8 +144,8 @@ found
   stdout: dist/ exists
 ------------------------------------------------------------
 SUMMARY
-  PASS: 20
-  FAIL: 0
+  PASS: 18
+  FAIL: 2
   WARN: 0 (manual_warn=0)
   SKIP: 0
   Manual gate=block failures: 0

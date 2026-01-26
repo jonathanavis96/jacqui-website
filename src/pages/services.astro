@@ -31,20 +31,34 @@ const base = import.meta.env.BASE_URL;
     <!-- Online Therapy Section -->
     <section id="online" class="py-16 md:py-20 bg-white scroll-mt-24">
       <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div class="mb-8">
-            <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Online Therapy & Coaching
-            </h2>
-            <p class="text-xl text-gray-600">
-              Accessible, professional therapy from wherever you are
-            </p>
-          </div>
+        <div class="max-w-6xl mx-auto">
+          <!-- Desktop: Text Left, Image Right -->
+          <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+            <div>
+              <div class="mb-6">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+                  Online Therapy & Coaching
+                </h2>
+                <p class="text-xl text-gray-600">
+                  Accessible, professional therapy from wherever you are
+                </p>
+              </div>
 
-          <div class="prose prose-lg max-w-none mb-10">
-            <p class="text-gray-700 leading-relaxed">
-              Online therapy offers a flexible, accessible way to receive professional psychological support. Whether you're at home, traveling, or living abroad, we can work together through secure video sessions.
-            </p>
+              <div class="prose prose-lg max-w-none">
+                <p class="text-gray-700 leading-relaxed">
+                  Online therapy offers a flexible, accessible way to receive professional psychological support. Whether you're at home, traveling, or living abroad, we can work together through secure video sessions.
+                </p>
+              </div>
+            </div>
+
+            <div class="order-first md:order-last">
+              <img 
+                src={`${base}images/therapy_office_1.webp`}
+                alt="Online therapy session setup"
+                class="rounded-lg shadow-lg w-full h-auto"
+                loading="lazy"
+              />
+            </div>
           </div>
 
           <!-- What's Included -->
@@ -151,20 +165,34 @@ const base = import.meta.env.BASE_URL;
     <!-- In-Person Therapy Section -->
     <section id="in-person" class="py-16 md:py-20 bg-purple-50 scroll-mt-24">
       <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div class="mb-8">
-            <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              In-Person Therapy & Coaching
-            </h2>
-            <p class="text-xl text-gray-600">
-              Face-to-face sessions for those who prefer in-person connection
-            </p>
-          </div>
+        <div class="max-w-6xl mx-auto">
+          <!-- Desktop: Image Left, Text Right -->
+          <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+            <div>
+              <img 
+                src={`${base}images/image6_chairs.webp`}
+                alt="Comfortable therapy room"
+                class="rounded-lg shadow-lg w-full h-auto"
+                loading="lazy"
+              />
+            </div>
 
-          <div class="prose prose-lg max-w-none mb-10">
-            <p class="text-gray-700 leading-relaxed">
-              For clients who prefer face-to-face sessions, I offer in-person therapy at a private practice location. In-person therapy provides the same compassionate, trauma-informed care in a comfortable, confidential setting.
-            </p>
+            <div>
+              <div class="mb-6">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+                  In-Person Therapy & Coaching
+                </h2>
+                <p class="text-xl text-gray-600">
+                  Face-to-face sessions for those who prefer in-person connection
+                </p>
+              </div>
+
+              <div class="prose prose-lg max-w-none">
+                <p class="text-gray-700 leading-relaxed">
+                  For clients who prefer face-to-face sessions, I offer in-person therapy at a private practice location. In-person therapy provides the same compassionate, trauma-informed care in a comfortable, confidential setting.
+                </p>
+              </div>
+            </div>
           </div>
 
           <!-- What to Expect -->
@@ -264,19 +292,46 @@ const base = import.meta.env.BASE_URL;
     <!-- Consultancy Services Section -->
     <section id="consultancy" class="py-16 md:py-20 bg-white scroll-mt-24">
       <div class="container mx-auto px-4">
-        <div class="max-w-4xl mx-auto">
-          <div class="mb-8">
-            <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-              Consultancy Services
-            </h2>
-            <p class="text-xl text-gray-600">
-              Training, workshops, and specialised support for organisations and practitioners
-            </p>
+        <div class="max-w-6xl mx-auto">
+          <!-- Desktop: Text Left, Image Right -->
+          <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+            <div>
+              <div class="mb-6">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+                  Consultancy Services
+                </h2>
+                <p class="text-xl text-gray-600">
+                  Training, workshops, and specialised support for organisations and practitioners
+                </p>
+              </div>
+
+              <div class="prose prose-lg max-w-none">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                  Drawing on over a decade of experience in community mental health, trauma work, and international development, I offer consultancy services for organisations, NGOs, and mental health practitioners.
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                  Whether you need training, program development, or specialized support, I can work with you to create meaningful change.
+                </p>
+              </div>
+            </div>
+
+            <div class="order-first md:order-last">
+              <img 
+                src={`${base}images/image3_mirror.webp`}
+                alt="Professional consultancy and training"
+                class="rounded-lg shadow-lg w-full h-auto"
+                loading="lazy"
+              />
+            </div>
           </div>
 
-          <div class="prose prose-lg max-w-none mb-10">
-            <p class="text-gray-700 leading-relaxed">
-              Drawing on over a decade of experience in community mental health, trauma work, and international development, I offer consultancy services for organisations, NGOs, and mental health practitioners.
+          <!-- Areas of Expertise -->
+          <div class="mb-10 text-center">
+            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
+              Areas of expertise
+            </h3>
+            <p class="text-gray-600 max-w-3xl mx-auto">
+              I offer specialized support across six key areas of mental health practice and community work
             </p>
           </div>
 

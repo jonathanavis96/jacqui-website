@@ -110,6 +110,14 @@ git add -A
 - Stage changes with `git add -A`
 - **STOP** - Do not continue to next task
 
+### Batching rule (docs/markdown)
+
+If the work is **small, homogeneous markdown/doc fixes** (e.g., markdownlint warnings, link fixes, formatting fixes), batch them:
+
+- Combine up to **5–10** related markdown issues per iteration (or until changes stop being "small").
+- Prefer one cohesive patch over many tiny patches.
+- Split into separate iterations only if changes become risky, cross-cutting, or require separate verification.
+
 ---
 
 ## Output Format

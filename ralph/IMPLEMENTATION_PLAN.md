@@ -52,45 +52,17 @@ Last updated: 2026-01-26 23:20:00
 
 ### Phase 10.5: About Page Content Updates (6 tasks)
 
-- [ ] **10.5.4** Update Who I Work With section (individuals, adolescents, couples)
-  - **Goal:** Use Jacqui's wording as closely as possible
-  - **AC:** Section text matches Jacqui's sentence with minimal edits
-
-- [ ] **10.5.5** Fix HPCSA registration number across site
-  - **Goal:** Update HPCSA number to **PS0133779** (source: Jacqui notes)
-  - **AC:** `grep -R "PS0" src/` shows PS0133779 only
-
-- [ ] **10.5.6** UK English pass on About page
-  - **Goal:** Ensure UK spelling consistency (e.g., generalised, programmes)
-  - **AC:** No "Generalized" remains on About page
-
-
 ### Phase 10.6: Psychology Today Badge Integration (1 task)
 
 ## MEDIUM Priority
 
 ### Phase 10.7: Services Page Visual Redesign (2 tasks)
 
-- [ ] **10.7.1** Implement desktop zig-zag layout (text/image alternating)
-  - **Goal:** Alternate text-left/image-right then image-left/text-right for Online + In-person sections; mobile stacks naturally
-  - **Implementation notes (required pattern):**
-    - Each of Online + In-person sections must use: `grid md:grid-cols-2 gap-10 items-center`
-    - Alternate order using `md:order-2` on the image or text block
-    - Images should be constrained: `w-full max-w-md` (or similar) and use `rounded-lg shadow-lg object-cover`
-    - Avoid a single standalone "Therapy Spaces" image grid; use images inline to break up text
-  - **Skill:** `~/code/brain/skills/domains/websites/design/spacing-layout.md`, `~/code/brain/skills/domains/websites/architecture/section-composer.md`
-  - **AC:** Desktop shows zig-zag layout for Online + In-person; mobile stacks image then text naturally
-
-- [ ] **10.7.2** Reduce text-wall feel on Services page
-  - **Goal:** Break long prose with visual anchors (images/cards) while preserving content
-  - **AC:** No section exceeds ~2 short paragraphs without a visual break (card, list, or image)
-
-
 ### Phase 10.8: FAQ Section Update (1 task)
 
 ### Phase 10.8b: Contact Page Desktop Layout Fix (2 tasks)
 
-- [ ] **10.8b.1** Fix Contact page desktop grid structure
+- [x] **10.8b.1** Fix Contact page desktop grid structure
   - **Goal:** Ensure "Contact Information" and "What happens next?" remain together in the left column on desktop
   - **Implementation notes:**
     - Keep both blocks inside the same left-column wrapper (e.g., `<div class="space-y-10"> ... </div>`)
@@ -179,6 +151,39 @@ Last updated: 2026-01-26 23:20:00
 
 ## Completed (archive)
 
+
+---
+
+## Completed (archive)
+
+- [x] **10.5.4** Update Who I Work With section (individuals, adolescents, couples)
+  - **Goal:** Use Jacqui's wording as closely as possible
+  - **AC:** Section text matches Jacqui's sentence with minimal edits
+
+- [x] **10.5.5** Fix HPCSA registration number across site
+  - **Goal:** Update HPCSA number to **PS0133779** (source: Jacqui notes)
+  - **AC:** `grep -R "PS0" src/` shows PS0133779 only
+
+- [x] **10.5.6** UK English pass on About page
+  - **Goal:** Ensure UK spelling consistency (e.g., generalised, programmes)
+  - **AC:** No "Generalized" remains on About page
+
+
+- [x] **10.7.1** Implement desktop zig-zag layout (text/image alternating)
+  - **Goal:** Alternate text-left/image-right then image-left/text-right for Online + In-person sections; mobile stacks naturally
+  - **Implementation notes (required pattern):**
+    - Each of Online + In-person sections must use: `grid md:grid-cols-2 gap-10 items-center`
+    - Alternate order using `md:order-2` on the image or text block
+    - Images should be constrained: `w-full max-w-md` (or similar) and use `rounded-lg shadow-lg object-cover`
+    - Avoid a single standalone "Therapy Spaces" image grid; use images inline to break up text
+  - **Skill:** `~/code/brain/skills/domains/websites/design/spacing-layout.md`, `~/code/brain/skills/domains/websites/architecture/section-composer.md`
+  - **AC:** Desktop shows zig-zag layout for Online + In-person; mobile stacks image then text naturally
+
+- [x] **10.7.2** Reduce text-wall feel on Services page
+  - **Goal:** Break long prose with visual anchors (images/cards) while preserving content
+  - **AC:** No section exceeds ~2 short paragraphs without a visual break (card, list, or image)
+
+
 - [x] **10.1.1** Fix all UK spellings across site
   - **Goal:** Replace US spellings with UK equivalents in services.astro, about.astro, index.astro
   - **AC:** `grep -ri "ize\|ization" src/pages/` returns nothing
@@ -247,5 +252,4 @@ Last updated: 2026-01-26 23:20:00
 
 - [x] **10.9.1** Prepare contact form for Formspree integration
   - **AC:** Clear placeholder for endpoint
-
 
