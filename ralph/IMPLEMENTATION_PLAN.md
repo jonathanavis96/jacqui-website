@@ -62,13 +62,6 @@ Last updated: 2026-01-26 23:20:00
 
 ### Phase 10.8b: Contact Page Desktop Layout Fix (2 tasks)
 
-- [x] **10.8b.1** Fix Contact page desktop grid structure
-  - **Goal:** Ensure "Contact Information" and "What happens next?" remain together in the left column on desktop
-  - **Implementation notes:**
-    - Keep both blocks inside the same left-column wrapper (e.g., `<div class="space-y-10"> ... </div>`)
-    - Ensure the md:grid wrapper closes only after both columns are defined (fix any mis-nested `</div>`)
-  - **AC:** On md+ widths, left column contains both blocks; right column contains form; no unexpected stacking
-
 - [ ] **10.8b.2** Reduce Contact form visual dominance on desktop
   - **Goal:** Wrap form in a card and constrain max width so it doesn't feel full-bleed
   - **Implementation notes (required):**
@@ -155,6 +148,18 @@ Last updated: 2026-01-26 23:20:00
 ---
 
 ## Completed (archive)
+
+
+---
+
+## Completed (archive)
+
+- [x] **10.8b.1** Fix Contact page desktop grid structure
+  - **Goal:** Ensure "Contact Information" and "What happens next?" remain together in the left column on desktop
+  - **Implementation notes:**
+    - Keep both blocks inside the same left-column wrapper (e.g., `<div class="space-y-10"> ... </div>`)
+    - Ensure the md:grid wrapper closes only after both columns are defined (fix any mis-nested `</div>`)
+  - **AC:** On md+ widths, left column contains both blocks; right column contains form; no unexpected stacking
 
 - [x] **10.5.4** Update Who I Work With section (individuals, adolescents, couples)
   - **Goal:** Use Jacqui's wording as closely as possible
@@ -252,4 +257,5 @@ Last updated: 2026-01-26 23:20:00
 
 - [x] **10.9.1** Prepare contact form for Formspree integration
   - **AC:** Clear placeholder for endpoint
+
 
