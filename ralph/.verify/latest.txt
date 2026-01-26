@@ -1,6 +1,6 @@
 Ralph Verifier Report
-Time: 2026-01-26 21:49:06
-Git:  bf89e4c
+Time: 2026-01-26 22:01:45
+Git:  58467fa
 AC:   /home/grafe/code/jacqui-website/ralph/rules/AC.rules
 Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
@@ -8,11 +8,11 @@ Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
   desc: Astro build passes
   cmd:  cd .. && npm run build 2>&1 | tail -5
   exit: 0
-  stdout: 21:49:08 ✓ Completed in 21ms.
+  stdout: 22:01:47 ✓ Completed in 23ms.
 
-21:49:08 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
-21:49:08 [build] 4 page(s) built in 1.12s
-21:49:08 [build] Complete!
+22:01:47 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+22:01:47 [build] 4 page(s) built in 1.09s
+22:01:47 [build] Complete!
 [PASS] LINT-01
   desc: No lint errors (if configured)
   cmd:  cd .. && npm run lint 2>&1 || echo "Lint not configured"
@@ -24,7 +24,7 @@ npm error   npm link # Symlink a package folder
 npm error
 npm error To see a list of scripts, run:
 npm error   npm run
-npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T19_49_08_904Z-debug-0.log
+npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T20_01_47_484Z-debug-0.log
 Lint not configured
 [PASS] PAGE-01
   desc: Homepage exists
@@ -80,7 +80,7 @@ found
                     name="email"
                     placeholder="your@email.com"
                   <p><strong>Privacy note:</strong> Your information will be kept confidential and used only to respond to your enquiry. By submitting this form, you consent to me contacting you regarding your message.</p>
-                Start by sending me a message via the form above, email, or WhatsApp. We'll schedule a free consultation call to discuss what you're looking for and see if we're a good fit. If we decide to work together, we'll book your first session from there.
+                Start by sending me a message via the form above, email, or WhatsApp. We'll schedule a consultation call to discuss what you're looking for and see if we're a good fit. If we decide to work together, we'll book your first session from there.
                 I offer both online and in-person sessions. In-person availability is limited, so contact me to discuss current openings. Online sessions are available for clients anywhere in the world.
               Send an email
 found

@@ -43,25 +43,25 @@ Last updated: 2026-01-26 21:30:00
 
 ### Phase 10.2: Contact Details Update
 
-- [ ] **10.2.1** Update phone number and add physical address
+- [x] **10.2.1** Update phone number and add physical address
   - **Goal:** Replace phone with +27 76 605 4736 in contact.astro and Footer.astro, update WhatsApp link to <https://wa.me/27766054736>, add address "Argyle Square, Tamarisk Street, Weltevreden Park, Roodepoort, Gauteng" to contact page
   - **AC:** `grep -r "76 605 4736" src/` shows correct number, address visible on contact page
 
 ### Phase 10.3: CTA Updates (Remove Free Consultation)
 
-- [ ] **10.3.1** Remove all "free consultation" mentions site-wide
+- [x] **10.3.1** Remove all "free consultation" mentions site-wide
   - **Goal:** Update CTASection.astro, index.astro, services.astro, contact.astro, about.astro to remove "free" from all consultation references
   - **Skill:** `~/code/brain/skills/domains/websites/copywriting/cta-optimizer.md`
   - **New CTAs:** Primary = "Book a Consultation", Secondary = "Get in Touch" / "Send a Query"
   - **AC:** `grep -ri "free.*consult\|free.*15" src/` returns nothing
 
-- [ ] **10.3.2** Fix about page CTA button contrast
+- [x] **10.3.2** Fix about page CTA button contrast
   - **Goal:** Change button from bg-purple-brand to bg-white text-purple-brand (lines ~320-325) so it's visible on purple background
   - **AC:** Button uses white background, visually distinct from purple section
 
 ### Phase 10.4: Homepage Content Update
 
-- [ ] **10.4.1** Update homepage terminology from "counselling psychology" to "therapy"
+- [x] **10.4.1** Update homepage terminology from "counselling psychology" to "therapy"
   - **Goal:** Change hero/intro text to use "therapy" instead of "counselling psychology" where appropriate
   - **Skill:** `~/code/brain/skills/domains/websites/copywriting/value-proposition.md`
   - **AC:** Hero section uses "therapy" terminology, consultancy services section unchanged
@@ -243,6 +243,21 @@ Individuals, adolescents, and couples
 
 - [ ] **11.5.2** Fix MD060/table-column-style in cortex/IMPLEMENTATION_PLAN.md (line 22)
   - **AC:** `markdownlint cortex/IMPLEMENTATION_PLAN.md` passes (no MD060 errors)
+
+### Phase 11.6: cortex/websites_notes_v2.md Lint Fixes
+
+- [ ] **11.6.1** Fix MD004/ul-style in cortex/websites_notes_v2.md (lines 3, 5, 7-10, 12, 14-15, 17-18, 20, 22-23, 25-27, 29, 31-33, 35, 37, 39, 41)
+  - **AC:** `markdownlint cortex/websites_notes_v2.md` passes (no MD004 errors)
+
+### Phase 11.7: ralph/NEURONS.md Lint Fixes
+
+- [ ] **11.7.1** Fix MD040/fenced-code-language in ralph/NEURONS.md (lines 9, 84)
+  - **AC:** `markdownlint ralph/NEURONS.md` passes (no MD040 errors)
+
+### Phase 11.8: ralph/STATUS_REPORT.md Lint Fixes
+
+- [ ] **11.8.1** Fix MD040/fenced-code-language in ralph/STATUS_REPORT.md (line 85)
+  - **AC:** `markdownlint ralph/STATUS_REPORT.md` passes (no MD040 errors)
 
 ---
 
