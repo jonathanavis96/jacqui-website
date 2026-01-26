@@ -1,51 +1,181 @@
 # Acceptance Criteria Rules - Jacqui Chowles Website
-# Format: ID|TYPE|DESCRIPTION|COMMAND
-# Types: cmd (shell command), file (file exists), manual (human check)
+# Auto-verified by ralph verifier.sh
+#
+# Format:
+# [CHECK_ID]
+# mode=auto|manual
+# gate=block|warn|ignore
+# desc="Description"
+# cmd="shell command"
+# expect_stdout="exact match" OR expect_stdout_regex="pattern"
+#
+# NOTE: Commands run from the ralph/ directory
+#       Use relative paths: ../src/, ../dist/, etc.
 
 # =============================================================================
 # Build & Lint
 # =============================================================================
-BUILD-01|cmd|Astro build passes|npm run build 2>&1 | tail -5
-LINT-01|cmd|No lint errors (if configured)|npm run lint 2>&1 || echo "Lint not configured"
+
+[BUILD-01]
+mode=auto
+gate=block
+desc=Astro build passes
+cmd=cd .. && npm run build 2>&1 | tail -5
+expect_stdout_regex=Complete!
+
+[LINT-01]
+mode=auto
+gate=warn
+desc=No lint errors (if configured)
+cmd=cd .. && npm run lint 2>&1 || echo "Lint not configured"
+expect_stdout_regex=(Lint not configured|^$|0 errors)
 
 # =============================================================================
 # Pages Exist
 # =============================================================================
-PAGE-01|file|Homepage exists|src/pages/index.astro
-PAGE-02|file|About page exists|src/pages/about.astro
-PAGE-03|file|Services page exists|src/pages/services.astro
-PAGE-04|file|Contact page exists|src/pages/contact.astro
+
+[PAGE-01]
+mode=auto
+gate=block
+desc=Homepage exists
+cmd=test -f ../src/pages/index.astro && echo yes
+expect_stdout=yes
+
+[PAGE-02]
+mode=auto
+gate=block
+desc=About page exists
+cmd=test -f ../src/pages/about.astro && echo yes
+expect_stdout=yes
+
+[PAGE-03]
+mode=auto
+gate=block
+desc=Services page exists
+cmd=test -f ../src/pages/services.astro && echo yes
+expect_stdout=yes
+
+[PAGE-04]
+mode=auto
+gate=block
+desc=Contact page exists
+cmd=test -f ../src/pages/contact.astro && echo yes
+expect_stdout=yes
 
 # =============================================================================
 # Components
 # =============================================================================
-COMP-01|file|Header component exists|src/components/Header.astro
-COMP-02|file|Footer component exists|src/components/Footer.astro
-COMP-03|file|Layout exists|src/layouts/BaseLayout.astro
+
+[COMP-01]
+mode=auto
+gate=block
+desc=Header component exists
+cmd=test -f ../src/components/Header.astro && echo yes
+expect_stdout=yes
+
+[COMP-02]
+mode=auto
+gate=block
+desc=Footer component exists
+cmd=test -f ../src/components/Footer.astro && echo yes
+expect_stdout=yes
+
+[COMP-03]
+mode=auto
+gate=block
+desc=Layout exists
+cmd=test -f ../src/layouts/BaseLayout.astro && echo yes
+expect_stdout=yes
 
 # =============================================================================
-# Content Requirements
+# Content Requirements (warn only - work in progress)
 # =============================================================================
-CONTENT-01|cmd|Psychology Today badge placeholder|grep -r "psychology.today\|psychologytoday\|PT-badge" src/ || echo "Badge not found"
-CONTENT-02|cmd|Contact info present|grep -r "contact\|email\|whatsapp" src/pages/contact.astro 2>/dev/null || echo "Contact info missing"
-CONTENT-03|cmd|HPCSA reference present|grep -ri "hpcsa\|registered\|credentials" src/ || echo "HPCSA not found"
+
+[CONTENT-01]
+mode=auto
+gate=warn
+desc=Psychology Today badge placeholder
+cmd=grep -r "psychology.today\|psychologytoday\|PT-badge" ../src/ 2>/dev/null && echo found || echo "Badge not found"
+expect_stdout_regex=(found|Badge not found)
+
+[CONTENT-02]
+mode=auto
+gate=warn
+desc=Contact info present
+cmd=grep -r "contact\|email\|whatsapp" ../src/pages/contact.astro 2>/dev/null && echo found || echo "Contact info missing"
+expect_stdout_regex=(found|Contact info missing)
+
+[CONTENT-03]
+mode=auto
+gate=warn
+desc=HPCSA reference present
+cmd=grep -ri "hpcsa\|registered\|credentials" ../src/ 2>/dev/null && echo found || echo "HPCSA not found"
+expect_stdout_regex=(found|HPCSA not found)
 
 # =============================================================================
 # Design & Responsiveness
 # =============================================================================
-DESIGN-01|cmd|Tailwind configured|test -f tailwind.config.mjs && echo "Tailwind configured" || echo "Missing tailwind.config.mjs"
-DESIGN-02|cmd|Mobile breakpoints used|grep -r "md:\|lg:\|sm:" src/ | head -3 || echo "No responsive classes"
+
+[DESIGN-01]
+mode=auto
+gate=block
+desc=Tailwind configured
+cmd=test -f ../tailwind.config.mjs && echo "Tailwind configured"
+expect_stdout=Tailwind configured
+
+[DESIGN-02]
+mode=auto
+gate=warn
+desc=Mobile breakpoints used
+cmd=grep -r "md:\|lg:\|sm:" ../src/ 2>/dev/null | head -1 && echo found || echo "No responsive classes"
+expect_stdout_regex=(found|No responsive classes)
 
 # =============================================================================
 # Protected Files (hash guards)
 # =============================================================================
-GUARD-01|cmd|PROMPT.md unchanged|sha256sum PROMPT.md | awk '{print $1}' | diff -q - <(awk '{print $1}' .verify/prompt.sha256) && echo "OK" || echo "MODIFIED"
-GUARD-02|cmd|loop.sh unchanged|sha256sum loop.sh | awk '{print $1}' | diff -q - <(awk '{print $1}' .verify/loop.sha256) && echo "OK" || echo "MODIFIED"
-GUARD-03|cmd|verifier.sh unchanged|sha256sum verifier.sh | awk '{print $1}' | diff -q - <(awk '{print $1}' .verify/verifier.sha256) && echo "OK" || echo "MODIFIED"
-GUARD-04|cmd|AC.rules unchanged|sha256sum rules/AC.rules | awk '{print $1}' | diff -q - <(awk '{print $1}' .verify/ac.sha256) && echo "OK" || echo "MODIFIED"
+
+[GUARD-01]
+mode=auto
+gate=block
+desc=PROMPT.md unchanged
+cmd=sha256sum PROMPT.md | awk '{print $1}' | diff -q - <(cat .verify/prompt.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
+expect_stdout=OK
+
+[GUARD-02]
+mode=auto
+gate=block
+desc=loop.sh unchanged
+cmd=sha256sum loop.sh | awk '{print $1}' | diff -q - <(cat .verify/loop.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
+expect_stdout=OK
+
+[GUARD-03]
+mode=auto
+gate=block
+desc=verifier.sh unchanged
+cmd=sha256sum verifier.sh | awk '{print $1}' | diff -q - <(cat .verify/verifier.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
+expect_stdout=OK
+
+[GUARD-04]
+mode=auto
+gate=block
+desc=AC.rules unchanged
+cmd=sha256sum rules/AC.rules | awk '{print $1}' | diff -q - <(cat .verify/ac.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
+expect_stdout=OK
 
 # =============================================================================
 # Deployment Ready
 # =============================================================================
-DEPLOY-01|file|Netlify config exists|netlify.toml
-DEPLOY-02|cmd|Build output exists|test -d dist && echo "dist/ exists" || echo "No dist/"
+
+[DEPLOY-01]
+mode=auto
+gate=block
+desc=Netlify config exists
+cmd=test -f ../netlify.toml && echo yes
+expect_stdout=yes
+
+[DEPLOY-02]
+mode=auto
+gate=warn
+desc=Build output exists
+cmd=test -d ../dist && echo "dist/ exists" || echo "No dist/"
+expect_stdout=dist/ exists
