@@ -84,7 +84,7 @@ Need to decide if we keep this structure or modify.
 
 ---
 
-## Decision Log
+## Recent Decisions
 
 ### DEC-2026-01-26-001: HPCSA Registration Number
 

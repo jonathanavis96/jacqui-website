@@ -44,67 +44,13 @@ Last updated: 2026-01-26 23:20:00
 
 ### Phase 10.1: UK English Spelling Fixes (1 task)
 
-- [ ] **10.1.1** Fix all UK spellings across site
-  - **Goal:** Replace US spellings with UK equivalents in services.astro, about.astro, index.astro
-  - **AC:** `grep -ri "ize\|ization" src/pages/` returns nothing
-
 ### Phase 10.2: Contact Details Update (2 tasks)
-
-- [ ] **10.2.2** Align email address across site
-  - **Goal:** Use a single primary email address consistently (Footer + Contact page)
-  - **AC:** `grep -R "mailto:" src/` shows one email address only
-
 
 ### Phase 10.3: CTA Updates - Remove Free Consultation (2 tasks)
 
-- [ ] **10.3.1** Remove all "free consultation" mentions site-wide
-  - **Goal:** Update all pages/components to remove "free" from consultation references
-  - **Implementation notes:** Replace with "initial consultation" in explanatory text (see Contact + Services blocks in `cortex/webste_notes_from_jacqui.md`).
-  - **Skill:** `~/code/brain/skills/domains/websites/copywriting/cta-optimizer.md`
-  - **AC:** `grep -ri "free.*consult\|free.*15" src/` returns nothing
-
-- [ ] **10.3.2** Fix about page CTA button contrast
-  - **Goal:** Change button to white on purple background
-  - **AC:** Button visually distinct from purple section
-
 ### Phase 10.4: Homepage Content Update (2 tasks)
 
-- [ ] **10.4.1** Update homepage terminology from "counselling psychology" to "therapy"
-  - **Goal:** Change hero/intro text to use "therapy" terminology consistently
-  - **Implementation notes:** Use the preferred hero subheadline from `cortex/webste_notes_from_jacqui.md`.
-  - **Skill:** `~/code/brain/skills/domains/websites/copywriting/value-proposition.md`
-  - **AC:** `grep -R "counselling psychology" src/` returns nothing
-
-- [ ] **10.4.2** Align homepage "What I work with" to Jacqui's 8-item list
-  - **Goal:** Ensure homepage list includes Women's Mental Health & Perinatal Wellbeing and reflects Jacqui's wording closely
-  - **AC:** Homepage shows all 8 areas from `cortex/webste_notes_from_jacqui.md`
-
-
 ### Phase 10.5: About Page Content Updates (6 tasks)
-
-- [ ] **10.5.1** Update About Me bio section to match Jacqui's source notes
-  - **Goal:** Replace generic bio with Jacqui's "About me" text from `cortex/webste_notes_from_jacqui.md` (light SEO only)
-  - **Implementation notes:** Copy/paste the full "About me" block and keep sentence structure.
-  - **AC:** About page contains: "University of the Witwatersrand", "Centre for the Study of Violence and Reconciliation (CSVR)", "The Gambia", "United Nations Development Programme (UNDP)", and "Johannesburg, South Africa"
-
-- [ ] **10.5.2** Update How I Work section to match Jacqui's source notes
-  - **Goal:** Use Jacqui's wording (psychodynamic; deeper patterns; flexible/time-limited vs long-term; DBT/attachment/relational/solution-focused)
-  - **Implementation notes:** Copy/paste the full "How I work" block from `cortex/webste_notes_from_jacqui.md`.
-  - **AC:** `grep -R "Dialectical Behaviour Therapy (DBT)\|attachment theory\|solution-focused interventions\|longer-term, exploratory work" src/pages/about.astro` returns matches
-
-- [ ] **10.5.3** Update What I Work With list to match Jacqui's 8 items
-  - **Goal:** Use Jacqui's headings and UK spellings (Generalised; programme)
-  - **Implementation notes:** Preserve the 9 headings exactly as in the source (including Couples / Relationship Therapy).
-  - **AC:** About page contains all headings:
-    - Trauma, PTSD & Complex Trauma
-    - Depression
-    - Anxiety
-    - Women’s Mental Health & Perinatal Wellbeing
-    - Grief & Loss
-    - Burnout & Compassion Fatigue
-    - Life Transitions & Adjustment
-    - Identity & Sense of Self
-    - Couples / Relationship Therapy
 
 - [ ] **10.5.4** Update Who I Work With section (individuals, adolescents, couples)
   - **Goal:** Use Jacqui's wording as closely as possible
@@ -215,7 +161,7 @@ Last updated: 2026-01-26 23:20:00
 - `image6_chairs.webp` - existing
 - `therapy_office_1.webp` - NEW (downloaded)
 - `therapy_office_2.webp` - NEW (downloaded)
-- `image3_mirror.webp` - allowed (approved)
+- `image3_mirror.webp` - used in another page (approved)
 
 
 ---
@@ -226,12 +172,66 @@ Last updated: 2026-01-26 23:20:00
 
 ---
 
-## Completed (archive)
+## Completed Tasks (Archive)
 
 
 ---
 
 ## Completed (archive)
+
+- [x] **10.1.1** Fix all UK spellings across site
+  - **Goal:** Replace US spellings with UK equivalents in services.astro, about.astro, index.astro
+  - **AC:** `grep -ri "ize\|ization" src/pages/` returns nothing
+
+- [x] **10.2.2** Align email address across site
+  - **Goal:** Use a single primary email address consistently (Footer + Contact page)
+  - **AC:** `grep -R "mailto:" src/` shows one email address only
+
+
+- [x] **10.3.1** Remove all "free consultation" mentions site-wide
+  - **Goal:** Update all pages/components to remove "free" from consultation references
+  - **Implementation notes:** Replace with "initial consultation" in explanatory text (see Contact + Services blocks in `cortex/webste_notes_from_jacqui.md`).
+  - **Skill:** `~/code/brain/skills/domains/websites/copywriting/cta-optimizer.md`
+  - **AC:** `grep -ri "free.*consult\|free.*15" src/` returns nothing
+
+- [x] **10.3.2** Fix about page CTA button contrast
+  - **Goal:** Change button to white on purple background
+  - **AC:** Button visually distinct from purple section
+
+- [x] **10.4.1** Update homepage terminology from "counselling psychology" to "therapy"
+  - **Goal:** Change hero/intro text to use "therapy" terminology consistently
+  - **Implementation notes:** Use the preferred hero subheadline from `cortex/webste_notes_from_jacqui.md`.
+  - **Skill:** `~/code/brain/skills/domains/websites/copywriting/value-proposition.md`
+  - **AC:** `grep -R "counselling psychology" src/` returns nothing
+
+- [x] **10.4.2** Align homepage "What I work with" to Jacqui's 8-item list
+  - **Goal:** Ensure homepage list includes Women's Mental Health & Perinatal Wellbeing and reflects Jacqui's wording closely
+  - **AC:** Homepage shows all 8 areas from `cortex/webste_notes_from_jacqui.md`
+
+
+- [x] **10.5.1** Update About Me bio section to match Jacqui's source notes
+  - **Goal:** Replace generic bio with Jacqui's "About me" text from `cortex/webste_notes_from_jacqui.md` (light SEO only)
+  - **Implementation notes:** Copy/paste the full "About me" block and keep sentence structure.
+  - **AC:** About page contains: "University of the Witwatersrand", "Centre for the Study of Violence and Reconciliation (CSVR)", "The Gambia", "United Nations Development Programme (UNDP)", and "Johannesburg, South Africa"
+
+- [x] **10.5.2** Update How I Work section to match Jacqui's source notes
+  - **Goal:** Use Jacqui's wording (psychodynamic; deeper patterns; flexible/time-limited vs long-term; DBT/attachment/relational/solution-focused)
+  - **Implementation notes:** Copy/paste the full "How I work" block from `cortex/webste_notes_from_jacqui.md`.
+  - **AC:** `grep -R "Dialectical Behaviour Therapy (DBT)\|attachment theory\|solution-focused interventions\|longer-term, exploratory work" src/pages/about.astro` returns matches
+
+- [x] **10.5.3** Update What I Work With list to match Jacqui's 8 items
+  - **Goal:** Use Jacqui's headings and UK spellings (Generalised; programme)
+  - **Implementation notes:** Preserve the 9 headings exactly as in the source (including Couples / Relationship Therapy).
+  - **AC:** About page contains all headings:
+    - Trauma, PTSD & Complex Trauma
+    - Depression
+    - Anxiety
+    - Women’s Mental Health & Perinatal Wellbeing
+    - Grief & Loss
+    - Burnout & Compassion Fatigue
+    - Life Transitions & Adjustment
+    - Identity & Sense of Self
+    - Couples / Relationship Therapy
 
 - [x] **10.2.1** Update phone number and add physical address
   - **Goal:** Replace phone with +27 76 605 4736, update WhatsApp link, add physical address to contact page
@@ -240,8 +240,6 @@ Last updated: 2026-01-26 23:20:00
 - [x] **10.6.1** Add Psychology Today verification badge
   - **AC:** Badge displays and links to verified profile
 
----
-
 - [x] **10.8.1** Convert existing FAQ to accordion style with new questions
   - **Goal:** Click-to-expand accordion, add 3 new questions at top, remove "free consultation" question
   - **Skill:** `~/code/brain/skills/domains/websites/architecture/section-composer.md`
@@ -249,6 +247,5 @@ Last updated: 2026-01-26 23:20:00
 
 - [x] **10.9.1** Prepare contact form for Formspree integration
   - **AC:** Clear placeholder for endpoint
-
 
 

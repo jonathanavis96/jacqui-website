@@ -1,6 +1,148 @@
 Ralph Verifier Report
-Time: 2026-01-26 23:01:15
-Git:  06b8ddf
+Time: 2026-01-26 23:30:24
+Git:  f7ff143
 AC:   /home/grafe/code/jacqui-website/ralph/rules/AC.rules
 Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
+[PASS] BUILD-01
+  desc: Astro build passes
+  cmd:  cd .. && npm run build 2>&1 | tail -5
+  exit: 0
+  stdout: 23:30:26 ✓ Completed in 24ms.
+
+23:30:26 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+23:30:26 [build] 4 page(s) built in 1.30s
+23:30:26 [build] Complete!
+[PASS] LINT-01
+  desc: No lint errors (if configured)
+  cmd:  cd .. && npm run lint 2>&1 || echo "Lint not configured"
+  exit: 0
+  stdout: npm error Missing script: "lint"
+npm error
+npm error Did you mean this?
+npm error   npm link # Symlink a package folder
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T21_30_26_498Z-debug-0.log
+Lint not configured
+[PASS] PAGE-01
+  desc: Homepage exists
+  cmd:  test -f ../src/pages/index.astro && echo yes
+  exit: 0
+  stdout: yes
+[PASS] PAGE-02
+  desc: About page exists
+  cmd:  test -f ../src/pages/about.astro && echo yes
+  exit: 0
+  stdout: yes
+[PASS] PAGE-03
+  desc: Services page exists
+  cmd:  test -f ../src/pages/services.astro && echo yes
+  exit: 0
+  stdout: yes
+[PASS] PAGE-04
+  desc: Contact page exists
+  cmd:  test -f ../src/pages/contact.astro && echo yes
+  exit: 0
+  stdout: yes
+[PASS] COMP-01
+  desc: Header component exists
+  cmd:  test -f ../src/components/Header.astro && echo yes
+  exit: 0
+  stdout: yes
+[PASS] COMP-02
+  desc: Footer component exists
+  cmd:  test -f ../src/components/Footer.astro && echo yes
+  exit: 0
+  stdout: yes
+[PASS] COMP-03
+  desc: Layout exists
+  cmd:  test -f ../src/layouts/BaseLayout.astro && echo yes
+  exit: 0
+  stdout: yes
+[PASS] CONTENT-01
+  desc: Psychology Today badge placeholder
+  cmd:  grep -r "psychology.today\|psychologytoday\|PT-badge" ../src/ 2>/dev/null && echo found || echo "Badge not found"
+  exit: 0
+  stdout: ../src/components/TrustBadges.astro:            <a href="https://www.psychologytoday.com/za/counselling/jacqui-leigh-chowles-roodepoort-gt/989696?utm_source=PT&utm_medium=Verified&utm_campaign=PT_Badge_Profile" class="sx-verified-seal" target="_blank" rel="noopener"></a>
+../src/components/TrustBadges.astro:            <script type="text/javascript" src="https://member.psychologytoday.com/verified-seal.js" data-badge="13" data-id="989696" data-code="aHR0cHM6Ly93d3cucHN5Y2hvbG9neXRvZGF5LmNvbS9hcGkvdmVyaWZpZWQtc2VhbC9zZWFscy9bQkFER0VdL3Byb2ZpbGUvW1BST0ZJTEVfSURdP2NhbGxiYWNrPXN4Y2FsbGJhY2s="></script>
+found
+[PASS] CONTENT-02
+  desc: Contact info present
+  cmd:  grep -r "contact\|email\|whatsapp" ../src/pages/contact.astro 2>/dev/null && echo found || echo "Contact info missing"
+  exit: 0
+  stdout:                 id="contact-form"
+                  <label for="email" class="block text-gray-700 font-bold mb-2">
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="your@email.com"
+                  <p><strong>Privacy note:</strong> Your information will be kept confidential and used only to respond to your enquiry. By submitting this form, you consent to me contacting you regarding your message.</p>
+                  Start by sending me a message via the form above, email, or WhatsApp. We'll schedule a consultation call to discuss what you're looking for and see if we're a good fit. If we decide to work together, we'll book your first session from there.
+              Send an email
+found
+[PASS] CONTENT-03
+  desc: HPCSA reference present
+  cmd:  grep -ri "hpcsa\|registered\|credentials" ../src/ 2>/dev/null && echo found || echo "HPCSA not found"
+  exit: 0
+  stdout: ../src/components/Footer.astro:          HPCSA Registered
+../src/components/Hero.astro:        Registered Counselling Psychologist (HPCSA) • Over a decade of experience across Africa and internationally
+../src/components/TrustBadges.astro:// Trust markers section - HPCSA credentials and Psychology Today badge
+../src/components/TrustBadges.astro:        Qualified & Registered
+../src/components/TrustBadges.astro:        <!-- HPCSA Registration -->
+../src/components/TrustBadges.astro:          <h3 class="font-bold text-gray-900 mb-2">HPCSA Registered</h3>
+../src/pages/about.astro:              I am a registered Counselling Psychologist with over a decade of experience working with individuals, couples, and communities across diverse contexts. My journey in psychology began at the University of the Witwatersrand, where I developed a deep commitment to understanding and addressing the impact of trauma on mental health.
+../src/pages/about.astro:    <!-- Credentials Section -->
+../src/pages/about.astro:            Professional Credentials
+../src/pages/about.astro:                  Registered Counselling Psychologist with the Health Professions Council of South Africa (HPCSA)
+found
+[PASS] DESIGN-01
+  desc: Tailwind configured
+  cmd:  test -f ../tailwind.config.mjs && echo "Tailwind configured"
+  exit: 0
+  stdout: Tailwind configured
+[PASS] DESIGN-02
+  desc: Mobile breakpoints used
+  cmd:  grep -r "md:\|lg:\|sm:" ../src/ 2>/dev/null | head -1 && echo found || echo "No responsive classes"
+  exit: 0
+  stdout: ../src/components/Footer.astro:    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+found
+[PASS] GUARD-01
+  desc: PROMPT.md unchanged
+  cmd:  sha256sum PROMPT.md | awk '{print $1}' | diff -q - <(cat .verify/prompt.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
+  exit: 0
+  stdout: OK
+[PASS] GUARD-02
+  desc: loop.sh unchanged
+  cmd:  sha256sum loop.sh | awk '{print $1}' | diff -q - <(cat .verify/loop.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
+  exit: 0
+  stdout: OK
+[PASS] GUARD-03
+  desc: verifier.sh unchanged
+  cmd:  sha256sum verifier.sh | awk '{print $1}' | diff -q - <(cat .verify/verifier.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
+  exit: 0
+  stdout: OK
+[PASS] GUARD-04
+  desc: AC.rules unchanged
+  cmd:  sha256sum rules/AC.rules | awk '{print $1}' | diff -q - <(cat .verify/ac.sha256) >/dev/null 2>&1 && echo OK || echo MODIFIED
+  exit: 0
+  stdout: OK
+[PASS] DEPLOY-01
+  desc: Netlify config exists
+  cmd:  test -f ../netlify.toml && echo yes
+  exit: 0
+  stdout: yes
+[PASS] DEPLOY-02
+  desc: Build output exists
+  cmd:  test -d ../dist && echo "dist/ exists" || echo "No dist/"
+  exit: 0
+  stdout: dist/ exists
+------------------------------------------------------------
+SUMMARY
+  PASS: 20
+  FAIL: 0
+  WARN: 0 (manual_warn=0)
+  SKIP: 0
+  Manual gate=block failures: 0
+  Hash guard: OK
