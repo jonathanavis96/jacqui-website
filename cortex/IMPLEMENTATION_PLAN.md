@@ -1,6 +1,6 @@
 # Implementation Plan - Jacqui Chowles Website
 
-Last updated: 2026-01-26 23:05:00
+Last updated: 2026-01-26 23:20:00
 
 ## Current State Summary
 
@@ -50,7 +50,7 @@ Last updated: 2026-01-26 23:05:00
 
 ### Phase 10.2: Contact Details Update (2 tasks)
 
-- [ ] **10.2.1** Update phone number and add physical address
+- [x] **10.2.1** Update phone number and add physical address
   - **Goal:** Replace phone with +27 76 605 4736, update WhatsApp link, add physical address to contact page
   - **AC:** `grep -r "76 605 4736" src/` shows correct number, address visible on contact page
 
@@ -151,7 +151,7 @@ Last updated: 2026-01-26 23:05:00
 
 ### Phase 10.8: FAQ Section Update (1 task)
 
-- [ ] **10.8.1** Convert existing FAQ to accordion style with new questions
+- [x] **10.8.1** Convert existing FAQ to accordion style with new questions
   - **Goal:** Click-to-expand accordion, add 3 new questions at top, remove "free consultation" question
   - **Skill:** `~/code/brain/skills/domains/websites/architecture/section-composer.md`
   - **AC:** 6 questions total, accordion style, no "free consultation" mention
@@ -175,7 +175,7 @@ Last updated: 2026-01-26 23:05:00
 
 ### Phase 10.9: Formspree Preparation (1 task)
 
-- [ ] **10.9.1** Prepare contact form for Formspree integration
+- [x] **10.9.1** Prepare contact form for Formspree integration
   - **AC:** Clear placeholder for endpoint
 
 ### Phase 10.10: SEO Enhancements (2 tasks)
