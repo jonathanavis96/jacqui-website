@@ -211,15 +211,15 @@ Individuals, adolescents, and couples
 - [x] **11.2.1** Fix MD013/line-length in cortex/CORTEX_SYSTEM_PROMPT.md (lines 7, 46, 48)
   - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD013 errors)
 
-- [ ] **11.2.2** Fix MD022/blanks-around-headings in cortex/CORTEX_SYSTEM_PROMPT.md (lines 11, 17, 23, 52, 57)
+- [x] **11.2.2** Fix MD022/blanks-around-headings in cortex/CORTEX_SYSTEM_PROMPT.md (lines 11, 17, 23, 52, 57)
   - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD022 errors)
 
-- [ ] **11.2.3** Fix MD032/blanks-around-lists in cortex/CORTEX_SYSTEM_PROMPT.md (lines 12, 18, 24, 53, 58, 73)
+- [x] **11.2.3** Fix MD032/blanks-around-lists in cortex/CORTEX_SYSTEM_PROMPT.md (lines 12, 18, 24, 53, 58, 73)
   - **AC:** `markdownlint cortex/CORTEX_SYSTEM_PROMPT.md` passes (no MD032 errors)
 
 ### Phase 11.3: cortex/DECISIONS.md Lint Fixes
 
-- [ ] **11.3.1** Fix MD032/blanks-around-lists in cortex/DECISIONS.md (lines 15, 24, 30, 35, 60, 73)
+- [x] **11.3.1** Fix MD032/blanks-around-lists in cortex/DECISIONS.md (lines 15, 24, 30, 35, 60, 73)
   - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD032 errors)
 
 - [ ] **11.3.2** Fix MD058/blanks-around-tables in cortex/DECISIONS.md (line 52)
