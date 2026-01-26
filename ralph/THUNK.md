@@ -94,3 +94,8 @@ npx markdownlint cortex/CORTEX_SYSTEM_PROMPT.md  # PASS (no errors)
 |-----------|------|--------|-------|
 | 2026-01-26 22:33:30 | 11.2.3 Fix MD032 in cortex/CORTEX_SYSTEM_PROMPT.md | ✅ PASS | Already passing - marked complete |
 | 11.3.1 | Fix MD032 cortex/DECISIONS.md | Verified with markdownlint - no errors found, already compliant | DONE |
+
+| 11.3.2 | Fix MD058/blanks-around-tables in cortex/DECISIONS.md | Verified already passing - no changes needed | 2026-01-26T20:42:28Z |
+| 11.3.3 | Fix MD060 cortex/DECISIONS.md | markdownlint passes - issue already resolved | 2026-01-26 |
+| 11.3.4 | Fix MD036 in cortex/DECISIONS.md | Already passing - no action needed | 2026-01-26T20:45:38Z |
+| 11.4.1 | Fix MD013/line-length in cortex/GAP_CAPTURE.md | markdownlint passes - MD013 disabled in config | 2026-01-26T20:46:49Z |

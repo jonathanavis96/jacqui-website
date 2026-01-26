@@ -1,6 +1,6 @@
 Ralph Verifier Report
-Time: 2026-01-26 22:37:28
-Git:  ee7b962
+Time: 2026-01-26 22:47:59
+Git:  6b4cec8
 AC:   /home/grafe/code/jacqui-website/ralph/rules/AC.rules
 Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
 ------------------------------------------------------------
@@ -8,11 +8,11 @@ Approvals: /home/grafe/code/jacqui-website/ralph/rules/MANUAL_APPROVALS.rules
   desc: Astro build passes
   cmd:  cd .. && npm run build 2>&1 | tail -5
   exit: 0
-  stdout: 22:37:31 ✓ Completed in 32ms.
+  stdout: 22:48:01 ✓ Completed in 24ms.
 
-22:37:31 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
-22:37:31 [build] 4 page(s) built in 1.36s
-22:37:31 [build] Complete!
+22:48:01 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+22:48:01 [build] 4 page(s) built in 1.26s
+22:48:01 [build] Complete!
 [PASS] LINT-01
   desc: No lint errors (if configured)
   cmd:  cd .. && npm run lint 2>&1 || echo "Lint not configured"
@@ -24,7 +24,7 @@ npm error   npm link # Symlink a package folder
 npm error
 npm error To see a list of scripts, run:
 npm error   npm run
-npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T20_37_31_183Z-debug-0.log
+npm error A complete log of this run can be found in: /home/grafe/.npm/_logs/2026-01-26T20_48_02_123Z-debug-0.log
 Lint not configured
 [PASS] PAGE-01
   desc: Homepage exists

@@ -222,18 +222,18 @@ Individuals, adolescents, and couples
 - [x] **11.3.1** Fix MD032/blanks-around-lists in cortex/DECISIONS.md (lines 15, 24, 30, 35, 60, 73)
   - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD032 errors)
 
-- [ ] **11.3.2** Fix MD058/blanks-around-tables in cortex/DECISIONS.md (line 52)
+- [x] **11.3.2** Fix MD058/blanks-around-tables in cortex/DECISIONS.md (line 52)
   - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD058 errors)
 
-- [ ] **11.3.3** Fix MD060/table-column-style in cortex/DECISIONS.md (line 53)
+- [x] **11.3.3** Fix MD060/table-column-style in cortex/DECISIONS.md (line 53)
   - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD060 errors)
 
-- [ ] **11.3.4** Fix MD036/no-emphasis-as-heading in cortex/DECISIONS.md (line 89)
+- [x] **11.3.4** Fix MD036/no-emphasis-as-heading in cortex/DECISIONS.md (line 89)
   - **AC:** `markdownlint cortex/DECISIONS.md` passes (no MD036 errors)
 
 ### Phase 11.4: cortex/GAP_CAPTURE.md Lint Fixes
 
-- [ ] **11.4.1** Fix MD013/line-length in cortex/GAP_CAPTURE.md (line 3)
+- [x] **11.4.1** Fix MD013/line-length in cortex/GAP_CAPTURE.md (line 3)
   - **AC:** `markdownlint cortex/GAP_CAPTURE.md` passes (no MD013 errors)
 
 ### Phase 11.5: cortex/IMPLEMENTATION_PLAN.md Lint Fixes
