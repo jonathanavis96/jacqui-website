@@ -12,7 +12,7 @@ Ralph loop for Jacqui Howles Psychology Website. Runs PLAN/BUILD cycles to build
 
 **Deadline:** 14th February 2026
 **Existing Site:** <https://www.jacquichowles.com/>
-**Tech Stack:** Astro + Tailwind CSS + Netlify
+**Tech Stack:** Astro + Tailwind CSS + GitHub Pages
 
 ## Quick Start
 

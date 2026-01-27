@@ -36,8 +36,8 @@ Building a conversion-focused website for Jacqui Chowles, a solo counselling psy
 
 - **Framework:** Astro (static site generator)
 - **Styling:** Tailwind CSS
-- **Hosting:** Netlify
-- **Forms:** Netlify Forms
+- **Hosting:** GitHub Pages
+- **Forms:** Formspree
 
 ### Psychology Today Badge
 

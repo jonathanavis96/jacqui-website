@@ -66,7 +66,7 @@ jacqui-website/
 ├── astro.config.mjs            # Astro configuration
 ├── tailwind.config.mjs         # Tailwind configuration
 ├── package.json                # Dependencies
-├── netlify.toml                # Deployment config
+├── .github/workflows/         # GitHub Actions (deployment)
 └── .gitignore                  # Git ignore rules
 ```
 
@@ -77,7 +77,7 @@ jacqui-website/
 | Homepage ✅ | Hero, ServiceCard (×3), TrustBadges, "What I work with", CTASection |
 | About ✅ | Bio section, Approach, Credentials, "What I work with", TrustBadges |
 | Services ✅ | Online therapy, In-person therapy, Consultancy grid (×6 services) |
-| Contact ✅ | ContactForm (Netlify), WhatsApp link, Email link, FAQ section |
+| Contact ✅ | ContactForm (Formspree), WhatsApp link, Email link, FAQ section |
 
 ## Data Flow
 

@@ -79,7 +79,7 @@ For website patterns and best practices, use progressive disclosure:
 - `architecture/section-composer.md` - Page section design
 - `copywriting/value-proposition.md` - Conversion copy
 - `design/color-system.md` - Color palette decisions
-- `launch/deployment.md` - Netlify deployment
+- `launch/deployment.md` - GitHub Pages deployment
 
 ---
 
@@ -234,8 +234,8 @@ rg -n "pattern" src/components/ | head -20
 
 - **Framework:** Astro
 - **Styling:** Tailwind CSS
-- **Deployment:** Netlify
-- **Forms:** Netlify Forms
+- **Deployment:** GitHub Pages
+- **Forms:** Formspree
 
 ### Page Structure
 

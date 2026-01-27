@@ -25,8 +25,8 @@ Need to choose a tech stack for a professional services website with:
 
 1. **Astro** - Perfect for content-focused sites, ships zero JS by default
 2. **Tailwind CSS** - Rapid styling, consistent design system
-3. **Deployment** - Netlify (free tier, automatic deploys from git)
-4. **Forms** - Netlify Forms or Formspree for contact form
+3. **Deployment** - GitHub Pages (free tier, automatic deploys from git via GitHub Actions)
+4. **Forms** - Formspree for contact form
 
 **Alternatives Considered:**
 
@@ -108,7 +108,7 @@ Need to decide if we keep this structure or modify.
 
 - [ ] Color palette (awaiting client input)
 - [ ] Typography selection (awaiting design direction)
-- [ ] Contact form provider (Netlify Forms vs Formspree)
+- [x] Contact form provider (Formspree - implemented)
 - [ ] Psychology Today badge implementation method
 
 ---
