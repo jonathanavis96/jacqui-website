@@ -28,6 +28,90 @@ const base = import.meta.env.BASE_URL;
       </div>
     </section>
 
+    <!-- In-Person Therapy Section -->
+    <section id="in-person" class="py-16 md:py-20 bg-purple-50 scroll-mt-24">
+      <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Desktop: Image Left, Text Right -->
+          <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
+            <div class="flex items-center justify-center">
+              <div class="max-w-sm">
+                <img 
+                  src={`${base}images/image6_chairs.webp`}
+                  alt="Comfortable therapy room"
+                  class="rounded-lg shadow-lg w-full h-auto object-cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div>
+              <div class="mb-6">
+                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+                  In-Person Therapy & Coaching
+                </h2>
+                <p class="text-xl text-gray-600">
+                  Face-to-face sessions for those who prefer in-person connection
+                </p>
+              </div>
+
+              <div class="prose prose-lg max-w-none">
+                <p class="text-gray-700 leading-relaxed">
+                  For clients who prefer face-to-face sessions, I offer in-person therapy at a private practice location. In-person therapy provides the same compassionate, trauma-informed care in a comfortable, confidential setting.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- What to Expect -->
+          <div class="bg-white rounded-lg p-8 mb-8 shadow-sm">
+            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6">
+              What to expect
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="text-purple-brand mr-3 text-xl">✓</span>
+                <div>
+                  <strong class="text-gray-900">Private, comfortable space</strong>
+                  <p class="text-gray-700">A safe, confidential environment for your sessions</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-brand mr-3 text-xl">✓</span>
+                <div>
+                  <strong class="text-gray-900">Same therapeutic approach</strong>
+                  <p class="text-gray-700">The same compassionate, psychodynamic care as online sessions</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-brand mr-3 text-xl">✓</span>
+                <div>
+                  <strong class="text-gray-900">Flexible scheduling</strong>
+                  <p class="text-gray-700">Sessions scheduled to suit your availability</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Location & Availability -->
+          <div class="bg-white rounded-lg p-8 shadow-sm">
+            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
+              Location & availability
+            </h3>
+            <p class="text-gray-700 mb-4">
+              <strong>Location details:</strong> Provided when booking your initial consultation
+            </p>
+            <p class="text-gray-700 mb-4">
+              <strong>Availability:</strong> Limited in-person slots available—contact me to discuss current openings
+            </p>
+            <p class="text-gray-600 italic">
+              Note: In-person sessions are subject to availability. If in-person sessions are not available, online therapy remains a flexible and effective alternative.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Online Therapy Section -->
     <section id="online" class="py-16 md:py-20 bg-white scroll-mt-24">
       <div class="container mx-auto px-4">
@@ -156,90 +240,6 @@ const base = import.meta.env.BASE_URL;
             </p>
             <p class="text-gray-700">
               <strong>Medical aid:</strong> While I do not bill medical aid directly, I can provide invoices for you to submit for reimbursement if your plan covers out-of-network providers.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- In-Person Therapy Section -->
-    <section id="in-person" class="py-16 md:py-20 bg-purple-50 scroll-mt-24">
-      <div class="container mx-auto px-4">
-        <div class="max-w-6xl mx-auto">
-          <!-- Desktop: Image Left, Text Right -->
-          <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center mb-12">
-            <div class="flex items-center justify-center">
-              <div class="max-w-sm">
-                <img 
-                  src={`${base}images/image6_chairs.webp`}
-                  alt="Comfortable therapy room"
-                  class="rounded-lg shadow-lg w-full h-auto object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            <div>
-              <div class="mb-6">
-                <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
-                  In-Person Therapy & Coaching
-                </h2>
-                <p class="text-xl text-gray-600">
-                  Face-to-face sessions for those who prefer in-person connection
-                </p>
-              </div>
-
-              <div class="prose prose-lg max-w-none">
-                <p class="text-gray-700 leading-relaxed">
-                  For clients who prefer face-to-face sessions, I offer in-person therapy at a private practice location. In-person therapy provides the same compassionate, trauma-informed care in a comfortable, confidential setting.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- What to Expect -->
-          <div class="bg-white rounded-lg p-8 mb-8 shadow-sm">
-            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6">
-              What to expect
-            </h3>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <span class="text-purple-brand mr-3 text-xl">✓</span>
-                <div>
-                  <strong class="text-gray-900">Private, comfortable space</strong>
-                  <p class="text-gray-700">A safe, confidential environment for your sessions</p>
-                </div>
-              </li>
-              <li class="flex items-start">
-                <span class="text-purple-brand mr-3 text-xl">✓</span>
-                <div>
-                  <strong class="text-gray-900">Same therapeutic approach</strong>
-                  <p class="text-gray-700">The same compassionate, psychodynamic care as online sessions</p>
-                </div>
-              </li>
-              <li class="flex items-start">
-                <span class="text-purple-brand mr-3 text-xl">✓</span>
-                <div>
-                  <strong class="text-gray-900">Flexible scheduling</strong>
-                  <p class="text-gray-700">Sessions scheduled to suit your availability</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Location & Availability -->
-          <div class="bg-white rounded-lg p-8 shadow-sm">
-            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
-              Location & availability
-            </h3>
-            <p class="text-gray-700 mb-4">
-              <strong>Location details:</strong> Provided when booking your initial consultation
-            </p>
-            <p class="text-gray-700 mb-4">
-              <strong>Availability:</strong> Limited in-person slots available—contact me to discuss current openings
-            </p>
-            <p class="text-gray-600 italic">
-              Note: In-person sessions are subject to availability. If in-person sessions are not available, online therapy remains a flexible and effective alternative.
             </p>
           </div>
         </div>
