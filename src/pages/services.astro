@@ -33,17 +33,15 @@ const base = import.meta.env.BASE_URL;
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
           <!-- Desktop: Image Left, Text Right -->
-          <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-start mb-12">
-            <div class="flex justify-center md:justify-start">
-              <div class="w-full max-w-xs md:max-w-sm">
-                <div class="aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
-                  <img 
-                    src={`${base}images/image6_chairs.webp`}
-                    alt="Comfortable therapy room"
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
+          <div class="grid md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-6 lg:gap-10 items-start mb-12">
+            <div class="w-full">
+              <div class="aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
+                <img 
+                  src={`${base}images/image6_chairs.webp`}
+                  alt="Comfortable therapy room"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
             </div>
 
