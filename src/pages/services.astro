@@ -15,7 +15,7 @@ const base = import.meta.env.BASE_URL;
   <main class="flex-grow bg-white">
     
     <!-- Hero Section -->
-    <section class="bg-gradient-to-b from-purple-50 to-white py-16 md:py-20">
+    <section class="bg-gradient-to-b from-purple-muted/10 to-white py-16 md:py-20">
       <div class="container mx-auto px-4">
         <div class="max-w-4xl mx-auto text-center">
           <h1 class="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
@@ -29,7 +29,7 @@ const base = import.meta.env.BASE_URL;
     </section>
 
     <!-- In-Person Therapy Section -->
-    <section id="in-person" class="py-16 md:py-20 bg-purple-50 scroll-mt-24">
+    <section id="in-person" class="py-16 md:py-20 bg-purple-muted/10 scroll-mt-24">
       <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
           <!-- Desktop: Image Left, Text Right -->
@@ -38,8 +38,8 @@ const base = import.meta.env.BASE_URL;
               <div class="w-full max-w-sm">
                 <div class="aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
                   <img 
-                    src={`${base}images/therapy_office_1.webp`}
-                    alt="Comfortable therapy room"
+                    src={`${base}images/jacqui-office-1.webp`}
+                    alt="Comfortable therapy office space"
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -72,21 +72,21 @@ const base = import.meta.env.BASE_URL;
             </h3>
             <ul class="space-y-4">
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3 text-xl">✓</span>
+                <span class="text-purple-muted mr-3 text-xl">✓</span>
                 <div>
                   <strong class="text-gray-900">Private, comfortable space</strong>
                   <p class="text-gray-700">A safe, confidential environment for your sessions</p>
                 </div>
               </li>
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3 text-xl">✓</span>
+                <span class="text-purple-muted mr-3 text-xl">✓</span>
                 <div>
                   <strong class="text-gray-900">Same therapeutic approach</strong>
                   <p class="text-gray-700">The same compassionate, psychodynamic care as online sessions</p>
                 </div>
               </li>
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3 text-xl">✓</span>
+                <span class="text-purple-muted mr-3 text-xl">✓</span>
                 <div>
                   <strong class="text-gray-900">Flexible scheduling</strong>
                   <p class="text-gray-700">Sessions scheduled to suit your availability</p>
@@ -96,6 +96,7 @@ const base = import.meta.env.BASE_URL;
           </div>
 
           <!-- Location & Availability -->
+          <!-- Commented out 2026-01-27 - Can be restored if needed
           <div class="bg-white rounded-lg p-8 shadow-sm">
             <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
               Location & availability
@@ -110,6 +111,7 @@ const base = import.meta.env.BASE_URL;
               Note: In-person sessions are subject to availability. If in-person sessions are not available, online therapy remains a flexible and effective alternative.
             </p>
           </div>
+          -->
         </div>
       </div>
     </section>
@@ -141,8 +143,8 @@ const base = import.meta.env.BASE_URL;
               <div class="w-full max-w-sm">
                 <div class="aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
                   <img 
-                    src={`${base}images/image6_chairs.webp`}
-                    alt="Online therapy session setup"
+                    src={`${base}images/jacqui-couch-1.webp`}
+                    alt="Comfortable therapy couch for online sessions"
                     class="w-full h-full object-cover"
                     loading="lazy"
                   />
@@ -152,27 +154,27 @@ const base = import.meta.env.BASE_URL;
           </div>
 
           <!-- What's Included -->
-          <div class="bg-purple-50 rounded-lg p-8 mb-8">
+          <div class="bg-purple-muted/10 rounded-lg p-8 mb-8">
             <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6">
               What's included
             </h3>
             <ul class="space-y-4">
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3 text-xl">✓</span>
+                <span class="text-purple-muted mr-3 text-xl">✓</span>
                 <div>
                   <strong class="text-gray-900">Individual therapy</strong>
                   <p class="text-gray-700">One-on-one sessions focused on your unique needs and goals</p>
                 </div>
               </li>
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3 text-xl">✓</span>
+                <span class="text-purple-muted mr-3 text-xl">✓</span>
                 <div>
                   <strong class="text-gray-900">Couples therapy</strong>
                   <p class="text-gray-700">Support for relationship difficulties and communication patterns</p>
                 </div>
               </li>
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3 text-xl">✓</span>
+                <span class="text-purple-muted mr-3 text-xl">✓</span>
                 <div>
                   <strong class="text-gray-900">Adolescent therapy</strong>
                   <p class="text-gray-700">Age-appropriate support for teenagers navigating challenges</p>
@@ -188,21 +190,21 @@ const base = import.meta.env.BASE_URL;
             </h3>
             <div class="grid md:grid-cols-3 gap-6">
               <div class="text-center p-6">
-                <div class="bg-purple-brand text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                <div class="bg-purple-muted text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">
                   1
                 </div>
                 <h4 class="font-heading font-bold text-gray-900 mb-2">Get in touch</h4>
                 <p class="text-gray-600">Send me an email or WhatsApp message to schedule a consultation</p>
               </div>
               <div class="text-center p-6">
-                <div class="bg-purple-brand text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                <div class="bg-purple-muted text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">
                   2
                 </div>
                 <h4 class="font-heading font-bold text-gray-900 mb-2">Initial consultation</h4>
                 <p class="text-gray-600">We'll talk about what you're looking for and see if we're a good fit</p>
               </div>
               <div class="text-center p-6">
-                <div class="bg-purple-brand text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">
+                <div class="bg-purple-muted text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mx-auto mb-4">
                   3
                 </div>
                 <h4 class="font-heading font-bold text-gray-900 mb-2">Begin therapy</h4>
@@ -218,26 +220,26 @@ const base = import.meta.env.BASE_URL;
             </h3>
             <ul class="space-y-3 text-gray-700">
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3">•</span>
+                <span class="text-purple-muted mr-3">•</span>
                 <span>Sessions are typically 50 minutes long</span>
               </li>
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3">•</span>
+                <span class="text-purple-muted mr-3">•</span>
                 <span>Conducted via secure video platform (details provided when booking)</span>
               </li>
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3">•</span>
+                <span class="text-purple-muted mr-3">•</span>
                 <span>Weekly or fortnightly sessions, depending on your needs</span>
               </li>
               <li class="flex items-start">
-                <span class="text-purple-brand mr-3">•</span>
+                <span class="text-purple-muted mr-3">•</span>
                 <span>Flexible scheduling to accommodate different time zones</span>
               </li>
             </ul>
           </div>
 
           <!-- Payment & Fees -->
-          <div class="border-l-4 border-purple-brand pl-6 py-4">
+          <div class="border-l-4 border-purple-muted pl-6 py-4">
             <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
               Payment & fees
             </h3>
@@ -280,13 +282,15 @@ const base = import.meta.env.BASE_URL;
             </div>
 
             <div class="order-first md:order-last flex items-center justify-center">
-              <div class="max-w-xs">
-                <img 
-                  src={`${base}images/image5_chair.webp`}
-                  alt="Professional consultancy and training"
-                  class="rounded-lg shadow-lg w-full h-auto"
-                  loading="lazy"
-                />
+              <div class="w-full max-w-sm">
+                <div class="aspect-[4/3] overflow-hidden rounded-lg shadow-lg">
+                  <img 
+                    src={`${base}images/training-jacqui.webp`}
+                    alt="Professional training and consultancy"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -304,7 +308,7 @@ const base = import.meta.env.BASE_URL;
           <!-- Services Offered -->
           <div class="grid md:grid-cols-2 gap-6">
             <!-- Training -->
-            <div class="bg-purple-50 rounded-lg p-6">
+            <div class="bg-purple-muted/10 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Training & Workshops
               </h3>
@@ -319,7 +323,7 @@ const base = import.meta.env.BASE_URL;
             </div>
 
             <!-- Community Programs -->
-            <div class="bg-purple-50 rounded-lg p-6">
+            <div class="bg-purple-muted/10 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Community Programs
               </h3>
@@ -333,8 +337,8 @@ const base = import.meta.env.BASE_URL;
               </ul>
             </div>
 
-            <!-- Workplace Workshops -->
-            <div class="bg-purple-50 rounded-lg p-6">
+            <!-- Workplace Wellness -->
+            <div class="bg-purple-muted/10 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Workplace Wellness
               </h3>
@@ -349,7 +353,7 @@ const base = import.meta.env.BASE_URL;
             </div>
 
             <!-- Mentorship -->
-            <div class="bg-purple-50 rounded-lg p-6">
+            <div class="bg-purple-muted/10 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Professional Mentorship
               </h3>
@@ -364,7 +368,7 @@ const base = import.meta.env.BASE_URL;
             </div>
 
             <!-- Body Mapping -->
-            <div class="bg-purple-50 rounded-lg p-6">
+            <div class="bg-purple-muted/10 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Body Mapping
               </h3>
@@ -379,7 +383,7 @@ const base = import.meta.env.BASE_URL;
             </div>
 
             <!-- Content Development -->
-            <div class="bg-purple-50 rounded-lg p-6">
+            <div class="bg-purple-muted/10 rounded-lg p-6">
               <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
                 Content Development
               </h3>
@@ -395,7 +399,7 @@ const base = import.meta.env.BASE_URL;
           </div>
 
           <!-- Contact for Consultancy -->
-          <div class="mt-10 bg-gradient-to-r from-purple-brand to-purple-brand-hover text-white rounded-lg p-8 text-center">
+          <div class="mt-10 bg-gradient-to-r from-purple-muted to-purple-muted/90 text-white rounded-lg p-8 text-center">
             <h3 class="text-2xl font-heading font-bold mb-4">
               Interested in consultancy services?
             </h3>
@@ -404,7 +408,7 @@ const base = import.meta.env.BASE_URL;
             </p>
             <a 
               href={`${base}contact`}
-              class="inline-block bg-white hover:bg-gray-100 text-purple-brand font-bold py-3 px-8 rounded-lg transition-colors"
+              class="inline-block bg-white hover:bg-gray-100 text-purple-muted font-bold py-3 px-8 rounded-lg transition-colors"
             >
               Contact me
             </a>
@@ -421,7 +425,7 @@ const base = import.meta.env.BASE_URL;
     />
 
     <!-- Bottom CTA Section -->
-    <section class="py-16 md:py-20 bg-gradient-to-b from-white to-purple-50">
+    <section class="py-16 md:py-20 bg-gradient-to-b from-white to-purple-muted/10">
       <div class="container mx-auto px-4">
         <div class="max-w-3xl mx-auto text-center">
           <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">
