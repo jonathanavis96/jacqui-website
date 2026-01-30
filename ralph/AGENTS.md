@@ -20,17 +20,28 @@ Ralph loop for Jacqui Howles Psychology Website. Runs PLAN/BUILD cycles to build
 2. Read `NEURONS.md` for codebase structure
 3. Check `ralph/IMPLEMENTATION_PLAN.md` for current tasks (NOT cortex/IMPLEMENTATION_PLAN.md)
 
+## Working Directory
+
+**⚠️ CRITICAL:** All website code is in `website/` subdirectory.
+
+**When editing website files:**
+- Components: `website/src/components/`
+- Pages: `website/src/pages/`
+- Styles: `website/src/styles/`
+- Static assets: `website/public/`
+- Configs: `website/*.config.mjs`
+
 ## Validation Commands
 
 ```bash
 # Build check (REQUIRED before completing any task)
-npm run build
+cd website/ && npm run build
 
 # Preview locally (manual)
-npm run preview
+cd website/ && npm run preview
 
-# Lint check
-npm run lint
+# Development server
+cd website/ && npm run dev
 ```
 
 ## Environment Notes

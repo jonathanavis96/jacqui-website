@@ -10,7 +10,8 @@
 # expect_stdout="exact match" OR expect_stdout_regex="pattern"
 #
 # NOTE: Commands run from the ralph/ directory
-#       Use relative paths: ../src/, ../dist/, etc.
+#       Website files are in ../website/
+#       Use relative paths: ../website/src/, ../website/dist/, etc.
 
 # =============================================================================
 # Build & Lint
@@ -20,14 +21,14 @@
 mode=auto
 gate=block
 desc=Astro build passes
-cmd=cd .. && npm run build 2>&1 | tail -5
+cmd=cd ../website && npm run build 2>&1 | tail -5
 expect_stdout_regex=Complete!
 
 [LINT-01]
 mode=auto
 gate=warn
 desc=No lint errors (if configured)
-cmd=cd .. && npm run lint 2>&1 || echo "Lint not configured"
+cmd=cd ../website && npm run lint 2>&1 || echo "Lint not configured"
 expect_stdout_regex=(Lint not configured|^$|0 errors)
 
 # =============================================================================
@@ -38,28 +39,28 @@ expect_stdout_regex=(Lint not configured|^$|0 errors)
 mode=auto
 gate=block
 desc=Homepage exists
-cmd=test -f ../src/pages/index.astro && echo yes
+cmd=test -f ../website/src/pages/index.astro && echo yes
 expect_stdout=yes
 
 [PAGE-02]
 mode=auto
 gate=block
 desc=About page exists
-cmd=test -f ../src/pages/about.astro && echo yes
+cmd=test -f ../website/src/pages/about.astro && echo yes
 expect_stdout=yes
 
 [PAGE-03]
 mode=auto
 gate=block
 desc=Services page exists
-cmd=test -f ../src/pages/services.astro && echo yes
+cmd=test -f ../website/src/pages/services.astro && echo yes
 expect_stdout=yes
 
 [PAGE-04]
 mode=auto
 gate=block
 desc=Contact page exists
-cmd=test -f ../src/pages/contact.astro && echo yes
+cmd=test -f ../website/src/pages/contact.astro && echo yes
 expect_stdout=yes
 
 # =============================================================================
@@ -70,21 +71,21 @@ expect_stdout=yes
 mode=auto
 gate=block
 desc=Header component exists
-cmd=test -f ../src/components/Header.astro && echo yes
+cmd=test -f ../website/src/components/Header.astro && echo yes
 expect_stdout=yes
 
 [COMP-02]
 mode=auto
 gate=block
 desc=Footer component exists
-cmd=test -f ../src/components/Footer.astro && echo yes
+cmd=test -f ../website/src/components/Footer.astro && echo yes
 expect_stdout=yes
 
 [COMP-03]
 mode=auto
 gate=block
 desc=Layout exists
-cmd=test -f ../src/layouts/BaseLayout.astro && echo yes
+cmd=test -f ../website/src/layouts/BaseLayout.astro && echo yes
 expect_stdout=yes
 
 # =============================================================================
@@ -95,21 +96,21 @@ expect_stdout=yes
 mode=auto
 gate=warn
 desc=Psychology Today badge placeholder
-cmd=grep -r "psychology.today\|psychologytoday\|PT-badge" ../src/ 2>/dev/null && echo found || echo "Badge not found"
+cmd=grep -r "psychology.today\|psychologytoday\|PT-badge" ../website/src/ 2>/dev/null && echo found || echo "Badge not found"
 expect_stdout_regex=(found|Badge not found)
 
 [CONTENT-02]
 mode=auto
 gate=warn
 desc=Contact info present
-cmd=grep -r "contact\|email\|whatsapp" ../src/pages/contact.astro 2>/dev/null && echo found || echo "Contact info missing"
+cmd=grep -r "contact\|email\|whatsapp" ../website/src/pages/contact.astro 2>/dev/null && echo found || echo "Contact info missing"
 expect_stdout_regex=(found|Contact info missing)
 
 [CONTENT-03]
 mode=auto
 gate=warn
 desc=HPCSA reference present
-cmd=grep -ri "hpcsa\|registered\|credentials" ../src/ 2>/dev/null && echo found || echo "HPCSA not found"
+cmd=grep -ri "hpcsa\|registered\|credentials" ../website/src/ 2>/dev/null && echo found || echo "HPCSA not found"
 expect_stdout_regex=(found|HPCSA not found)
 
 # =============================================================================
@@ -120,14 +121,14 @@ expect_stdout_regex=(found|HPCSA not found)
 mode=auto
 gate=block
 desc=Tailwind configured
-cmd=test -f ../tailwind.config.mjs && echo "Tailwind configured"
+cmd=test -f ../website/tailwind.config.mjs && echo "Tailwind configured"
 expect_stdout=Tailwind configured
 
 [DESIGN-02]
 mode=auto
 gate=warn
 desc=Mobile breakpoints used
-cmd=grep -r "md:\|lg:\|sm:" ../src/ 2>/dev/null | head -1 && echo found || echo "No responsive classes"
+cmd=grep -r "md:\|lg:\|sm:" ../website/src/ 2>/dev/null | head -1 && echo found || echo "No responsive classes"
 expect_stdout_regex=(found|No responsive classes)
 
 # =============================================================================
@@ -170,12 +171,12 @@ expect_stdout=OK
 mode=auto
 gate=block
 desc=Netlify config exists
-cmd=test -f ../netlify.toml && echo yes
+cmd=test -f ../website/netlify.toml && echo yes
 expect_stdout=yes
 
 [DEPLOY-02]
 mode=auto
 gate=warn
 desc=Build output exists
-cmd=test -d ../dist && echo "dist/ exists" || echo "No dist/"
+cmd=test -d ../website/dist && echo "dist/ exists" || echo "No dist/"
 expect_stdout=dist/ exists

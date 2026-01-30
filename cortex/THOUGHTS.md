@@ -57,6 +57,14 @@ All development work is complete. Waiting on:
 
 ## Session Log
 
+### 2026-01-30 16:57:00 - Project Structure Reorganization
+
+- Moved all website files into `website/` subdirectory
+- Separated deliverable from development tooling (ralph/, cortex/)
+- Updated GitHub Actions and Netlify configs for new structure
+- Created root README and website-specific README
+- All builds tested and passing
+
 ### 2026-01-23 14:33:00 - Plans Cleaned Up
 
 - Removed all completed tasks from both Cortex and Ralph plans

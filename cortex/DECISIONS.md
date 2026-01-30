@@ -104,6 +104,41 @@ Need to decide if we keep this structure or modify.
 
 ---
 
+---
+
+### DEC-2026-01-30-001: Project Structure Reorganization
+
+**Status:** Implemented
+
+**Context:** Development tooling (ralph/, cortex/) was mixed with website deliverable at root level.
+
+**Decision:** Move all website files into `website/` subdirectory.
+
+**Structure:**
+```
+/
+├── website/          # Astro website (deliverable)
+│   ├── src/          # Source code
+│   ├── public/       # Static assets
+│   └── *.config.mjs  # Build configs
+├── cortex/           # Strategic planning
+├── ralph/            # Task execution
+└── vendor/brain/     # Development framework
+```
+
+**Rationale:**
+- Clean separation of concerns
+- Deliverable is self-contained in `website/`
+- Development tools don't contaminate production code
+- Easier to share/deploy just the website
+
+**Impact:**
+- Ralph must work in `website/` directory for code changes
+- Build commands run from `website/`: `cd website/ && npm run build`
+- Deployment configs updated (GitHub Actions, Netlify)
+
+---
+
 ## Pending Decisions
 
 - [ ] Color palette (awaiting client input)
