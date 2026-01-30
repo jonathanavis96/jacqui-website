@@ -50,7 +50,7 @@ grep -n "^- \[ \]" ralph/IMPLEMENTATION_PLAN.md | head -20
 sed -n '20,50p' ralph/IMPLEMENTATION_PLAN.md
 
 # 3. Check for existing components before creating new ones
-ls -la src/components/ src/pages/
+ls -la website/src/components/ website/src/pages/
 ```
 
 **WRONG:** `open_files(['cortex/IMPLEMENTATION_PLAN.md', 'cortex/AGENTS.md', ...])`
@@ -189,7 +189,7 @@ If a grep returns too many matches (>50), immediately narrow:
 
 ```bash
 # GOOD: constrained
-rg -n "pattern" src/components/ | head -20
+rg -n "pattern" website/src/components/ | head -20
 ```
 
 ### Context You Already Have
@@ -215,7 +215,7 @@ rg -n "pattern" src/components/ | head -20
 
 | Access Level | Paths | Notes |
 |--------------|-------|-------|
-| **Full access** | `src/`, `public/`, `docs/` | Read, write, create |
+| **Full access** | `website/src/`, `website/public/`, `docs/` | Read, write, create |
 | **Protected** | `ralph/rules/AC.rules`, `ralph/verifier.sh`, `ralph/loop.sh` | Read only |
 
 ---

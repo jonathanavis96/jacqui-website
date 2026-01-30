@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS Setup Instructions - jacquichowles.com</title>
+    <style>
+        @media print {
+            body { margin: 0; padding: 20mm; }
+            .page-break { page-break-before: always; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        h1 {
+            color: #2c5282;
+            border-bottom: 3px solid #4299e1;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h2 {
+            color: #2d3748;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+        }
+        h3 {
+            color: #4a5568;
+            margin-top: 20px;
+        }
+        .overview {
+            background: #f7fafc;
+            border-left: 4px solid #4299e1;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        .warning {
+            background: #fff5f5;
+            border-left: 4px solid #f56565;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        .success {
+            background: #f0fff4;
+            border-left: 4px solid #48bb78;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #fff;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #edf2f7;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        code {
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d53f8c;
+        }
+        .record-box {
+            background: #f7fafc;
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .record-box strong {
+            color: #2c5282;
+        }
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+        .checklist li:before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e2e8f0;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>DNS Setup Instructions for jacquichowles.com</h1>
+    
+    <div class="overview">
+        <h2 style="margin-top: 0; border: none;">Overview</h2>
+        <p>Your current website is hosted on Squarespace. Your new website is ready to go live. To make this happen, you need to update your DNS settings to point your domain to the new hosting location.</p>
+        <p>This guide will walk you through the process step-by-step.</p>
+    </div>
+
+    <h2>Before You Start</h2>
+    
+    <p><strong>What you'll need:</strong></p>
+    <ul>
+        <li>Access to your Squarespace account (the one that manages jacquichowles.com)</li>
+        <li>About 10-15 minutes to complete the changes</li>
+    </ul>
+
+    <p><strong>What will happen:</strong></p>
+    <ul>
+        <li>Your domain will start showing the new website instead of the Squarespace site</li>
+        <li>Email will continue working normally (if you follow the instructions carefully)</li>
+        <li>The change typically takes 4-48 hours to fully propagate worldwide</li>
+    </ul>
+
+    <hr>
+
+    <h2>Step-by-Step Instructions</h2>
+
+    <h3>Step 1: Log into Squarespace</h3>
+    <ol>
+        <li>Go to <a href="https://www.squarespace.com">squarespace.com</a></li>
+        <li>Log in with your account credentials</li>
+        <li>Access the account that manages jacquichowles.com</li>
+    </ol>
+
+    <h3>Step 2: Open Domain Settings</h3>
+    <ol>
+        <li>Click <strong>Settings</strong> in the left sidebar</li>
+        <li>Click <strong>Domains</strong></li>
+        <li>Find and click on <strong>jacquichowles.com</strong></li>
+        <li>Click <strong>DNS Settings</strong> (or <strong>Advanced Settings</strong> → <strong>DNS</strong>)</li>
+    </ol>
+
+    <h3>Step 3: Add New DNS Records</h3>
+    <p>You'll need to add <strong>5 new DNS records</strong> total.</p>
+
+    <h4>Part A: Add 4 A Records (for the main domain)</h4>
+    <p>Click <strong>Add Record</strong> or <strong>Custom Records</strong> → <strong>Add</strong>.</p>
+
+    <div class="record-box">
+        <strong>Record 1:</strong><br>
+        Type: <code>A</code><br>
+        Host: <code>@</code><br>
+        Value: <code>185.199.108.153</code><br>
+        Click <strong>Save</strong> or <strong>Add</strong>
+    </div>
+
+    <div class="record-box">
+        <strong>Record 2:</strong><br>
+        Type: <code>A</code><br>
+        Host: <code>@</code><br>
+        Value: <code>185.199.109.153</code><br>
+        Click <strong>Save</strong> or <strong>Add</strong>
+    </div>
+
+    <div class="record-box">
+        <strong>Record 3:</strong><br>
+        Type: <code>A</code><br>
+        Host: <code>@</code><br>
+        Value: <code>185.199.110.153</code><br>
+        Click <strong>Save</strong> or <strong>Add</strong>
+    </div>
+
+    <div class="record-box">
+        <strong>Record 4:</strong><br>
+        Type: <code>A</code><br>
+        Host: <code>@</code><br>
+        Value: <code>185.199.111.153</code><br>
+        Click <strong>Save</strong> or <strong>Add</strong>
+    </div>
+
+    <div class="page-break"></div>
+
+    <h4>Part B: Add 1 CNAME Record (for the www version)</h4>
+    <p>Click <strong>Add Record</strong> again.</p>
+
+    <div class="record-box">
+        <strong>Record 5:</strong><br>
+        Type: <code>CNAME</code><br>
+        Host: <code>www</code><br>
+        Value: <code>jacquichowles.com</code><br>
+        Click <strong>Save</strong> or <strong>Add</strong>
+    </div>
+
+    <h3>Step 4: Remove Old DNS Records</h3>
+    <div class="warning">
+        <p><strong>⚠️ Important:</strong> You need to remove any conflicting old records.</p>
+    </div>
+
+    <p>Look for existing records with:</p>
+    <ul>
+        <li>Type: <code>A</code> and Host: <code>@</code> (pointing to different IP addresses)</li>
+        <li>Type: <code>CNAME</code> and Host: <code>www</code> (pointing to anything else)</li>
+    </ul>
+
+    <p><strong>Delete these old records</strong> by clicking the trash/delete icon next to them.</p>
+
+    <h3>Step 5: Protect Your Email (Critical)</h3>
+    <div class="warning">
+        <p><strong>⚠️ DO NOT DELETE THESE RECORDS:</strong></p>
+        <ul>
+            <li>Any record with Type: <code>MX</code> (Mail Exchange)</li>
+            <li>Any record with Type: <code>TXT</code> containing "SPF" or "DKIM"</li>
+            <li>Any record related to email services</li>
+        </ul>
+        <p>If you accidentally delete these, your email will stop working. If you're unsure, take a screenshot before making changes.</p>
+    </div>
+
+    <h3>Step 6: Save and Confirm</h3>
+    <ol>
+        <li>Make sure all changes are saved</li>
+        <li>Review that you have:
+            <ul class="checklist">
+                <li>4 A records (all with Host: <code>@</code>)</li>
+                <li>1 CNAME record (Host: <code>www</code>)</li>
+                <li>All email records still intact</li>
+            </ul>
+        </li>
+        <li>Click <strong>Save</strong> or <strong>Apply Changes</strong> (if required)</li>
+        <li>Message your web developer: <strong>"DNS updated - Done"</strong></li>
+    </ol>
+
+    <div class="page-break"></div>
+
+    <hr>
+
+    <h2>What Happens Next</h2>
+
+    <h3>Propagation Timeline</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>What to Expect</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>0-2 hours</strong></td>
+                <td>Changes begin propagating. Some visitors may see the new site.</td>
+            </tr>
+            <tr>
+                <td><strong>2-24 hours</strong></td>
+                <td>Most visitors see the new site. SSL certificate begins provisioning.</td>
+            </tr>
+            <tr>
+                <td><strong>24-48 hours</strong></td>
+                <td>All visitors see the new site with secure HTTPS.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>During Propagation</h3>
+    <ul>
+        <li>Some people may see the old site, others may see the new site</li>
+        <li>This is normal and temporary</li>
+        <li>Don't panic if you still see the old site after saving - it can take time</li>
+    </ul>
+
+    <h3>SSL Certificate (HTTPS/Padlock)</h3>
+    <ul>
+        <li>The secure padlock icon may not appear immediately</li>
+        <li>This is automatically provisioned within 24 hours of DNS propagation</li>
+        <li>Your site will work fine during this time, just without the padlock initially</li>
+    </ul>
+
+    <hr>
+
+    <h2>Troubleshooting</h2>
+
+    <h3>"I still see the old Squarespace site"</h3>
+    <p>Try these steps:</p>
+    <ol>
+        <li>Clear your browser cache (Ctrl+Shift+Delete / Cmd+Shift+Delete)</li>
+        <li>Try in an incognito/private window</li>
+        <li>Wait another few hours for DNS to propagate</li>
+        <li>Check on your phone using mobile data (not wifi)</li>
+    </ol>
+
+    <h3>"My email stopped working"</h3>
+    <div class="warning">
+        <p>You likely deleted an MX or TXT record by accident.</p>
+        <ol>
+            <li>Contact your web developer immediately</li>
+            <li>Do not try to fix it yourself</li>
+            <li>They can restore the correct email records</li>
+        </ol>
+    </div>
+
+    <h3>"I see a 'Page Not Found' error"</h3>
+    <p>This is temporary during propagation. Wait 1-2 hours and check again.</p>
+
+    <hr>
+
+    <h2>Quick Reference: DNS Records Summary</h2>
+    <p>Copy this table for your records:</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Host</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>A</td>
+                <td>@</td>
+                <td>185.199.108.153</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>@</td>
+                <td>185.199.109.153</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>@</td>
+                <td>185.199.110.153</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>@</td>
+                <td>185.199.111.153</td>
+            </tr>
+            <tr>
+                <td>CNAME</td>
+                <td>www</td>
+                <td>jacquichowles.com</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Need Help?</h2>
+
+    <p>If you run into any issues during this process, contact your web developer before making further changes.</p>
+
+    <div class="warning">
+        <p><strong>Do not:</strong></p>
+        <ul>
+            <li>Delete records you're unsure about</li>
+            <li>Make additional changes beyond what's listed here</li>
+            <li>Panic if changes take time to appear</li>
+        </ul>
+    </div>
+
+    <div class="success">
+        <p><strong>Do:</strong></p>
+        <ul>
+            <li>Take screenshots before making changes</li>
+            <li>Follow the instructions exactly as written</li>
+            <li>Message your developer when complete</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <p style="text-align: center; color: #718096; font-size: 14px; margin-top: 40px;">
+        <strong>Document created:</strong> January 30, 2026<br>
+        <strong>Domain:</strong> jacquichowles.com<br>
+        <strong>Purpose:</strong> Transfer from Squarespace to new hosting
+    </p>
+</body>
+</html>

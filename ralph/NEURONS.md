@@ -8,66 +8,65 @@ Quick map of project structure. Update as codebase evolves.
 
 ```text
 jacqui-website/
-├── cortex/                     # Manager layer (Cortex)
-│   ├── AGENTS.md              # Cortex operational rules
+├── website/                    # Astro website (deliverable)
+│   ├── src/                   # Astro source code
+│   │   ├── pages/            # Page routes
+│   │   │   ├── index.astro   # Homepage
+│   │   │   ├── about.astro   # About page
+│   │   │   ├── services.astro # Services page
+│   │   │   └── contact.astro # Contact page
+│   │   │
+│   │   ├── components/       # Reusable UI components
+│   │   │   ├── Header.astro  # Site header/nav
+│   │   │   ├── Footer.astro  # Site footer
+│   │   │   ├── Hero.astro    # Hero section ✅
+│   │   │   ├── ServiceCard.astro # Service preview card ✅
+│   │   │   ├── TrustBadges.astro # HPCSA + Psychology Today ✅
+│   │   │   ├── CTASection.astro  # Call-to-action section ✅
+│   │   │   └── ContactForm.astro # Contact form
+│   │   │
+│   │   ├── layouts/          # Page layouts
+│   │   │   └── BaseLayout.astro # Main layout wrapper
+│   │   │
+│   │   └── styles/           # Global styles
+│   │       └── global.css    # Tailwind imports + custom
+│   │
+│   ├── public/               # Static assets
+│   │   ├── images/          # Photos, logos
+│   │   └── favicon.ico      # Site favicon
+│   │
+│   ├── dist/                # Build output (generated)
+│   ├── astro.config.mjs     # Astro configuration
+│   ├── tailwind.config.mjs  # Tailwind configuration
+│   ├── package.json         # Dependencies
+│   └── .gitignore           # Website-specific ignores
+│
+├── cortex/                   # Manager layer (Cortex)
+│   ├── AGENTS.md            # Cortex operational rules
 │   ├── CORTEX_SYSTEM_PROMPT.md # Cortex identity
-│   ├── DECISIONS.md           # Architectural decisions
+│   ├── DECISIONS.md         # Architectural decisions
 │   ├── IMPLEMENTATION_PLAN.md # Task source (Ralph syncs from here)
-│   └── THOUGHTS.md            # Strategic context
+│   └── THOUGHTS.md          # Strategic context
 │
-├── src/                        # Astro source code
-│   ├── pages/                 # Page routes
-│   │   ├── index.astro        # Homepage
-│   │   ├── about.astro        # About page
-│   │   ├── services.astro     # Services page
-│   │   └── contact.astro      # Contact page
-│   │
-│   ├── components/            # Reusable UI components
-│   │   ├── Header.astro       # Site header/nav
-│   │   ├── Footer.astro       # Site footer
-│   │   ├── Hero.astro         # Hero section ✅
-│   │   ├── ServiceCard.astro  # Service preview card ✅
-│   │   ├── TrustBadges.astro  # HPCSA + Psychology Today ✅
-│   │   ├── CTASection.astro   # Call-to-action section ✅
-│   │   └── ContactForm.astro  # Contact form
-│   │
-│   ├── layouts/               # Page layouts
-│   │   └── BaseLayout.astro   # Main layout wrapper
-│   │
-│   └── styles/                # Global styles
-│       └── global.css         # Tailwind imports + custom
+├── ralph/                    # Worker layer (Ralph)
+│   ├── AGENTS.md            # Ralph operational rules
+│   ├── PROMPT.md            # Ralph system prompt (protected)
+│   ├── IMPLEMENTATION_PLAN.md # Ralph's working task copy
+│   ├── THUNK.md             # Completed tasks log
+│   ├── NEURONS.md           # This file
+│   ├── loop.sh              # Ralph executor (protected)
+│   ├── verifier.sh          # AC checker (protected)
+│   ├── init_verifier_baselines.sh # Initialize hash guards
+│   ├── rules/               # Verification rules
+│   │   └── AC.rules        # Acceptance criteria (protected)
+│   └── .verify/            # Hash baselines
 │
-├── public/                     # Static assets
-│   ├── images/                # Photos, logos
-│   └── favicon.ico            # Site favicon
-│
-├── docs/                       # Project documentation
-│   └── CONTENT_AUDIT.md       # Captured content from existing site
-│
-├── rules/                      # Verification rules
-│   └── AC.rules               # Acceptance criteria (protected)
-│
-├── .verify/                    # Hash baselines
-│   ├── ac.sha256
-│   ├── loop.sha256
-│   ├── prompt.sha256
-│   └── verifier.sha256
-│
-├── AGENTS.md                   # Ralph operational rules
-├── PROMPT.md                   # Ralph system prompt (protected)
-├── IMPLEMENTATION_PLAN.md      # Ralph's working task copy
-├── THUNK.md                    # Completed tasks log
-├── NEURONS.md                  # This file
-│
-├── loop.sh                     # Ralph executor (protected)
-├── verifier.sh                 # AC checker (protected)
-├── init_verifier_baselines.sh  # Initialize hash guards
-│
-├── astro.config.mjs            # Astro configuration
-├── tailwind.config.mjs         # Tailwind configuration
-├── package.json                # Dependencies
-├── .github/workflows/         # GitHub Actions (deployment)
-└── .gitignore                  # Git ignore rules
+├── shared/                  # Shared utilities
+├── vendor/brain/           # Brain framework
+├── docs/                   # Project documentation
+├── .github/workflows/      # GitHub Actions (deployment)
+├── README.md               # Project overview
+└── .gitignore              # Root-level ignores
 ```
 
 ## Page → Component Map
@@ -95,13 +94,14 @@ cortex/IMPLEMENTATION_PLAN.md  →  (sync)  →  IMPLEMENTATION_PLAN.md
 
 | I need to... | Look at |
 |--------------|---------|
-| See current tasks | `IMPLEMENTATION_PLAN.md` |
-| See completed work | `THUNK.md` |
+| See current tasks | `ralph/IMPLEMENTATION_PLAN.md` |
+| See completed work | `ralph/THUNK.md` |
 | Understand goals | `cortex/THOUGHTS.md` |
 | Check design decisions | `cortex/DECISIONS.md` |
-| Find a component | `src/components/` |
-| Edit page content | `src/pages/` |
-| Add static assets | `public/` |
+| Find a component | `website/src/components/` |
+| Edit page content | `website/src/pages/` |
+| Add static assets | `website/public/` |
+| Build the site | `cd website/ && npm run build` |
 
 ## External References
 

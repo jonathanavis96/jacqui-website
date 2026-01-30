@@ -1,33 +1,12 @@
-# Dependencies
-node_modules/
-
-# Build output
-dist/
-.astro/
-
-# Environment
+# Root level ignores
+.DS_Store
+*.log
 .env
 .env.local
-.env.production
 
-# Logs
-logs/
-*.log
-npm-debug.log*
-
-# OS
-.DS_Store
-Thumbs.db
+# Backup folders
+.backup_*/
 
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# Netlify
-.netlify/
-
-# Verifier runtime outputs (do not track)
-.verify/latest.txt
-.verify/run_id.txt
