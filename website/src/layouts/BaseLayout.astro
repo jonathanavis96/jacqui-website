@@ -13,8 +13,8 @@ const base = import.meta.env.BASE_URL;
 const siteUrl = 'https://www.jacquichowles.com';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
 
-// SEO: Open Graph image - use logo as default
-const ogImage = new URL('/images/JacquiChowlesLogo.webp', siteUrl).href;
+// SEO: Open Graph image - use custom OG banner
+const ogImage = new URL('/images/jacqui-og-banner.webp', siteUrl).href;
 ---
 
 <!DOCTYPE html>
