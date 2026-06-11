@@ -10,3 +10,6 @@
 # IDE
 .vscode/
 .idea/
+
+# Windows Zone.Identifier metadata files
+*:Zone.Identifier
