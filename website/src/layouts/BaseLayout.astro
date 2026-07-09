@@ -6,11 +6,11 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Jacqui Chowles - Counselling Psychologist. Online and in-person therapy for trauma, depression, anxiety, and more.' } = Astro.props;
+const { title, description = 'Jacqui Chowles - Counselling Psychologist in Roodepoort, Gauteng. Online and in-person therapy for individuals and couples: trauma, depression, anxiety, relationships, and life transitions.' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
 // SEO: Construct canonical URL
-const siteUrl = 'https://www.jacquichowles.com';
+const siteUrl = 'https://jacquichowles.com';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl).href;
 
 // SEO: Open Graph image - use custom OG banner
@@ -65,12 +65,22 @@ const ogImage = new URL('/images/jacqui-og-banner.webp', siteUrl).href;
         "@graph": [
           {
             "@type": "Person",
-            "@id": "https://www.jacquichowles.com/#person",
+            "@id": "https://jacquichowles.com/#person",
             "name": "Jacqui Chowles",
             "jobTitle": "Counselling Psychologist",
-            "description": "Registered Counselling Psychologist specializing in trauma, depression, anxiety, and life transitions",
-            "url": "https://www.jacquichowles.com",
-            "image": "https://www.jacquichowles.com/images/jacqui_headshot.webp",
+            "description": "Registered Counselling Psychologist specializing in trauma, depression, anxiety, couples and relationship therapy, and life transitions",
+            "knowsAbout": [
+              "Trauma and PTSD therapy",
+              "Depression",
+              "Anxiety",
+              "Couples therapy",
+              "Relationship counselling",
+              "Perinatal and women's mental health",
+              "Grief and loss",
+              "Life transitions"
+            ],
+            "url": "https://jacquichowles.com",
+            "image": "https://jacquichowles.com/images/jacqui_headshot.webp",
             "telephone": "+27-76-605-4736",
             "email": "jacqui@jacquichowles.com",
             "address": {
@@ -84,20 +94,28 @@ const ogImage = new URL('/images/jacqui-og-banner.webp', siteUrl).href;
             ]
           },
           {
-            "@type": "LocalBusiness",
-            "@id": "https://www.jacquichowles.com/#business",
+            "@type": ["LocalBusiness", "ProfessionalService"],
+            "@id": "https://jacquichowles.com/#business",
             "name": "Jacqui Chowles Psychology Practice",
-            "description": "Professional psychology services including online and in-person therapy for trauma, depression, anxiety, and life transitions",
-            "url": "https://www.jacquichowles.com",
+            "description": "Professional psychology services including online and in-person therapy for individuals and couples: trauma, depression, anxiety, relationship difficulties, and life transitions",
+            "url": "https://jacquichowles.com",
             "telephone": "+27-76-605-4736",
             "email": "jacqui@jacquichowles.com",
             "priceRange": "R1400-R2100",
             "address": {
               "@type": "PostalAddress",
+              "streetAddress": "Argyle Square, Tamarisk Street, Weltevreden Park",
               "addressLocality": "Roodepoort",
               "addressRegion": "Gauteng",
               "addressCountry": "ZA"
             },
+            "areaServed": [
+              "Roodepoort",
+              "Weltevreden Park",
+              "Johannesburg",
+              "Gauteng",
+              "South Africa (online)"
+            ],
             "geo": {
               "@type": "GeoCoordinates",
               "latitude": "-26.1629",
@@ -121,6 +139,14 @@ const ogImage = new URL('/images/jacqui-og-banner.webp', siteUrl).href;
                     "@type": "Service",
                     "name": "In-Person Therapy",
                     "description": "Face-to-face therapy sessions in Roodepoort"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Couples Therapy",
+                    "description": "Relationship and couples counselling, online or in person, for communication, trust repair, and connection"
                   }
                 },
                 {

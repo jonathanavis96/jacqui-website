@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.jacquichowles.com/sitemap-index.xml
+Sitemap: https://jacquichowles.com/sitemap-index.xml

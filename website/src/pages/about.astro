@@ -9,8 +9,8 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout 
-  title="About - Jacqui Chowles" 
-  description="Learn about Jacqui Chowles' background, approach, and areas of expertise in therapy."
+  title="About - Jacqui Chowles"
+  description="Learn about Jacqui Chowles' background, psychodynamic approach, and areas of expertise—including trauma, anxiety, depression, and couples therapy."
 >
   <Header />
   <main class="flex-grow bg-white">
@@ -35,9 +35,11 @@ const base = import.meta.env.BASE_URL;
         <div class="max-w-4xl mx-auto">
           <!-- Jacqui's Photo -->
           <div class="mb-12 flex justify-center">
-            <img 
+            <img
               src={`${base}images/jacqui_headshot.webp`}
-              alt="Jacqui Chowles - Counselling Psychologist" 
+              alt="Jacqui Chowles, Counselling Psychologist, Roodepoort"
+              width="454"
+              height="623"
               class="w-80 h-auto rounded-lg object-cover shadow-lg"
             />
           </div>
@@ -72,9 +74,12 @@ const base = import.meta.env.BASE_URL;
           <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start mb-8">
             <!-- Mirror Image (Left) -->
             <div class="order-2 md:order-1 md:justify-self-start md:pl-32">
-              <img 
+              <img
                 src={`${base}images/image3_mirror.webp`}
-                alt="Reflective mirror symbolizing self-exploration in therapy" 
+                alt="Reflective mirror symbolizing self-exploration in therapy"
+                width="587"
+                height="744"
+                loading="lazy"
                 class="max-w-sm w-full h-auto rounded-lg shadow-lg object-cover"
               />
             </div>

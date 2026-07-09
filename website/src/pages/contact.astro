@@ -11,8 +11,65 @@ const base = import.meta.env.BASE_URL;
   description="Get in touch with Jacqui Chowles for therapy appointments and consultancy enquiries."
 >
   <Header />
+
+  <!-- JSON-LD: FAQPage (mirrors the visible Common Questions section below) -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is therapy right for me?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If you're feeling stuck, overwhelmed, or curious about making a change, therapy might be helpful. You don't need to be in crisis to benefit—many people come to therapy to work through life transitions, improve relationships, or better understand themselves. If you're wondering whether it's right for you, let's have a conversation."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does the process look like?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We'll start with an initial consultation to discuss what brings you to therapy and what you're hoping to achieve. From there, we'll work together at a pace that feels right for you. Sessions are typically weekly or fortnightly, and we'll regularly check in on your progress to ensure therapy is meeting your needs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are your rates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Individual therapy (1 hour): R1,400. Couples therapy (90 minutes): R2,100. Consultancy services: contact for a quote. 2026 rates are subject to annual increase. This is a cash-based practice, and invoices are provided for medical aid reimbursement where applicable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I book my first session?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start by sending me a message via the contact form, email, or WhatsApp. We'll schedule a consultation call to discuss what you're looking for and see if we're a good fit. If we decide to work together, we'll book your first session from there."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does therapy take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every person's journey is different. Some people benefit from short-term focused work (a few months), while others prefer longer-term therapy. We'll discuss your goals and check in regularly about how things are progressing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you accept medical aid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "I don't bill medical aid directly, but I can provide invoices for you to submit for reimbursement if your plan covers out-of-network providers or has mental health benefits."
+        }
+      }
+    ]
+  })} />
+
   <main class="flex-grow bg-white">
-    
+
     <!-- Hero Section -->
     <section class="bg-gradient-to-b from-purple-muted/10 to-white py-16 md:py-20">
       <div class="container mx-auto px-4">
