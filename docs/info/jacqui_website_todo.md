@@ -85,6 +85,32 @@
 
 ---
 
+### 8. Google Reviews Badge + Curated Reviews 💡
+**Status:** Idea only - not started, needs Jacqui's go-ahead
+
+**Google Business Profile link (the one to use):**
+<https://maps.app.goo.gl/9FvDosAYSHw4vZwN8>
+
+Resolves to **"Jacqui Chowles: Psychologist"** (Weltevreden Park / Roodepoort). Identifiers pulled from the resolved URL, for whichever API we end up using:
+
+- CID (hex): `0x1e9575bd6fa287c7:0x2b047f4b729e8f5`
+- CID (decimal): `193733900347500789`
+- Google entity ID: `/g/11myv2j6jp`
+
+**What it's for - two related pieces:**
+
+1. **Live reviews badge/pill** - a small pill showing the star rating and the current review count, pulling live so it stays accurate on its own. Clicking it opens the Google Maps link above (her reviews page).
+2. **Three handpicked reviews** - a curated set of three testimonials displayed on the site, chosen by Jacqui rather than auto-pulled. Only if she wants it.
+
+**Open questions before building:**
+
+- Does Jacqui actually want this? Both pieces, or just the badge?
+- How to fetch live rating/count. Google Places API needs a billing-enabled API key and a Place ID (`ChIJ...`), which we'd resolve from the CID above. Places API caching rules restrict how long ratings may be stored - worth checking current terms. Alternative: build the badge at build time so there's no client-side key exposure, at the cost of the count only refreshing on rebuild.
+- Curated reviews are a manual/content job - needs the actual review text and consent to reuse it.
+- Placement: near the existing Psychology Today badge is the obvious home (trust badges are already aligned there).
+
+---
+
 ## ✅ Completed
 
 - ✅ Homepage layout fixes (tiles even and consistent)
@@ -106,7 +132,7 @@
 
 **Total Outstanding:** 6 tasks  
 **Blocked on Jacqui:** 6 tasks  
-**Optional:** 1 task  
+**Optional:** 2 tasks  
 **Completed:** 12+ tasks ✅
 
 **Next Action:** Jacqui needs to provide:
