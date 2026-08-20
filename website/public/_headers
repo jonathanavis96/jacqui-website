@@ -1,0 +1,6 @@
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-6p6HKcXJ/OHVQgusHo5Un1BbASmnuWQvyZ8US1HZKdg=' 'sha256-9omQ0MXeZAe4xf3M6jDsAYP2SzsRN3aqJ13wcBmiLaU=' https://member.psychologytoday.com https://www.psychologytoday.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.psychologytoday.com https://member.psychologytoday.com; form-action 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
