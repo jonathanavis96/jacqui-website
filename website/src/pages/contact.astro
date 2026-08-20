@@ -223,6 +223,9 @@ const base = import.meta.env.BASE_URL;
                 <!-- Honeypot for spam prevention -->
                 <input type="text" name="_gotcha" style="display:none" />
 
+                <!-- Redirect back to the site's own thank-you page after submit -->
+                <input type="hidden" name="_next" value="https://jacquichowles.com/thanks/" />
+
                 <!-- Name -->
                 <div>
                   <label for="name" class="block text-gray-700 font-bold mb-2">

@@ -4,9 +4,10 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title, description = 'Jacqui Chowles - Counselling Psychologist in Roodepoort, Gauteng. Online and in-person therapy for individuals and couples: trauma, depression, anxiety, relationships, and life transitions.' } = Astro.props;
+const { title, description = 'Jacqui Chowles - Counselling Psychologist in Roodepoort, Gauteng. Online and in-person therapy for individuals and couples: trauma, depression, anxiety, relationships, and life transitions.', noindex = false } = Astro.props;
 const base = import.meta.env.BASE_URL;
 
 // SEO: Construct canonical URL
@@ -24,7 +25,8 @@ const ogImage = new URL('/images/jacqui-og-banner.webp', siteUrl).href;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
-    
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
     

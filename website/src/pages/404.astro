@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Page not found - Jacqui Chowles"
+  description="The page you're looking for couldn't be found."
+  noindex={true}
+>
+  <Header />
+
+  <main class="flex-grow bg-white">
+    <section class="py-20 md:py-28">
+      <div class="container mx-auto px-4">
+        <div class="max-w-xl mx-auto text-center">
+          <h1 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4">
+            Page not found
+          </h1>
+
+          <p class="text-lg text-gray-700 mb-10">
+            The page you're looking for doesn't exist or may have moved. Try one of the links below.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href={`${base}`}
+              class="inline-block bg-purple-muted hover:bg-purple-brand text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg"
+            >
+              Back to homepage
+            </a>
+            <a
+              href={`${base}contact/`}
+              class="inline-block bg-transparent hover:bg-gray-100 text-gray-900 font-bold py-4 px-8 rounded-lg border-2 border-gray-300 transition-colors text-lg"
+            >
+              Get in touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

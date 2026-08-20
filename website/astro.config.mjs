@@ -6,7 +6,12 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://jacquichowles.com',
   base: '/',
-  integrations: [tailwind(), sitemap()],
+  integrations: [
+    tailwind(),
+    sitemap({
+      filter: (page) => !page.endsWith('/thanks/'),
+    }),
+  ],
   output: 'static',
   build: {
     inlineStylesheets: 'auto',
