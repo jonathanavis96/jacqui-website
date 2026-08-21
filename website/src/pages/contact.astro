@@ -223,8 +223,10 @@ const base = import.meta.env.BASE_URL;
                 <!-- Honeypot for spam prevention -->
                 <input type="text" name="_gotcha" style="display:none" />
 
-                <!-- Redirect back to the site's own thank-you page after submit -->
-                <input type="hidden" name="_next" value="https://jacquichowles.com/thanks/" />
+                <!-- No _next field: Formspree's _next redirect strips the origin on this
+                     plan and 400s. The submit handler below redirects to /thanks/ itself
+                     after a successful AJAX submit; a no-JS visitor lands on Formspree's
+                     own default thank-you page instead, which works correctly. -->
 
                 <!-- Name -->
                 <div>
@@ -310,9 +312,15 @@ const base = import.meta.env.BASE_URL;
                   <p><strong>Privacy note:</strong> Your information will be kept confidential and used only to respond to your enquiry. By submitting this form, you consent to me contacting you regarding your message.</p>
                 </div>
 
+                <!-- Submission error, shown only if the AJAX submit fails -->
+                <p id="contact-form-error" class="hidden text-red-600 text-sm" role="alert">
+                  Sorry, something went wrong sending your message. Please try again, or email
+                  jacqui@jacquichowles.com directly.
+                </p>
+
                 <!-- Submit Button -->
-                <button 
-                  type="submit" 
+                <button
+                  type="submit"
                   class="w-full bg-purple-brand hover:bg-purple-brand-hover text-white font-bold py-4 px-8 rounded-lg transition-colors text-lg"
                 >
                   Send Message
@@ -325,6 +333,40 @@ const base = import.meta.env.BASE_URL;
         </div>
       </div>
     </section>
+
+    <script>
+      // Submit via fetch so we control the post-submit redirect ourselves,
+      // instead of relying on Formspree's _next header (which strips the
+      // origin and 404s on this plan).
+      const form = document.getElementById('contact-form') as HTMLFormElement | null;
+      const errorMessage = document.getElementById('contact-form-error');
+
+      form?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        errorMessage?.classList.add('hidden');
+
+        const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+        if (submitButton) submitButton.disabled = true;
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { Accept: 'application/json' },
+          });
+
+          if (response.ok) {
+            window.location.href = '/thanks/';
+            return;
+          }
+          throw new Error(`Formspree responded with ${response.status}`);
+        } catch (err) {
+          errorMessage?.classList.remove('hidden');
+        } finally {
+          if (submitButton) submitButton.disabled = false;
+        }
+      });
+    </script>
 
     <!-- FAQ Section -->
     <section class="py-16 md:py-20 bg-purple-muted/10">
