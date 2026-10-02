@@ -54,6 +54,24 @@ test('every inline script is allowed by the CSP hashes in _headers', () => {
   assert.deepEqual(blocked, []);
 });
 
+test('script-src allows every host the Psychology Today verified seal loads from', () => {
+  const headers = readFileSync(join(root, 'public', '_headers'), 'utf8');
+  const scriptSrc = (headers.match(/script-src ([^;]*)/) ?? [, ''])[1].split(/\s+/);
+  const external = new Set();
+  for (const page of pages) {
+    const html = readFileSync(page, 'utf8');
+    for (const [, src] of html.matchAll(/<script\b[^>]*\bsrc="(https:\/\/[^"]+)"/g)) {
+      external.add(new URL(src).origin);
+      // verified-seal.js pulls its loader from CloudFront, then a JSONP call from www.psychologytoday.com.
+      if (src.includes('verified-seal.js')) {
+        external.add('https://d3mmydk2yvkj9n.cloudfront.net');
+        external.add('https://www.psychologytoday.com');
+      }
+    }
+  }
+  assert.deepEqual([...external].filter((origin) => !scriptSrc.includes(origin)), []);
+});
+
 test('no inline event handler attributes (the CSP has no unsafe-hashes, so they never run)', () => {
   const handlers = [];
   for (const page of pages) {
