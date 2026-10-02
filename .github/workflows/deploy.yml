@@ -38,8 +38,12 @@ jobs:
         run: node --test tests/dist.test.mjs
         working-directory: ./website
 
+      # The Pages project's production branch is main. Any other branch (a push to
+      # jacqui-website-work, or a manual run from a feature branch) deploys as a
+      # preview under its own branch alias and leaves production untouched.
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy website/dist --project-name=jacquichowles --branch=main --commit-dirty=true
+        run: npx wrangler pages deploy website/dist --project-name=jacquichowles --branch="$DEPLOY_BRANCH" --commit-dirty=true
         env:
+          DEPLOY_BRANCH: ${{ github.ref_name }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_PAGES_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
