@@ -8,6 +8,9 @@ const navItems = [
 ];
 
 const currentPath = Astro.url.pathname;
+// Home is active only on itself; other items also match their sub-pages.
+const isActive = (href: string) =>
+  href === base ? currentPath === base : currentPath.startsWith(href);
 ---
 
 <header class="bg-white shadow-sm sticky top-0 z-50">
@@ -29,7 +32,7 @@ const currentPath = Astro.url.pathname;
             <a 
               href={item.href}
               class={`text-gray-700 hover:text-purple-700 transition-colors text-base md:text-lg ${
-                currentPath === item.href || (currentPath.startsWith(item.href) && item.href !== '/')
+                isActive(item.href)
                   ? 'font-bold border-b-2 border-purple-600'
                   : ''
               }`}
@@ -61,7 +64,7 @@ const currentPath = Astro.url.pathname;
             <a 
               href={item.href}
               class={`block px-4 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors ${
-                currentPath === item.href || (currentPath.startsWith(item.href) && item.href !== '/')
+                isActive(item.href)
                   ? 'font-bold bg-gray-100'
                   : ''
               }`}
