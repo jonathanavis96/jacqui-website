@@ -111,3 +111,10 @@ test('the header marks the current page and ties the menu button to its menu', (
   assert.match(html, /<a\b[^>]*href="\/about\/"[^>]*aria-current="page"/);
   assert.match(html, /<button\b[^>]*id="mobile-menu-button"[^>]*aria-controls="mobile-menu"/);
 });
+
+test('contact form personal fields carry autocomplete tokens', () => {
+  const html = readFileSync(join(dist, 'contact', 'index.html'), 'utf8');
+  for (const [id, token] of [['name', 'name'], ['email', 'email'], ['phone', 'tel']]) {
+    assert.match(html, new RegExp(`<input\\b[^>]*id="${id}"[^>]*autocomplete="${token}"`), id);
+  }
+});
