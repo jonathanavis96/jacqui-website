@@ -93,3 +93,21 @@ test('internal page links use the trailing-slash URL, avoiding a redirect hop', 
   }
   assert.deepEqual(unslashed, []);
 });
+
+test('the skip link targets #main-content on the same page, and that target exists', () => {
+  const broken = [];
+  for (const page of pages) {
+    const html = readFileSync(page, 'utf8');
+    const link = html.match(/<a\b[^>]*class="skip-link"[^>]*>/)?.[0] ?? '';
+    if (!link.includes('href="#main-content"') || !html.includes('id="main-content"')) {
+      broken.push(`${page.slice(dist.length)} ${link}`);
+    }
+  }
+  assert.deepEqual(broken, []);
+});
+
+test('the header marks the current page and ties the menu button to its menu', () => {
+  const html = readFileSync(join(dist, 'about', 'index.html'), 'utf8');
+  assert.match(html, /<a\b[^>]*href="\/about\/"[^>]*aria-current="page"/);
+  assert.match(html, /<button\b[^>]*id="mobile-menu-button"[^>]*aria-controls="mobile-menu"/);
+});
